@@ -1,0 +1,8 @@
+:root{--forest:#223326;--parchment:#F5F1EA;--clay:#B05D45;--ink:#1b1b1b;}
+body{margin:0;font-family:sans-serif;background:var(--parchment);color:var(--forest);}
+.site-header{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;background:#fff9;}
+.nav a{margin-left:10px;text-decoration:none;color:var(--forest);}
+.hero{min-height:60vh;display:flex;justify-content:center;align-items:center;flex-direction:column;}
+.btn{padding:8px 16px;margin:5px;border:1px solid var(--forest);border-radius:10px;text-decoration:none;}
+.site-footer{text-align:center;padding:20px;}
+.pinecone{font-size:1.2rem;border:none;background:none;cursor:pointer;}
