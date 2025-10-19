@@ -1,0 +1,53 @@
+:root {
+  --sky:#DCE6EE; --meadow:#F5F1EA; --forest:#223326; --white:#fff;
+}
+body {
+  margin:0; font-family:sans-serif; background:var(--meadow); color:var(--forest);
+}
+/* --- Cinematic Intro --- */
+#intro {
+  position: fixed; inset:0; z-index:9998;
+  display:grid; place-items:center;
+  overflow:hidden; transition:opacity 1s ease, transform 1s ease;
+}
+#intro.hidden {
+  opacity:0; pointer-events:none;
+  animation: fadeOut 1.2s ease forwards;
+}
+@keyframes fadeOut {
+  0% {opacity:1;}
+  100% {opacity:0; visibility:hidden;}
+}
+.intro-bg {
+  position:absolute; inset:0;
+  background:url('photos/wedding_proposal.jpg') center/cover no-repeat;
+  transform:scale(1);
+  animation:kenburns 12s ease-out forwards;
+  filter:saturate(0.95) contrast(1.05) brightness(0.75);
+}
+@keyframes kenburns {to{transform:scale(1.1);}}
+.intro-scrim {
+  position:absolute; inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.6),rgba(0,0,0,.4));
+}
+.intro-content {
+  position:relative; z-index:1; text-align:center; color:#F7E8C6;
+  animation:fadein .9s ease .2s both;
+}
+@keyframes fadein {from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;}}
+.btn {
+  background:var(--forest); color:var(--white); border:none; border-radius:10px;
+  padding:.6rem 1.2rem; font-weight:bold; cursor:pointer;
+}
+/* Fade transition overlay to mountains */
+#intro.hidden + .sky {
+  animation: revealSky 1.6s ease forwards;
+}
+@keyframes revealSky {
+  0% {filter: brightness(0) blur(10px);}
+  100% {filter: brightness(1) blur(0);}
+}
+/* rest */
+.site-header {text-align:center; padding:1rem; font-weight:bold;}
+.hero {text-align:center; padding:5rem 1rem;}
+.site-footer {text-align:center; padding:2rem; opacity:.7;}
