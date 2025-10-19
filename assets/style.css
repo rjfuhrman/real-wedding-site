@@ -26,7 +26,7 @@ body{
 #intro.hidden { opacity: 0; transform: scale(0.98); pointer-events: none; }
 .intro-bg {
   position: absolute; inset: 0;
-  background: url('assets/photos/dark-hero.jpg') center/cover no-repeat;
+  background: url('assets/photos/wide_proposal.jpg') center/cover no-repeat;
   transform: scale(1);
   animation: kenburns 10s ease-out forwards;
   filter: saturate(0.95) contrast(1.05) brightness(0.75);
