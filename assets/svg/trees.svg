@@ -1,11 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 140" preserveAspectRatio="none">
   <g fill="#223326" opacity=".9">
-    <path d="M50 120 l20 -40 l20 40z"/><path d="M120 120 l25 -50 l25 50z"/><path d="M200 120 l18 -36 l18 36z"/>
-    <path d="M280 120 l26 -52 l26 52z"/><path d="M360 120 l18 -36 l18 36z"/><path d="M430 120 l24 -48 l24 48z"/>
-    <path d="M520 120 l22 -44 l22 44z"/><path d="M600 120 l26 -52 l26 52z"/><path d="M700 120 l22 -44 l22 44z"/>
-    <path d="M780 120 l26 -52 l26 52z"/><path d="M860 120 l18 -36 l18 36z"/><path d="M940 120 l24 -48 l24 48z"/>
-    <path d="M1020 120 l20 -40 l20 40z"/><path d="M1100 120 l22 -44 l22 44z"/><path d="M1180 120 l26 -52 l26 52z"/>
-    <path d="M1260 120 l22 -44 l22 44z"/><path d="M1340 120 l20 -40 l20 40z"/><path d="M1420 120 l24 -48 l24 48z"/>
+    <path d="M50 120 l20 -40 l20 40z"/>
+    <path d="M120 120 l25 -50 l25 50z"/>
+    <path d="M200 120 l18 -36 l18 36z"/>
+    <path d="M280 120 l26 -52 l26 52z"/>
+    <path d="M360 120 l18 -36 l18 36z"/>
+    <path d="M430 120 l24 -48 l24 48z"/>
+    <path d="M520 120 l22 -44 l22 44z"/>
+    <path d="M600 120 l26 -52 l26 52z"/>
+    <path d="M700 120 l22 -44 l22 44z"/>
+    <path d="M780 120 l26 -52 l26 52z"/>
+    <path d="M860 120 l18 -36 l18 36z"/>
+    <path d="M940 120 l24 -48 l24 48z"/>
+    <path d="M1020 120 l20 -40 l20 40z"/>
+    <path d="M1100 120 l22 -44 l22 44z"/>
+    <path d="M1180 120 l26 -52 l26 52z"/>
+    <path d="M1260 120 l22 -44 l22 44z"/>
+    <path d="M1340 120 l20 -40 l20 40z"/>
+    <path d="M1420 120 l24 -48 l24 48z"/>
     <path d="M1500 120 l18 -36 l18 36z"/>
   </g>
 </svg>

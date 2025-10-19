@@ -4,8 +4,9 @@
   <meta charset="utf-8" />
   <title>Christine & Riley — 09.26.2026 · Durango, CO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Wedding details, RSVP, travel, and registry for Christine & Riley in Durango, Colorado." />
+  <meta name="description" content="Wedding details, RSVP, travel, and gallery for Christine & Riley in Durango, Colorado." />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
@@ -14,11 +15,25 @@
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
+  <!-- Cinematic Intro -->
+  <div id="intro" aria-label="Intro">
+    <div class="intro-bg"></div>
+    <div class="intro-scrim"></div>
+    <div class="intro-content">
+      <div class="intro-badge">🌲</div>
+      <h1>Christine &amp; Riley</h1>
+      <p>September 26, 2026 · Durango, CO</p>
+      <button id="intro-enter" class="btn primary">Enter</button>
+    </div>
+  </div>
+
+  <!-- Sky / Parallax Layers -->
   <div class="sky"></div>
   <img class="layer layer-back" src="assets/svg/mountain-back.svg" alt="" aria-hidden="true">
   <img class="layer layer-front" src="assets/svg/mountain-front.svg" alt="" aria-hidden="true">
   <img class="layer layer-trees" src="assets/svg/trees.svg" alt="" aria-hidden="true">
 
+  <!-- Header -->
   <header class="site-header">
     <a href="#top" class="brand">
       <img src="assets/svg/badge.svg" alt="" class="brand-mark" />
@@ -34,6 +49,7 @@
   </header>
 
   <main id="top">
+    <!-- Hero -->
     <section class="hero">
       <div class="hero-inner">
         <p class="kicker">Durango, Colorado</p>
@@ -47,6 +63,7 @@
       <div class="ridge ridge-bottom" aria-hidden="true"></div>
     </section>
 
+    <!-- Story stripes -->
     <section id="story" class="story">
       <div class="story-row">
         <img src="assets/photos/story1.jpg" alt="Hike above Durango" loading="lazy" />
@@ -64,6 +81,7 @@
       </div>
     </section>
 
+    <!-- Details -->
     <section id="details" class="section card">
       <h2>Event Details</h2>
       <div class="details-grid">
@@ -87,6 +105,7 @@
       </div>
     </section>
 
+    <!-- Schedule -->
     <section id="schedule" class="section card">
       <h2>The Day</h2>
       <ul class="timeline">
@@ -99,6 +118,7 @@
       </ul>
     </section>
 
+    <!-- Travel -->
     <section id="travel" class="section card">
       <h2>Travel &amp; Lodging</h2>
       <div class="travel-grid">
@@ -118,34 +138,28 @@
       </div>
     </section>
 
+    <!-- Gallery (auto) -->
     <section id="gallery" class="section card">
       <h2>Gallery</h2>
       <div class="gallery" id="gallery-grid"></div>
     </section>
 
+    <!-- RSVP -->
     <section id="rsvp" class="section card center">
       <h2>RSVP</h2>
       <p class="muted">Please respond by August 15, 2026.</p>
       <a class="btn primary big" href="https://forms.gle/your-google-form" target="_blank" rel="noopener">Open RSVP Form</a>
       <p class="muted">Questions? Email <a class="link" href="mailto:you@example.com">you@example.com</a></p>
     </section>
-
-    <section id="registry" class="section card center">
-      <h2>Registry</h2>
-      <p class="muted">Your presence is the best gift! If you’d like, here are our registries:</p>
-      <div class="registry-links">
-        <a class="btn" href="https://www.zola.com/registry/yourname" target="_blank" rel="noopener">Zola</a>
-        <a class="btn" href="https://www.crateandbarrel.com/gift-registry/" target="_blank" rel="noopener">Crate &amp; Barrel</a>
-        <a class="btn" href="https://www.target.com/gift-registry/" target="_blank" rel="noopener">Target</a>
-      </div>
-    </section>
   </main>
 
+  <!-- Footer + easter egg trigger -->
   <footer class="site-footer">
     <p>© 2026 Christine &amp; Riley · Durango, CO</p>
     <button class="pinecone" aria-label="toggle campfire mode" title="(definitely not an easter egg)">🌲</button>
   </footer>
 
+  <!-- Lightbox markup -->
   <div id="lightbox" class="lightbox" aria-hidden="true">
     <button class="lb-close" aria-label="Close">×</button>
     <img class="lb-img" alt="" />
