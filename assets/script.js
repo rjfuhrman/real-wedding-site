@@ -1,4 +1,3 @@
-// --- Cinematic Intro (plays once per session) ---
 (function introOnce(){
   const el = document.getElementById('intro');
   if (!el) return;
