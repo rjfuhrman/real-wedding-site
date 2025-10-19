@@ -4,7 +4,7 @@ body { margin:0; font-family:sans-serif; background:var(--meadow); color:var(--f
 #intro{position:fixed; inset:0; z-index:9998; display:grid; place-items:center; overflow:hidden; transition:opacity 1s ease, transform 1s ease;}
 #intro.hidden{opacity:0; pointer-events:none; animation:fadeOut 1.2s ease forwards;}
 @keyframes fadeOut{0%{opacity:1;}100%{opacity:0; visibility:hidden;}}
-.intro-bg{position:absolute; inset:0; background:url('photos/wedding_proposal.jpg') center/cover no-repeat; transform:scale(1); animation:kenburns 12s ease-out forwards; filter:saturate(.95) contrast(1.05) brightness(.75);}
+.intro-bg{position:absolute; inset:0; background:url('/assets/photos/wedding_proposal.jpg') center/cover no-repeat; transform:scale(1); animation:kenburns 12s ease-out forwards; filter:saturate(.95) contrast(1.05) brightness(.75);}
 @keyframes kenburns{to{transform:scale(1.1);}}
 .intro-scrim{position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.6),rgba(0,0,0,.4));}
 .intro-content{position:relative; z-index:1; text-align:center; color:#F7E8C6; animation:fadein .9s ease .2s both;}
