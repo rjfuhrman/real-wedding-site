@@ -1,4 +1,5 @@
 :root { --sky:#DCE6EE; --meadow:#F5F1EA; --forest:#223326; --white:#fff; }
+*{box-sizing:border-box}
 body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--meadow); color:var(--forest); }
 /* Intro */
 #intro{position:fixed; inset:0; z-index:9998; display:grid; place-items:center; overflow:hidden; transition:opacity 1s ease, transform 1s ease;}
@@ -15,9 +16,23 @@ body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial,
 .intro-content{position:relative; z-index:1; text-align:center; color:#F7E8C6; animation:fadein .9s ease .2s both;}
 @keyframes fadein{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;}}
 .btn{background:var(--forest); color:var(--white); border:none; border-radius:10px; padding:.6rem 1.2rem; font-weight:bold; cursor:pointer;}
+/* Cross-fade to mountains */
 #intro.hidden + .sky{animation:revealSky 1.6s ease forwards;}
 @keyframes revealSky{0%{filter:brightness(0) blur(10px);}100%{filter:brightness(1) blur(0);}}
-.site-header{text-align:center; padding:1rem; font-weight:bold;}
-.hero{text-align:center; padding:5rem 1rem;}
-.site-footer{text-align:center; padding:2rem; opacity:.7;}
-.ridge.ridge-bottom{background:url('/assets/svg/ridge.svg') center bottom/cover no-repeat;}
+/* Parallax backdrop */
+.sky{position:fixed; inset:0; z-index:-3; background: radial-gradient(1200px 600px at 50% -10%, var(--sky), transparent 70%), linear-gradient(#f6f7f3, var(--meadow) 40%);}
+.layer{position:fixed; left:0; width:1600px; max-width:none; z-index:-1; opacity:.95; pointer-events:none}
+.layer-back{bottom:-30px; transform: translateZ(0) scale(1.1); filter: saturate(.9)}
+.layer-front{bottom:-10px; z-index:-1}
+.layer-trees{bottom:-4px; z-index:0; opacity:.9}
+/* Header */
+.site-header{text-align:center; padding:1rem; font-weight:800; background:rgba(245,241,234,.85); backdrop-filter: blur(6px); position:sticky; top:0; border-bottom:1px solid rgba(34,51,38,.08);}
+/* Hero */
+.hero{min-height:78vh; display:grid; place-items:center; position:relative; text-align:center;}
+.hero-inner{padding:3rem 1rem}
+.kicker{letter-spacing:.22em; text-transform:uppercase; font-size:.8rem; opacity:.7}
+.title{font-weight:800; font-size: clamp(2.4rem, 7vw, 4.2rem); margin:.4rem 0;}
+.sub{opacity:.9}
+.ridge.ridge-bottom{position:absolute; left:0; right:0; bottom:-1px; height:70px; background: url('/assets/svg/ridge.svg') center bottom / cover no-repeat;}
+/* Footer */
+.site-footer{text-align:center; padding:2rem; opacity:.75;}

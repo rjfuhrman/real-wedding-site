@@ -1,1 +1,1 @@
-Place wedding_proposal.jpg here.
+Place your hero image here as 'wedding_proposal.jpg'.
