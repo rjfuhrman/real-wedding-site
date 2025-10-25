@@ -17,7 +17,8 @@ html, body {
 .hero-bg {
   position: fixed;
   inset: 0;
-  background-image: url('assets/photos/wedding_proposal.jpg');
+  /* IMPORTANT: path is relative to this CSS file (assets/css/), so we go up one level */
+  background-image: url('../photos/wedding_proposal.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
