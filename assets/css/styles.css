@@ -89,9 +89,9 @@ html, body {
 
 .fade-up {
   opacity: 0;
-  animation: fadeUp 0.8s ease-out forwards;
+  animation: fadeUp 1.2s ease-out forwards;
 }
 
 .d1 { animation-delay: 0.1s; }
-.d2 { animation-delay: 0.35s; }
-.d3 { animation-delay: 0.65s; }
+.d2 { animation-delay: 1.6s; }
+.d3 { animation-delay: 3.1s; }
