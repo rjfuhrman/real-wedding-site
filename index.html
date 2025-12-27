@@ -1,100 +1,188 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Christine & Riley — Save the Date</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Christine &amp; Riley — Save the Date</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/styles.css" />
-</head>
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
 
-<body>
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#top" class="nav-name">Christine &amp; Riley</a>
-      <div class="nav-links">
-        <a href="#details">Details</a>
-        <a href="#travel">Travel</a>
-        <a href="#stay">Stay</a>
-        <a href="#rsvp">RSVP</a>
+  <body>
+    <!-- Fixed Nav (anchors) -->
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="#top" class="nav-name">Christine &amp; Riley</a>
+        <div class="nav-links">
+          <a href="#details">Details</a>
+          <a href="#travel">Travel</a>
+          <a href="#stay">Accommodations</a>
+          <a href="#rsvp">RSVP</a>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <header id="top" class="hero">
-    <div class="hero-bg">
-      <img src="assets/photos/wedding_proposal.jpg" class="bg-image" alt="Christine and Riley" />
-      <div class="overlay"></div>
-    </div>
+    <!-- HERO (unchanged concept: full-screen photo + centered text) -->
+    <header id="top" class="hero">
+      <div class="background" aria-hidden="true">
+        <img src="assets/photos/wedding_proposal.jpg" alt="" class="bg-image" />
+        <div class="overlay"></div>
+      </div>
 
-    <div class="hero-content">
-      <h1>Christine &amp; Riley</h1>
-      <p class="subtitle">September 26, 2026 • Durango, Colorado</p>
-      <a href="#details" class="scroll-cue">Scroll ↓</a>
-    </div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="fade-up d1">Christine &amp; Riley</h1>
+          <p class="subtitle fade-up d2">September 26, 2026 • Durango, Colorado</p>
+        </div>
 
-    <div class="hero-fade"></div>
-  </header>
+        <a class="scroll-cue fade-up d3" href="#details" aria-label="Scroll to details">
+          <span>Scroll</span>
+          <span class="chev">⌄</span>
+        </a>
+      </div>
+    </header>
 
-  <main class="content-surface">
-    <section id="details" class="section">
-      <div class="container">
-        <h2 class="section-title">Details</h2>
-        <div class="cards">
-          <div class="card">
-            <h3>The Wedding</h3>
-            <p><strong>Saturday, September 26, 2026</strong></p>
-            <p>4:30 PM (Mountain Standard Time)</p>
-            <p>The Prospector at Glacier<br>Durango, Colorado</p>
+    <!-- Below-hero sections (warm + whimsical) -->
+    <main class="page">
+      <section id="details" class="section section-intro">
+        <div class="container">
+          <div class="kicker">Save the date</div>
+          <h2 class="section-title">We can’t wait to celebrate with you.</h2>
+          <p class="lede">
+            We’re putting together more details around travel, accommodations, and weekend fun — but here’s what we know so far.
+          </p>
+
+          <div class="cards">
+            <article class="card">
+              <div class="card-top">
+                <div class="pill">Wedding</div>
+                <div class="emoji" aria-hidden="true">💍</div>
+              </div>
+              <h3>The Prospector at Glacier</h3>
+              <p><strong>Saturday, September 26, 2026</strong> · 4:30 PM (Mountain Standard Time)</p>
+              <p>Durango, Colorado</p>
+            </article>
+
+            <article class="card">
+              <div class="card-top">
+                <div class="pill">Welcome Party</div>
+                <div class="emoji" aria-hidden="true">🥂</div>
+              </div>
+              <h3>Lola’s Place (Downtown Durango)</h3>
+              <p><strong>Friday, September 25, 2026</strong> · 5:00 PM</p>
+              <p class="note">Shuttles will be provided to and from Glacier’s property for those staying up the valley.</p>
+            </article>
           </div>
-          <div class="card">
-            <h3>Welcome Party</h3>
-            <p><strong>Friday, September 25, 2026</strong></p>
-            <p>5:00 PM</p>
-            <p>Lola’s Place<br>Downtown Durango</p>
-            <p class="muted">Shuttles will be provided to and from Glacier’s property.</p>
+
+          <div class="divider" aria-hidden="true">
+            <svg viewBox="0 0 800 60" preserveAspectRatio="none">
+              <path d="M0,30 C120,10 180,50 300,30 C420,10 520,55 650,30 C710,18 750,22 800,20" />
+            </svg>
+            <span class="sparkle">✦</span>
+            <span class="sparkle">✦</span>
+            <span class="sparkle">✦</span>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="travel" class="section">
-      <div class="container">
-        <h2 class="section-title">Travel</h2>
-        <div class="cards">
-          <div class="card"><h3>Getting There</h3><p class="muted">Details coming soon.</p></div>
-          <div class="card"><h3>Transportation</h3><p class="muted">Details coming soon.</p></div>
+      <section id="travel" class="section">
+        <div class="container">
+          <h2 class="section-title">Travel</h2>
+          <div class="cards cards-3">
+            <article class="card subtle">
+              <div class="card-top">
+                <div class="pill">Airports</div>
+                <div class="emoji" aria-hidden="true">✈️</div>
+              </div>
+              <h3>Getting to Durango</h3>
+              <p class="muted">Coming soon.</p>
+              <p>We’ll share airport options, driving times, and the easiest ways to arrive.</p>
+            </article>
+
+            <article class="card subtle">
+              <div class="card-top">
+                <div class="pill">Getting around</div>
+                <div class="emoji" aria-hidden="true">🚐</div>
+              </div>
+              <h3>Transportation</h3>
+              <p class="muted">Coming soon.</p>
+              <p>We’ll post shuttle timing, parking info, and valley transportation recommendations.</p>
+            </article>
+
+            <article class="card subtle">
+              <div class="card-top">
+                <div class="pill">Weekend vibe</div>
+                <div class="emoji" aria-hidden="true">🏔️</div>
+              </div>
+              <h3>Things to do</h3>
+              <p class="muted">Coming soon.</p>
+              <p>Hikes, coffee, breweries, and favorite Durango spots — we’ll curate a short list.</p>
+            </article>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="stay" class="section">
-      <div class="container">
-        <h2 class="section-title">Accommodations</h2>
-        <div class="cards">
-          <div class="card"><h3>Where to Stay</h3><p class="muted">Details coming soon.</p></div>
-          <div class="card"><h3>Notes</h3><p class="muted">Details coming soon.</p></div>
+      <section id="stay" class="section">
+        <div class="container">
+          <h2 class="section-title">Accommodations</h2>
+          <div class="cards">
+            <article class="card subtle">
+              <div class="card-top">
+                <div class="pill">Hotels & rentals</div>
+                <div class="emoji" aria-hidden="true">🛌</div>
+              </div>
+              <h3>Where to stay</h3>
+              <p class="muted">Coming soon.</p>
+              <p>We’ll share recommended hotels and areas for vacation rentals.</p>
+            </article>
+
+            <article class="card subtle">
+              <div class="card-top">
+                <div class="pill">Good to know</div>
+                <div class="emoji" aria-hidden="true">🍂</div>
+              </div>
+              <h3>Notes</h3>
+              <p class="muted">Coming soon.</p>
+              <p>Fall weather, altitude tips, what to pack, and weekend logistics.</p>
+            </article>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="rsvp" class="section">
-      <div class="container">
-        <h2 class="section-title">RSVP</h2>
-        <div class="cards">
-          <div class="card"><h3>RSVP</h3><p class="muted">Opening soon.</p></div>
-          <div class="card"><h3>Questions?</h3><p>Reach out anytime.</p></div>
+      <section id="rsvp" class="section">
+        <div class="container">
+          <h2 class="section-title">RSVP</h2>
+          <div class="rsvp">
+            <div class="rsvp-card">
+              <div class="rsvp-left">
+                <div class="pill">RSVP</div>
+                <h3>We’ll open RSVPs closer to the date.</h3>
+                <p class="muted">
+                  For now, please save the date — and feel free to reach out if you have questions.
+                </p>
+              </div>
+              <div class="rsvp-right">
+                <div class="contact">
+                  <div class="contact-title">Questions?</div>
+                  <p class="muted">Email or text us anytime.</p>
+                  <div class="tiny">More details coming soon.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <footer class="footer">
+            <span class="footer-line">We can’t wait to celebrate with you in Durango.</span>
+            <a class="back-top" href="#top">Back to top ↑</a>
+          </footer>
         </div>
-      </div>
-    </section>
-
-    <footer class="page-footer">
-      <p>We can’t wait to celebrate with you in Durango.</p>
-    </footer>
-  </main>
-</body>
+      </section>
+    </main>
+  </body>
 </html>
