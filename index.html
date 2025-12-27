@@ -15,7 +15,7 @@
   </head>
 
   <body>
-    <!-- Fixed Nav (anchor links) -->
+    <!-- Navigation -->
     <nav class="nav">
       <div class="nav-inner">
         <a href="#top" class="nav-name">Christine &amp; Riley</a>
@@ -30,55 +30,49 @@
 
     <!-- HERO -->
     <header id="top" class="hero">
-      <div class="hero-bg" aria-hidden="true">
+      <div class="hero-bg">
         <img src="assets/photos/wedding_proposal.jpg" alt="" class="bg-image" />
         <div class="overlay"></div>
       </div>
 
       <div class="hero-content">
-        <div class="hero-text">
-          <h1 class="fade-up d1">Christine &amp; Riley</h1>
-          <p class="subtitle fade-up d2">September 26, 2026 • Durango, Colorado</p>
-        </div>
-
-        <a class="scroll-cue fade-up d3" href="#details" aria-label="Scroll to details">
-          <span>Scroll</span>
-          <span class="chev">⌄</span>
-        </a>
+        <h1 class="fade-up d1">Christine &amp; Riley</h1>
+        <p class="subtitle fade-up d2">September 26, 2026 • Durango, Colorado</p>
+        <a class="scroll-cue fade-up d3" href="#details">Scroll ⌄</a>
       </div>
 
-      <!-- Smooth blend into the page as you scroll -->
-      <div class="hero-fade" aria-hidden="true"></div>
+      <!-- Hero fade into page -->
+      <div class="hero-fade"></div>
     </header>
 
-    <!-- CONTENT SURFACE -->
+    <!-- CONTENT -->
     <main class="content-surface">
       <section id="details" class="section">
         <div class="container">
           <h2 class="section-title">Details</h2>
 
           <div class="cards">
-            <article class="card">
+            <div class="card">
               <h3>The Wedding</h3>
               <p><strong>Saturday, September 26, 2026</strong></p>
               <p>4:30 PM (Mountain Standard Time)</p>
-              <p>The Prospector at Glacier<br/>Durango, Colorado</p>
-            </article>
+              <p>The Prospector at Glacier<br>Durango, Colorado</p>
+            </div>
 
-            <article class="card">
+            <div class="card">
               <h3>Welcome Party</h3>
               <p><strong>Friday, September 25, 2026</strong></p>
               <p>5:00 PM</p>
-              <p>Lola’s Place<br/>Downtown Durango</p>
+              <p>Lola’s Place<br>Downtown Durango</p>
               <p class="note">Shuttles will be provided to and from Glacier’s property for those staying up the valley.</p>
-            </article>
+            </div>
           </div>
         </div>
       </section>
 
-      <div class="section-sep" aria-hidden="true">
-        <svg viewBox="0 0 520 90" role="img" aria-label="Pine silhouette">
-          <path d="M20 78c12-18 16-30 20-48 4 18 8 30 20 48h-8c-4-5-7-10-12-18-5 8-8 13-12 18h-8Zm58 0c16-22 22-38 26-62 4 24 10 40 26 62h-10c-5-7-9-14-16-24-7 10-11 17-16 24H78Zm84 0c14-20 20-34 23-56 4 22 9 36 23 56h-9c-5-7-8-13-14-22-6 9-9 15-14 22h-9Zm84 0c18-26 25-44 29-72 5 28 11 46 29 72h-11c-6-8-10-16-18-28-8 12-12 20-18 28h-11Zm104 0c14-20 20-34 23-56 4 22 9 36 23 56h-9c-5-7-8-13-14-22-6 9-9 15-14 22h-9Zm84 0c16-22 22-38 26-62 4 24 10 40 26 62h-10c-5-7-9-14-16-24-7 10-11 17-16 24h-10Z"/>
+      <div class="section-sep">
+        <svg viewBox="0 0 520 90" preserveAspectRatio="xMidYMid meet">
+          <path d="M20 78c12-18 16-30 20-48 4 18 8 30 20 48h-8c-4-5-7-10-12-18-5 8-8 13-12 18h-8Zm58 0c16-22 22-38 26-62 4 24 10 40 26 62h-10c-5-7-9-14-16-24-7 10-11 17-16 24H78Zm84 0c14-20 20-34 23-56 4 22 9 36 23 56h-9c-5-7-8-13-14-22-6 9-9 15-14 22h-9Z"/>
         </svg>
       </div>
 
@@ -86,72 +80,52 @@
         <div class="container">
           <h2 class="section-title">Travel</h2>
           <div class="cards">
-            <article class="card">
-              <h3>Getting to Durango</h3>
-              <p class="muted">Coming soon.</p>
-              <p>We’ll share airport options, driving times, and tips for getting around.</p>
-            </article>
-            <article class="card">
+            <div class="card">
+              <h3>Getting There</h3>
+              <p class="muted">Details coming soon.</p>
+            </div>
+            <div class="card">
               <h3>Transportation</h3>
-              <p class="muted">Coming soon.</p>
-              <p>We’ll include shuttle info, parking details, and valley transportation recommendations.</p>
-            </article>
+              <p class="muted">Shuttle and parking info coming soon.</p>
+            </div>
           </div>
         </div>
       </section>
-
-      <div class="section-sep" aria-hidden="true">
-        <svg viewBox="0 0 520 90" role="img" aria-label="Pine silhouette">
-          <path d="M20 78c12-18 16-30 20-48 4 18 8 30 20 48h-8c-4-5-7-10-12-18-5 8-8 13-12 18h-8Zm58 0c16-22 22-38 26-62 4 24 10 40 26 62h-10c-5-7-9-14-16-24-7 10-11 17-16 24H78Zm84 0c14-20 20-34 23-56 4 22 9 36 23 56h-9c-5-7-8-13-14-22-6 9-9 15-14 22h-9Zm84 0c18-26 25-44 29-72 5 28 11 46 29 72h-11c-6-8-10-16-18-28-8 12-12 20-18 28h-11Zm104 0c14-20 20-34 23-56 4 22 9 36 23 56h-9c-5-7-8-13-14-22-6 9-9 15-14 22h-9Zm84 0c16-22 22-38 26-62 4 24 10 40 26 62h-10c-5-7-9-14-16-24-7 10-11 17-16 24h-10Z"/>
-        </svg>
-      </div>
 
       <section id="stay" class="section">
         <div class="container">
           <h2 class="section-title">Accommodations</h2>
           <div class="cards">
-            <article class="card">
+            <div class="card">
               <h3>Where to Stay</h3>
-              <p class="muted">Coming soon.</p>
-              <p>We’ll post recommended hotels and areas for vacation rentals.</p>
-            </article>
-            <article class="card">
+              <p class="muted">Hotel and rental recommendations coming soon.</p>
+            </div>
+            <div class="card">
               <h3>Notes</h3>
-              <p class="muted">Coming soon.</p>
-              <p>We’ll share what to expect with fall weather, altitude, and weekend logistics.</p>
-            </article>
+              <p class="muted">Weather and weekend logistics coming soon.</p>
+            </div>
           </div>
         </div>
       </section>
-
-      <div class="section-sep" aria-hidden="true">
-        <svg viewBox="0 0 520 90" role="img" aria-label="Pine silhouette">
-          <path d="M20 78c12-18 16-30 20-48 4 18 8 30 20 48h-8c-4-5-7-10-12-18-5 8-8 13-12 18h-8Zm58 0c16-22 22-38 26-62 4 24 10 40 26 62h-10c-5-7-9-14-16-24-7 10-11 17-16 24H78Zm84 0c14-20 20-34 23-56 4 22 9 36 23 56h-9c-5-7-8-13-14-22-6 9-9 15-14 22h-9Zm84 0c18-26 25-44 29-72 5 28 11 46 29 72h-11c-6-8-10-16-18-28-8 12-12 20-18 28h-11Zm104 0c14-20 20-34 23-56 4 22 9 36 23 56h-9c-5-7-8-13-14-22-6 9-9 15-14 22h-9Zm84 0c16-22 22-38 26-62 4 24 10 40 26 62h-10c-5-7-9-14-16-24-7 10-11 17-16 24h-10Z"/>
-        </svg>
-      </div>
 
       <section id="rsvp" class="section">
         <div class="container">
           <h2 class="section-title">RSVP</h2>
           <div class="cards">
-            <article class="card">
+            <div class="card">
               <h3>RSVP</h3>
-              <p class="muted">Coming soon.</p>
-              <p>We’ll open RSVPs once we’re closer and have a few more details nailed down.</p>
-            </article>
-            <article class="card">
+              <p class="muted">We’ll open RSVPs closer to the date.</p>
+            </div>
+            <div class="card">
               <h3>Questions?</h3>
-              <p>If you need anything in the meantime, reach out anytime.</p>
-            </article>
+              <p>Reach out anytime — we’re happy to help.</p>
+            </div>
           </div>
         </div>
       </section>
 
       <footer class="page-footer">
-        <div class="container">
-          <p>We can’t wait to celebrate with you in Durango.</p>
-          <a class="back-to-top" href="#top">Back to top ↑</a>
-        </div>
+        <p>We can’t wait to celebrate with you in Durango.</p>
       </footer>
     </main>
   </body>
