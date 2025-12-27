@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Christine & Riley — Save the Date</title>
+    <title>Christine &amp; Riley — Save the Date</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,43 +18,122 @@
   </head>
 
   <body>
-    <!-- Navigation -->
+    <!-- Fixed Nav (anchors) -->
     <nav class="nav">
       <div class="nav-inner">
-        <a href="/" class="nav-name">Christine &amp; Riley</a>
+        <a href="#top" class="nav-name">Christine &amp; Riley</a>
         <div class="nav-links">
-          <a href="/details.html">Details</a>
-          <a href="/travel.html">Travel</a>
-          <a href="/stay.html">Stay</a>
-          <a href="/rsvp.html">RSVP</a>
+          <a href="#details">Details</a>
+          <a href="#travel">Travel</a>
+          <a href="#stay">Stay</a>
+          <a href="#rsvp">RSVP</a>
         </div>
       </div>
     </nav>
 
-    <!-- Background -->
-    <div class="background">
-      <img
-        src="/assets/photos/wedding_proposal.jpg"
-        alt="Christine and Riley"
-        class="bg-image"
-      />
-      <div class="overlay"></div>
-    </div>
+    <!-- HERO (image background) -->
+    <header id="top" class="hero">
+      <div class="background" aria-hidden="true">
+        <img src="/assets/photos/wedding_proposal.jpg" alt="" class="bg-image" />
+        <div class="overlay"></div>
+      </div>
 
-    <!-- Page Content -->
-    <main class="content">
-      <section class="center">
-        <div class="text">
+      <div class="hero-content">
+        <div class="hero-text">
           <h1 class="fade-up d1">Christine &amp; Riley</h1>
-          <p class="subtitle fade-up d2">
-            September 26, 2026 • Durango, Colorado
-          </p>
+          <p class="subtitle fade-up d2">September 26, 2026 • Durango, Colorado</p>
+        </div>
+
+        <a class="scroll-cue fade-up d3" href="#details" aria-label="Scroll to details">
+          <span>Scroll</span>
+          <span class="chev">⌄</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- CONTENT (readable surface) -->
+    <main class="content-surface">
+      <section id="details" class="section">
+        <div class="container">
+          <h2 class="section-title">Details</h2>
+
+          <div class="cards">
+            <article class="card">
+              <h3>The Wedding</h3>
+              <p><strong>Saturday, September 26, 2026</strong></p>
+              <p>4:30 PM (Mountain Standard Time)</p>
+              <p>The Prospector at Glacier<br/>Durango, Colorado</p>
+            </article>
+
+            <article class="card">
+              <h3>Welcome Party</h3>
+              <p><strong>Friday, September 25, 2026</strong></p>
+              <p>5:00 PM</p>
+              <p>Lola’s Place<br/>Downtown Durango</p>
+              <p class="note">Shuttles will be provided to and from Glacier’s property for those staying up the valley.</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <footer class="footer fade-up d3">
-        Please save the date. We're working on more details around travel,
-        accommodations, and fun. We can't wait to celebrate with you in Durango.
+      <section id="travel" class="section">
+        <div class="container">
+          <h2 class="section-title">Travel</h2>
+          <div class="cards">
+            <article class="card">
+              <h3>Getting to Durango</h3>
+              <p class="muted">Coming soon.</p>
+              <p>We’ll share the best airport options, driving times, and tips for getting around.</p>
+            </article>
+            <article class="card">
+              <h3>Transportation</h3>
+              <p class="muted">Coming soon.</p>
+              <p>We’ll include shuttle info, parking details, and valley transportation recommendations.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="stay" class="section">
+        <div class="container">
+          <h2 class="section-title">Accommodations</h2>
+          <div class="cards">
+            <article class="card">
+              <h3>Where to Stay</h3>
+              <p class="muted">Coming soon.</p>
+              <p>We’ll post recommended hotels and areas for vacation rentals, plus guidance for staying up the valley.</p>
+            </article>
+            <article class="card">
+              <h3>Notes</h3>
+              <p class="muted">Coming soon.</p>
+              <p>We’ll share what to expect with fall weather, altitude, and weekend logistics.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="rsvp" class="section">
+        <div class="container">
+          <h2 class="section-title">RSVP</h2>
+          <div class="cards">
+            <article class="card">
+              <h3>RSVP</h3>
+              <p class="muted">Coming soon.</p>
+              <p>We’ll open RSVPs once we’re closer and have a few more details nailed down.</p>
+            </article>
+            <article class="card">
+              <h3>Questions?</h3>
+              <p>If you need anything in the meantime, reach out anytime.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <div class="container">
+          <p>We can’t wait to celebrate with you in Durango.</p>
+          <a class="back-to-top" href="#top">Back to top ↑</a>
+        </div>
       </footer>
     </main>
   </body>
