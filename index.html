@@ -416,10 +416,7 @@
         }
 
         const payload = {
-          party_id,
-          email: (fd.get("email") || "").toString().trim(),
-          phone: (fd.get("phone") || "").toString().trim(),
-          dietary: (fd.get("dietary") || "").toString().trim(),
+          party_id,dietary: (fd.get("dietary") || "").toString().trim(),
           notes: (fd.get("notes") || "").toString().trim(),
           members
         };

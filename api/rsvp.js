@@ -19,13 +19,11 @@ export default async function handler(req, res) {
   }
 
   const party_id = (body?.party_id || "").toString().trim();
-  const email = (body?.email || "").toString().trim();
-  const phone = (body?.phone || "").toString().trim();
-  const dietary = (body?.dietary || "").toString().trim();
+const dietary = (body?.dietary || "").toString().trim();
   const notes = (body?.notes || "").toString().trim();
   const members = Array.isArray(body?.members) ? body.members : [];
 
-  if (!party_id || !email || members.length < 1) {
+  if (!party_id || members.length < 1) {
     return res.status(400).send("Missing required fields.");
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -39,9 +37,7 @@ export default async function handler(req, res) {
 
   const payload = {
     party_id,
-    email,
-    phone: phone || null,
-    dietary: dietary || null,
+dietary: dietary || null,
     notes: notes || null,
     members,
     created_at: new Date().toISOString()
@@ -49,7 +45,7 @@ export default async function handler(req, res) {
 
   // Table expected: rsvps
   // Columns:
-  //   id (uuid, default), party_id (text/uuid), email (text), phone (text),
+  //   id (uuid, default), party_id (text/uuid),
   //   dietary (text), notes (text), members (jsonb), created_at (timestamptz)
   const url = `${SUPABASE_URL}/rest/v1/rsvps`;
 

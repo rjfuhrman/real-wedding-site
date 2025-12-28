@@ -29,8 +29,6 @@ create index if not exists guest_parties_primary_name_idx
 create table if not exists public.rsvps (
   id uuid primary key default gen_random_uuid(),
   party_id text not null references public.guest_parties(party_id),
-  email text not null,
-  phone text,
   dietary text,
   notes text,
   members jsonb not null default '[]'::jsonb,
@@ -70,3 +68,15 @@ Deploy as usual. The RSVP flow will:
 - Add alias searching (maiden names, nicknames)
 - Add a "code" field to confirm identity (optional)
 - Add honeypot + rate limiting for spam resistance
+
+
+## If you already created `rsvps` with email/phone (migration)
+
+If your existing table has `email text not null` from earlier steps, run:
+
+```sql
+alter table public.rsvps alter column email drop not null;
+-- optional: drop columns entirely if you don't want them
+alter table public.rsvps drop column if exists email;
+alter table public.rsvps drop column if exists phone;
+```
