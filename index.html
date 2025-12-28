@@ -157,6 +157,57 @@
 
       <section id="rsvp" class="section">
         <div class="container">
+          <p class="lede" style="margin-top: 8px;">
+            RSVP will be enabled once we’re closer — but the form is ready for us to turn on when we want.
+          </p>
+
+          <form id="rsvpForm" class="form" method="post" action="/api/rsvp" novalidate>
+            <div class="form-grid">
+              <label class="field">
+                <span>Full name</span>
+                <input name="name" type="text" autocomplete="name" required placeholder="Your name" />
+              </label>
+
+              <label class="field">
+                <span>Email</span>
+                <input name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+              </label>
+
+              <label class="field">
+                <span>Will you attend?</span>
+                <select name="attending" required>
+                  <option value="" selected disabled>Select</option>
+                  <option value="yes">Yes, can’t wait</option>
+                  <option value="no">No, sadly</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Number of guests</span>
+                <input name="guests" type="number" min="1" max="6" value="1" />
+              </label>
+
+              <label class="field full">
+                <span>Dietary restrictions (optional)</span>
+                <input name="dietary" type="text" placeholder="Vegetarian, gluten-free, allergies, etc." />
+              </label>
+
+              <label class="field full">
+                <span>Notes (optional)</span>
+                <textarea name="notes" rows="3" placeholder="Anything else we should know?"></textarea>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn" disabled title="We’ll enable RSVPs closer to the date">
+                RSVP (coming soon)
+              </button>
+              <div class="form-hint">We’ll turn this on when RSVPs open.</div>
+            </div>
+
+            <div id="formMsg" class="form-msg" aria-live="polite"></div>
+          </form>
+
           <h2 class="section-title">RSVP</h2>
           <div class="rsvp">
             <div class="rsvp-card">
@@ -184,5 +235,45 @@
         </div>
       </section>
     </main>
+  
+    <script>
+      const form = document.getElementById('rsvpForm');
+      const msg = document.getElementById('formMsg');
+
+      if (form) {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          if (msg) msg.textContent = "";
+
+          const btn = form.querySelector('button[type="submit"]');
+          if (btn && btn.disabled) {
+            if (msg) msg.textContent = "RSVPs aren’t open yet — check back soon.";
+            return;
+          }
+
+          const data = Object.fromEntries(new FormData(form).entries());
+
+          try {
+            const res = await fetch(form.action, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data)
+            });
+
+            if (!res.ok) {
+              const t = await res.text();
+              throw new Error(t || "Request failed");
+            }
+
+            if (msg) msg.textContent = "Thanks! Your RSVP has been received.";
+            form.reset();
+          } catch (err) {
+            if (msg) msg.textContent = "Hmm — something went wrong. Please try again later.";
+            console.error(err);
+          }
+        });
+      }
+    </script>
+
   </body>
 </html>
