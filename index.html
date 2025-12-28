@@ -156,75 +156,77 @@
       </section>
 
       <section id="rsvp" class="section">
+
         <div class="container">
+          <h2 class="section-title">RSVP</h2>
+
           <p class="lede" style="margin-top: 8px;">
-            RSVP will be enabled once we’re closer — but the form is ready for us to turn on when we want.
+            Please search for your name to RSVP. If you can’t find it, reach out and we’ll help.
           </p>
 
-          <form id="rsvpForm" class="form" method="post" action="/api/rsvp" novalidate>
-            <div class="form-grid">
-              <label class="field">
-                <span>Full name</span>
-                <input name="name" type="text" autocomplete="name" required placeholder="Your name" />
-              </label>
-
-              <label class="field">
-                <span>Email</span>
-                <input name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
-              </label>
-
-              <label class="field">
-                <span>Will you attend?</span>
-                <select name="attending" required>
-                  <option value="" selected disabled>Select</option>
-                  <option value="yes">Yes, can’t wait</option>
-                  <option value="no">No, sadly</option>
-                </select>
-              </label>
-
-              <label class="field">
-                <span>Number of guests</span>
-                <input name="guests" type="number" min="1" max="6" value="1" />
-              </label>
-
-              <label class="field full">
-                <span>Dietary restrictions (optional)</span>
-                <input name="dietary" type="text" placeholder="Vegetarian, gluten-free, allergies, etc." />
-              </label>
-
-              <label class="field full">
-                <span>Notes (optional)</span>
-                <textarea name="notes" rows="3" placeholder="Anything else we should know?"></textarea>
-              </label>
-            </div>
-
-            <div class="form-actions">
-              <button type="submit" class="btn" disabled title="We’ll enable RSVPs closer to the date">
-                RSVP (coming soon)
-              </button>
-              <div class="form-hint">We’ll turn this on when RSVPs open.</div>
-            </div>
-
-            <div id="formMsg" class="form-msg" aria-live="polite"></div>
-          </form>
-
-          <h2 class="section-title">RSVP</h2>
-          <div class="rsvp">
-            <div class="rsvp-card">
-              <div class="rsvp-left">
-                <div class="pill">RSVP</div>
-                <h3>We’ll open RSVPs closer to the date.</h3>
-                <p class="muted">
-                  For now, please save the date — and feel free to reach out if you have questions.
-                </p>
+          <div class="rsvp-shell">
+            <!-- Step 1: Lookup -->
+            <div class="lookup card subtle">
+              <div class="card-top">
+                <div class="pill">Step 1</div>
+                <div class="emoji" aria-hidden="true">🔎</div>
               </div>
-              <div class="rsvp-right">
-                <div class="contact">
-                  <div class="contact-title">Questions?</div>
-                  <p class="muted">Email or text us anytime.</p>
-                  <div class="tiny">More details coming soon.</div>
+              <h3>Find your invitation</h3>
+              <p class="muted">Start typing your name (try first + last).</p>
+
+              <div class="lookup-row">
+                <input id="lookupInput" class="lookup-input" type="text" placeholder="Type your name…" autocomplete="name" />
+                <button id="lookupBtn" class="btn" type="button">Search</button>
+              </div>
+
+              <div id="lookupStatus" class="lookup-status" aria-live="polite"></div>
+              <div id="lookupResults" class="lookup-results" role="listbox" aria-label="Search results"></div>
+            </div>
+
+            <!-- Step 2: RSVP -->
+            <div id="rsvpPanel" class="rsvp-panel card" hidden>
+              <div class="card-top">
+                <div class="pill">Step 2</div>
+                <div class="emoji" aria-hidden="true">✅</div>
+              </div>
+
+              <h3 id="partyTitle">Your RSVP</h3>
+              <p id="partySubtitle" class="muted"></p>
+
+              <form id="rsvpForm" class="rsvp-form" novalidate>
+                <input type="hidden" name="party_id" id="partyId" />
+
+                <div id="memberRows" class="member-rows"></div>
+
+                <div class="form-grid" style="margin-top: 18px;">
+                  <label class="field">
+                    <span>Your email</span>
+                    <input name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+                  </label>
+
+                  <label class="field">
+                    <span>Phone (optional)</span>
+                    <input name="phone" type="tel" autocomplete="tel" placeholder="(optional)" />
+                  </label>
+
+                  <label class="field full">
+                    <span>Dietary restrictions (optional)</span>
+                    <input name="dietary" type="text" placeholder="Vegetarian, gluten-free, allergies, etc." />
+                  </label>
+
+                  <label class="field full">
+                    <span>Notes (optional)</span>
+                    <textarea name="notes" rows="3" placeholder="Anything else we should know?"></textarea>
+                  </label>
                 </div>
-              </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">Submit RSVP</button>
+                  <div class="form-hint">We’ll save your response right away.</div>
+                </div>
+
+                <div id="formMsg" class="form-msg" aria-live="polite"></div>
+              </form>
             </div>
           </div>
 
@@ -233,46 +235,214 @@
             <a class="back-top" href="#top">Back to top ↑</a>
           </footer>
         </div>
-      </section>
+
+      
     </main>
   
+    
+
+  
     <script>
-      const form = document.getElementById('rsvpForm');
-      const msg = document.getElementById('formMsg');
+      // ===== RSVP (Supabase-backed via Vercel serverless) =====
+      const $ = (id) => document.getElementById(id);
 
-      if (form) {
-        form.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          if (msg) msg.textContent = "";
+      const lookupInput = $("lookupInput");
+      const lookupBtn = $("lookupBtn");
+      const lookupStatus = $("lookupStatus");
+      const lookupResults = $("lookupResults");
 
-          const btn = form.querySelector('button[type="submit"]');
-          if (btn && btn.disabled) {
-            if (msg) msg.textContent = "RSVPs aren’t open yet — check back soon.";
-            return;
-          }
+      const rsvpPanel = $("rsvpPanel");
+      const partyTitle = $("partyTitle");
+      const partySubtitle = $("partySubtitle");
+      const partyId = $("partyId");
+      const memberRows = $("memberRows");
 
-          const data = Object.fromEntries(new FormData(form).entries());
+      const rsvpForm = $("rsvpForm");
+      const formMsg = $("formMsg");
 
-          try {
-            const res = await fetch(form.action, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(data)
-            });
+      let lastResults = [];
 
-            if (!res.ok) {
-              const t = await res.text();
-              throw new Error(t || "Request failed");
-            }
-
-            if (msg) msg.textContent = "Thanks! Your RSVP has been received.";
-            form.reset();
-          } catch (err) {
-            if (msg) msg.textContent = "Hmm — something went wrong. Please try again later.";
-            console.error(err);
-          }
-        });
+      function setStatus(msg, kind = "info") {
+        if (!lookupStatus) return;
+        lookupStatus.textContent = msg || "";
+        lookupStatus.dataset.kind = kind;
       }
+
+      function clearResults() {
+        lastResults = [];
+        lookupResults.innerHTML = "";
+      }
+
+      function renderResults(results) {
+        clearResults();
+
+        if (!results || results.length === 0) {
+          setStatus("No matches yet. Try adding a last name.", "warn");
+          return;
+        }
+
+        setStatus("Select your name:", "ok");
+
+        results.forEach((r, idx) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "result";
+          btn.setAttribute("role", "option");
+          btn.textContent = r.display_name;
+          btn.addEventListener("click", () => selectParty(idx));
+          lookupResults.appendChild(btn);
+        });
+
+        lastResults = results;
+      }
+
+      function selectParty(idx) {
+        const party = lastResults[idx];
+        if (!party) return;
+
+        // Show panel
+        rsvpPanel.hidden = false;
+
+        partyTitle.textContent = party.display_name || "Your RSVP";
+        const members = Array.isArray(party.members) ? party.members : [];
+        partySubtitle.textContent = members.length
+          ? `Your invitation includes ${members.length} guest${members.length === 1 ? "" : "s"}.`
+          : "Your invitation details loaded.";
+
+        partyId.value = party.party_id;
+
+        // Build attendance rows
+        memberRows.innerHTML = "";
+        members.forEach((name, i) => {
+          const row = document.createElement("div");
+          row.className = "member-row";
+          row.innerHTML = `
+            <div class="member-name">${escapeHtml(name)}</div>
+            <div class="member-controls">
+              <label class="radio">
+                <input type="radio" name="attending_${i}" value="yes" required>
+                <span>Attending</span>
+              </label>
+              <label class="radio">
+                <input type="radio" name="attending_${i}" value="no" required>
+                <span>Not attending</span>
+              </label>
+              <input type="hidden" name="member_${i}" value="${escapeAttr(name)}">
+            </div>
+          `;
+          memberRows.appendChild(row);
+        });
+
+        // Scroll into view for a nicer flow
+        rsvpPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function escapeHtml(str) {
+        return String(str).replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+      }
+      function escapeAttr(str) {
+        return escapeHtml(str).replace(/"/g, "&quot;");
+      }
+
+      async function doLookup() {
+        const q = (lookupInput.value || "").trim();
+        rsvpPanel.hidden = true;
+        if (!q || q.length < 2) {
+          clearResults();
+          setStatus("Type at least a couple letters.", "warn");
+          return;
+        }
+
+        setStatus("Searching…", "info");
+
+        try {
+          const res = await fetch("/api/lookup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ q })
+          });
+
+          if (!res.ok) {
+            const t = await res.text();
+            throw new Error(t || "Lookup failed");
+          }
+
+          const data = await res.json();
+          renderResults(data.results || []);
+        } catch (err) {
+          console.error(err);
+          clearResults();
+          setStatus("Hmm — lookup failed. Try again in a moment.", "warn");
+        }
+      }
+
+      lookupBtn?.addEventListener("click", doLookup);
+      lookupInput?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          doLookup();
+        }
+      });
+
+      // Optional: live search with debounce
+      let t = null;
+      lookupInput?.addEventListener("input", () => {
+        clearTimeout(t);
+        t = setTimeout(() => {
+          if ((lookupInput.value || "").trim().length >= 3) doLookup();
+        }, 250);
+      });
+
+      rsvpForm?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (formMsg) formMsg.textContent = "";
+
+        const fd = new FormData(rsvpForm);
+        const party_id = fd.get("party_id");
+
+        // Build member responses
+        const members = [];
+        for (const [k, v] of fd.entries()) {
+          if (k.startsWith("member_")) {
+            const idx = k.split("_")[1];
+            const name = v;
+            const attending = fd.get(`attending_${idx}`);
+            if (!attending) {
+              if (formMsg) formMsg.textContent = "Please select attending / not attending for everyone.";
+              return;
+            }
+            members.push({ name, attending });
+          }
+        }
+
+        const payload = {
+          party_id,
+          email: (fd.get("email") || "").toString().trim(),
+          phone: (fd.get("phone") || "").toString().trim(),
+          dietary: (fd.get("dietary") || "").toString().trim(),
+          notes: (fd.get("notes") || "").toString().trim(),
+          members
+        };
+
+        try {
+          const res = await fetch("/api/rsvp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+
+          if (!res.ok) {
+            const t = await res.text();
+            throw new Error(t || "Submit failed");
+          }
+
+          if (formMsg) formMsg.textContent = "Thanks! Your RSVP has been received.";
+          rsvpForm.reset();
+        } catch (err) {
+          console.error(err);
+          if (formMsg) formMsg.textContent = "Hmm — something went wrong. Please try again later.";
+        }
+      });
     </script>
 
   </body>

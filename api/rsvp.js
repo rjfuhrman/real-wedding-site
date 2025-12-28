@@ -1,10 +1,16 @@
-// Vercel Serverless Function: /api/rsvp
-// Starter endpoint. Validates input and then forwards to a storage provider.
-// Pick one storage option in the TODO section below.
+// /api/rsvp - Vercel Serverless Function
+// Writes RSVP submissions to Supabase (REST). No Formspree.
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).send("Method Not Allowed");
+  }
+
+  const SUPABASE_URL = process.env.SUPABASE_URL;
+  const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!SUPABASE_URL || !SERVICE_KEY) {
+    return res.status(500).send("Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY");
   }
 
   let body = req.body;
@@ -12,38 +18,61 @@ export default async function handler(req, res) {
     try { body = JSON.parse(body); } catch { body = {}; }
   }
 
-  const name = (body?.name || "").toString().trim();
+  const party_id = (body?.party_id || "").toString().trim();
   const email = (body?.email || "").toString().trim();
-  const attending = (body?.attending || "").toString().trim(); // yes|no
-  const guests = Number(body?.guests ?? 1);
+  const phone = (body?.phone || "").toString().trim();
   const dietary = (body?.dietary || "").toString().trim();
   const notes = (body?.notes || "").toString().trim();
+  const members = Array.isArray(body?.members) ? body.members : [];
 
-  if (!name || !email || !attending) return res.status(400).send("Missing required fields.");
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).send("Invalid email.");
-  if (!["yes","no"].includes(attending)) return res.status(400).send("Invalid attending value.");
-  if (!Number.isFinite(guests) || guests < 1 || guests > 6) return res.status(400).send("Invalid guests value.");
+  if (!party_id || !email || members.length < 1) {
+    return res.status(400).send("Missing required fields.");
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return res.status(400).send("Invalid email.");
+  }
+  for (const m of members) {
+    if (!m?.name || !["yes","no"].includes(m?.attending)) {
+      return res.status(400).send("Invalid member response.");
+    }
+  }
 
-  const payload = { name, email, attending, guests, dietary, notes, created_at: new Date().toISOString() };
+  const payload = {
+    party_id,
+    email,
+    phone: phone || null,
+    dietary: dietary || null,
+    notes: notes || null,
+    members,
+    created_at: new Date().toISOString()
+  };
 
-  // TODO: Choose ONE option.
-  //
-  // Option A (fastest): forward to Formspree
-  //   - Set FORMSPREE_ENDPOINT in Vercel env vars
-  // const endpoint = process.env.FORMSPREE_ENDPOINT;
-  // if (!endpoint) return res.status(500).send("Missing FORMSPREE_ENDPOINT");
-  // const r = await fetch(endpoint, { method:"POST", headers:{ "Content-Type":"application/json", "Accept":"application/json" }, body: JSON.stringify(payload) });
-  // if (!r.ok) return res.status(500).send("Form provider error");
-  // return res.status(200).json({ ok:true });
-  //
-  // Option B (recommended custom): Supabase
-  //   - Create table `rsvps`
-  //   - Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in Vercel env vars
-  //   - Convert site to a Vercel project with dependencies (@supabase/supabase-js)
-  //
-  // Option C: Vercel Storage (KV/Postgres)
-  //   - Enable in Vercel and wire env vars; I can implement once you pick KV or Postgres.
+  // Table expected: rsvps
+  // Columns:
+  //   id (uuid, default), party_id (text/uuid), email (text), phone (text),
+  //   dietary (text), notes (text), members (jsonb), created_at (timestamptz)
+  const url = `${SUPABASE_URL}/rest/v1/rsvps`;
 
-  // For now: return validated payload so you can test end-to-end without storage.
-  return res.status(200).json({ ok:true, stored:false, payload });
+  try {
+    const r = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SERVICE_KEY,
+        "Authorization": `Bearer ${SERVICE_KEY}`,
+        "Prefer": "return=minimal"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!r.ok) {
+      const t = await r.text();
+      return res.status(500).send(t || "Insert failed");
+    }
+
+    return res.status(200).json({ ok: true });
+  } catch (e) {
+    console.error(e);
+    return res.status(500).send("RSVP error");
+  }
 }

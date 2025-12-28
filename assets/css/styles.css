@@ -449,3 +449,110 @@ body{
 }
 .form-hint{color: var(--muted); font-size: 14px;}
 .form-msg{margin-top: 12px; color: rgba(36,34,31,.80);}
+
+/* RSVP Lookup (Supabase-only) */
+.rsvp-shell{
+  margin-top: 26px;
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+.lookup-row{
+  display:flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+.lookup-input{
+  flex: 1;
+  font-family: var(--body);
+  border: 1px solid rgba(36,34,31,.14);
+  border-radius: 14px;
+  padding: 12px 12px;
+  background: rgba(255,255,255,.85);
+  color: rgba(36,34,31,.92);
+  outline: none;
+}
+.lookup-input:focus{
+  border-color: rgba(92,122,107,.55);
+  box-shadow: 0 0 0 4px rgba(92,122,107,.12);
+}
+.lookup-status{
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.lookup-status[data-kind="warn"]{ color: rgba(120,74,44,.78); }
+.lookup-status[data-kind="ok"]{ color: rgba(60, 95, 76, .88); }
+
+.lookup-results{
+  margin-top: 12px;
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+.result{
+  text-align:left;
+  background: rgba(255,255,255,.78);
+  border: 1px solid rgba(36,34,31,.12);
+  border-radius: 14px;
+  padding: 12px 12px;
+  cursor:pointer;
+  font-family: var(--body);
+  color: rgba(36,34,31,.92);
+}
+.result:hover{
+  border-color: rgba(92,122,107,.35);
+  box-shadow: 0 10px 24px rgba(0,0,0,.06);
+}
+
+.rsvp-panel{}
+.member-rows{
+  margin-top: 12px;
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+}
+.member-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 14px;
+  padding: 14px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(36,34,31,.10);
+  background: rgba(255,255,255,.70);
+}
+.member-name{
+  font-family: var(--title);
+  font-weight: 600;
+  font-size: 18px;
+}
+.member-controls{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px 14px;
+  align-items:center;
+  justify-content:flex-end;
+}
+.radio{
+  display:inline-flex;
+  gap: 8px;
+  align-items:center;
+  font-size: 14px;
+  color: rgba(36,34,31,.80);
+}
+.radio input{ accent-color: rgba(92,122,107,.85); }
+
+.rsvp-form .form-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+@media (max-width: 860px){
+  .lookup-row{flex-direction:column}
+  .rsvp-form .form-grid{grid-template-columns: 1fr}
+}
+
+.btn-primary{
+  background: rgba(92,122,107,.24);
+}
