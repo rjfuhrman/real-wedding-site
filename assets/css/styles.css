@@ -856,3 +856,61 @@ body{
   font-size: 11px;
   letter-spacing: .28em;
 }
+
+
+
+/* Keep small phrases together when desired */
+.nowrap{ white-space: nowrap; }
+
+/* RSVP section cohesion */
+.rsvp-section{
+  padding-top: 54px;
+  padding-bottom: 72px;
+}
+
+.rsvp-wrap{
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 42px 22px 0;
+  border-top: 1px solid rgba(60,55,48,0.10);
+}
+
+/* A gentle divider that connects events -> RSVP */
+.rsvp-divider{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin: 0 auto 28px;
+}
+
+.rsvp-divider span{
+  font-size: 14px;
+  letter-spacing: .35em;
+  color: rgba(60,55,48,0.42);
+  position: relative;
+}
+
+.rsvp-divider span::before,
+.rsvp-divider span::after{
+  content:"";
+  display:block;
+  width: 120px;
+  height: 1px;
+  background: rgba(60,55,48,0.16);
+  position:absolute;
+  top: 50%;
+}
+
+.rsvp-divider span::before{ right: calc(100% + 18px); }
+.rsvp-divider span::after{ left: calc(100% + 18px); }
+
+/* Deadline alignment */
+.rsvp-deadline{
+  text-align: center;
+  margin: 10px auto 22px;
+}
+
+
+/* Tighten the handoff from Events to RSVP */
+#details{ padding-bottom: 54px; }
+#details .event-stack{ margin-bottom: 0; }
