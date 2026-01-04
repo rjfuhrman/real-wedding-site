@@ -717,6 +717,11 @@ body{
 
 
 
+
+
+
+
+
 /* RSVP deadline */
 .rsvp-deadline{
   margin: 12px auto 28px;
@@ -725,65 +730,80 @@ body{
   max-width: 560px;
 }
 
-
-
-
-
-/* Event meta styling */
-.event-time{
-  font-style: italic;
-  display: block;
-  margin-top: 6px;
-}
-
-.event-note{
-  font-size: 0.95rem;
-  opacity: 0.85;
-  display: block;
-  margin-top: 4px;
-}
-
-
-/* Western title font */
-
-
-
-/* Bigger, western-movie inspired chapter title */
+/* --- Weekend / events (clean, centered) --- */
 .section-title--western{
   font-family: 'Rye', serif;
-  font-size: clamp(44px, 6vw, 72px);
+  font-size: clamp(44px, 6vw, 74px);
   letter-spacing: .06em;
   text-transform: uppercase;
-  margin-bottom: 46px;
-  line-height: 1.05;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.35);
+  line-height: 1.02;
+  margin-bottom: 18px;
 }
 
-/* Clean event typography (reduce duplicate hierarchy noise) */
+.section-lede{
+  margin: 0 auto 54px;
+  max-width: 58ch;
+  color: rgba(60,55,48,0.78);
+}
+
+.event-stack{
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.event-block{
+  text-align: center;
+  margin: 0 auto;
+  max-width: 720px;
+  padding: 10px 0 8px;
+}
+
 .event-eyebrow{
   font-size: 12px;
-  letter-spacing: .22em;
+  letter-spacing: .28em;
   text-transform: uppercase;
-  opacity: .75;
+  color: rgba(60,55,48,0.72);
   margin-bottom: 12px;
 }
 
 .event-venue{
   margin: 0;
-  font-size: clamp(30px, 3.2vw, 44px);
+  font-size: clamp(30px, 3.4vw, 46px);
   line-height: 1.15;
 }
 
 .event-bigtime{
   font-style: italic;
-  font-size: clamp(22px, 2.6vw, 34px);
+  font-size: clamp(22px, 2.8vw, 34px);
   margin-top: 14px;
 }
 
 .event-note{
-  margin-top: 18px;
-  opacity: .82;
+  margin: 18px auto 0;
   max-width: 62ch;
-  margin-left: auto;
-  margin-right: auto;
+  color: rgba(60,55,48,0.82);
+}
+
+.event-subnote{
+  margin: 12px auto 0;
+  max-width: 70ch;
+  color: rgba(60,55,48,0.68);
+}
+
+.event-divider{
+  display: flex;
+  justify-content: center;
+  padding: 34px 0;
+}
+
+.event-divider span{
+  letter-spacing: .55em;
+  color: rgba(60,55,48,0.30);
+  font-size: 12px;
+}
+
+@media (max-width: 520px){
+  .section-title--western{ letter-spacing: .04em; }
+  .event-divider{ padding: 28px 0; }
 }
