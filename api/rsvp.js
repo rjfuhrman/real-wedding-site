@@ -26,10 +26,7 @@ const dietary = (body?.dietary || "").toString().trim();
   if (!party_id || members.length < 1) {
     return res.status(400).send("Missing required fields.");
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return res.status(400).send("Invalid email.");
-  }
-  for (const m of members) {
+for (const m of members) {
     if (!m?.name || !["yes","no"].includes(m?.attending)) {
       return res.status(400).send("Invalid member response.");
     }
