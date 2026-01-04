@@ -717,31 +717,6 @@ body{
 
 
 
-/* Editorial chapter backgrounds */
-.chapter {
-  position: relative;
-  padding: 88px 20px;
-}
-
-.chapter--tone-b { background: rgba(255,255,255,0.035); }
-.chapter--tone-c { background: rgba(255,255,255,0.06); }
-
-.chapter::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(1200px 600px at 50% 0%,
-    rgba(255,255,255,0.12),
-    rgba(255,255,255,0.00) 60%);
-  opacity: .7;
-}
-
-.chapter > * {
-  position: relative;
-}
-
-/* Editorial divider */
 .chapter-break {
   display: flex;
   justify-content: center;
@@ -773,4 +748,124 @@ body{
 
 .chapter-break span::after {
   left: calc(100% + 18px);
+}
+
+
+
+/* --- Editorial depth & variation (v2) --- */
+:root{
+  --paper-0: rgba(248, 244, 238, 0.00);
+  --paper-1: rgba(248, 244, 238, 0.08);
+  --paper-2: rgba(245, 239, 231, 0.14);
+  --paper-3: rgba(241, 233, 223, 0.18);
+  --paper-4: rgba(238, 228, 216, 0.22);
+}
+
+/* Subtle paper texture across the scroll sections */
+main.content{
+  position: relative;
+}
+main.content::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.16; /* noticeable but still refined */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+/* Chapters become softly banded like a printed program */
+.chapter{
+  position: relative;
+  padding: 96px 20px;
+  border-top: 1px solid rgba(36,34,31,.08);
+}
+.chapter:first-of-type{ border-top: none; }
+
+.chapter--tone-b{ background: var(--paper-1); }
+.chapter--tone-c{ background: var(--paper-2); }
+.chapter--tone-d{ background: var(--paper-3); }
+.chapter--tone-e{ background: var(--paper-4); }
+
+.chapter::after{
+  content:"";
+  position:absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(to right, rgba(36,34,31,0), rgba(36,34,31,.10), rgba(36,34,31,0));
+  pointer-events:none;
+}
+.chapter:last-of-type::after{ display:none; }
+
+/* Gentle light wash per chapter */
+.chapter::before{
+  content:"";
+  position:absolute;
+  inset: 0;
+  pointer-events:none;
+  background: radial-gradient(900px 520px at 50% -10%,
+    rgba(255,255,255,0.22),
+    rgba(255,255,255,0.00) 62%);
+  opacity: .9;
+}
+.chapter > *{ position: relative; }
+
+/* Make section titles feel more 'program' */
+.section-title{
+  position: relative;
+  padding-bottom: 18px;
+  margin-bottom: 22px;
+}
+.section-title::after{
+  content:"✦";
+  display:block;
+  font-size: 14px;
+  letter-spacing: .35em;
+  color: rgba(36,34,31,.46);
+  margin: 14px auto 0;
+}
+.section-title::before{
+  content:"";
+  display:block;
+  width: min(260px, 62vw);
+  height: 1px;
+  margin: 0 auto 12px;
+  background: linear-gradient(to right, rgba(36,34,31,0), rgba(36,34,31,.16), rgba(36,34,31,0));
+}
+
+/* Divider between Travel and Accommodations */
+.chapter-break{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding: 44px 0 10px;
+  background: var(--paper-2);
+  border-top: 1px solid rgba(36,34,31,.08);
+  border-bottom: 1px solid rgba(36,34,31,.08);
+}
+.chapter-break span{
+  font-size: 16px;
+  letter-spacing: .45em;
+  color: rgba(36,34,31,.48);
+  position: relative;
+}
+.chapter-break span::before,
+.chapter-break span::after{
+  content:"";
+  display:block;
+  width: 140px;
+  height: 1px;
+  background: rgba(36,34,31,.20);
+  position:absolute;
+  top: 50%;
+}
+.chapter-break span::before{ right: calc(100% + 20px); }
+.chapter-break span::after{ left: calc(100% + 20px); }
+
+@media (max-width: 640px){
+  .chapter{ padding: 84px 18px; }
+  .chapter-break span::before, .chapter-break span::after{ width: 92px; }
 }
