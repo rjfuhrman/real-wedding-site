@@ -914,3 +914,32 @@ body{
 /* Tighten the handoff from Events to RSVP */
 #details{ padding-bottom: 54px; }
 #details .event-stack{ margin-bottom: 0; }
+
+
+
+/* Footer */
+.site-footer{
+  text-align: center;
+  padding: 72px 20px 48px;
+  color: rgba(60,55,48,0.75);
+}
+
+.site-footer p{
+  margin-bottom: 16px;
+}
+
+.back-to-top{
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: rgba(60,55,48,0.65);
+}
+
+.back-to-top:hover{
+  text-decoration: underline;
+}
+
+/* Shamrock accent */
+.shamrock{
+  font-size: 0.85em;
+  margin-left: 6px;
+}
