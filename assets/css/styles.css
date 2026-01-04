@@ -1,10 +1,21 @@
 
 :root{
-  --paper-0: rgba(252, 248, 243, 0.00); /* base parchment */
-  --paper-1: rgba(250, 244, 236, 0.14); /* warm cream */
-  --paper-2: rgba(246, 238, 227, 0.20); /* champagne */
-  --paper-3: rgba(242, 231, 217, 0.26); /* toasted linen */
-  --paper-4: rgba(237, 223, 205, 0.30); /* antique paper */
+  --pad: clamp(16px, 4vw, 56px);
+  --max: 1060px;
+
+  /* Warm, whimsical palette */
+  --paper: #f6f2ea;
+  --paper-2: #f2ede4;
+  --ink: #24221f;
+  --muted: rgba(36,34,31,.72);
+  --accent: #5c7a6b;         /* sage */
+  --accent-2: #c58d6b;       /* clay */
+  --card: rgba(255,255,255,.78);
+  --border: rgba(36,34,31,.10);
+  --shadow: 0 18px 45px rgba(0,0,0,.08);
+
+  --title: 'Cormorant Garamond', serif;
+  --body: 'Libre Baskerville', serif;
 }
 
 *{box-sizing:border-box; margin:0; padding:0}
@@ -173,8 +184,8 @@ body{
   font-size: 12px;
   letter-spacing: .18em;
   text-transform: uppercase;
-  color: rgba(64,52,38,.70);
-  border: 1px solid rgba(64,52,38,.12);
+  color: rgba(36,34,31,.70);
+  border: 1px solid rgba(36,34,31,.12);
   padding: 10px 14px;
   border-radius: 999px;
   background: rgba(255,255,255,.55);
@@ -244,9 +255,9 @@ body{
   font-size: 12px;
   letter-spacing:.14em;
   text-transform: uppercase;
-  color: rgba(64,52,38,.72);
+  color: rgba(36,34,31,.72);
   background: rgba(255,255,255,.65);
-  border: 1px solid rgba(64,52,38,.10);
+  border: 1px solid rgba(36,34,31,.10);
   padding: 8px 12px;
   border-radius: 999px;
 }
@@ -264,7 +275,7 @@ body{
 .card p{
   margin-top: 10px;
   line-height: 1.75;
-  color: rgba(64,52,38,.86);
+  color: rgba(36,34,31,.86);
 }
 .note{color: var(--muted)}
 .muted{color: var(--muted)}
@@ -310,7 +321,7 @@ body{
   grid-template-columns: 1.6fr 1fr;
   gap: 16px;
   background: rgba(255,255,255,.78);
-  border: 1px solid rgba(64,52,38,.10);
+  border: 1px solid rgba(36,34,31,.10);
   border-radius: 22px;
   padding: 22px;
   box-shadow: var(--shadow);
@@ -345,7 +356,7 @@ body{
   font-size: 12px;
   letter-spacing: .10em;
   text-transform: uppercase;
-  color: rgba(64,52,38,.62);
+  color: rgba(36,34,31,.62);
 }
 
 /* Footer */
@@ -357,25 +368,25 @@ body{
   align-items:flex-start;
 }
 .footer-line{
-  color: rgba(64,52,38,.75);
+  color: rgba(36,34,31,.75);
 }
 .back-top{
-  color: rgba(64,52,38,.72);
+  color: rgba(36,34,31,.72);
   text-decoration:none;
   font-size: 12px;
   letter-spacing: .16em;
   text-transform: uppercase;
   padding-bottom: 2px;
-  border-bottom: 1px solid rgba(64,52,38,.18);
+  border-bottom: 1px solid rgba(36,34,31,.18);
 }
-.back-top:hover{color: rgba(64,52,38,.92); border-bottom-color: rgba(64,52,38,.40)}
+.back-top:hover{color: rgba(36,34,31,.92); border-bottom-color: rgba(36,34,31,.40)}
 
 
 /* RSVP Form */
 .form{
   margin-top: 22px;
   background: rgba(255,255,255,.70);
-  border: 1px solid rgba(64,52,38,.10);
+  border: 1px solid rgba(36,34,31,.10);
   border-radius: 22px;
   padding: 22px;
   box-shadow: var(--shadow);
@@ -394,15 +405,15 @@ body{
   font-size: 12px;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: rgba(64,52,38,.70);
+  color: rgba(36,34,31,.70);
 }
 .field input, .field select, .field textarea{
   font-family: var(--body);
-  border: 1px solid rgba(64,52,38,.14);
+  border: 1px solid rgba(36,34,31,.14);
   border-radius: 14px;
   padding: 12px 12px;
   background: rgba(255,255,255,.85);
-  color: rgba(64,52,38,.92);
+  color: rgba(36,34,31,.92);
   outline: none;
 }
 .field input:focus, .field select:focus, .field textarea:focus{
@@ -422,11 +433,11 @@ body{
 }
 .btn{
   font-family: var(--body);
-  border: 1px solid rgba(64,52,38,.16);
+  border: 1px solid rgba(36,34,31,.16);
   border-radius: 999px;
   padding: 12px 16px;
   background: rgba(92,122,107,.16);
-  color: rgba(64,52,38,.92);
+  color: rgba(36,34,31,.92);
   letter-spacing: .10em;
   text-transform: uppercase;
   font-size: 12px;
@@ -437,7 +448,7 @@ body{
   cursor: not-allowed;
 }
 .form-hint{color: var(--muted); font-size: 14px;}
-.form-msg{margin-top: 12px; color: rgba(64,52,38,.80);}
+.form-msg{margin-top: 12px; color: rgba(36,34,31,.80);}
 
 /* RSVP Lookup (Supabase-only) */
 .rsvp-shell{
@@ -454,11 +465,11 @@ body{
 .lookup-input{
   flex: 1;
   font-family: var(--body);
-  border: 1px solid rgba(64,52,38,.14);
+  border: 1px solid rgba(36,34,31,.14);
   border-radius: 14px;
   padding: 12px 12px;
   background: rgba(255,255,255,.85);
-  color: rgba(64,52,38,.92);
+  color: rgba(36,34,31,.92);
   outline: none;
 }
 .lookup-input:focus{
@@ -482,12 +493,12 @@ body{
 .result{
   text-align:left;
   background: rgba(255,255,255,.78);
-  border: 1px solid rgba(64,52,38,.12);
+  border: 1px solid rgba(36,34,31,.12);
   border-radius: 14px;
   padding: 12px 12px;
   cursor:pointer;
   font-family: var(--body);
-  color: rgba(64,52,38,.92);
+  color: rgba(36,34,31,.92);
 }
 .result:hover{
   border-color: rgba(92,122,107,.35);
@@ -508,7 +519,7 @@ body{
   gap: 14px;
   padding: 14px 14px;
   border-radius: 16px;
-  border: 1px solid rgba(64,52,38,.10);
+  border: 1px solid rgba(36,34,31,.10);
   background: rgba(255,255,255,.70);
 }
 .member-name{
@@ -528,7 +539,7 @@ body{
   gap: 8px;
   align-items:center;
   font-size: 14px;
-  color: rgba(64,52,38,.80);
+  color: rgba(36,34,31,.80);
 }
 .radio input{ accent-color: rgba(92,122,107,.85); }
 
@@ -587,7 +598,7 @@ body{
   font-size: 12px;
   letter-spacing: .18em;
   text-transform: uppercase;
-  color: rgba(64,52,38,.72);
+  color: rgba(36,34,31,.72);
   margin-bottom: 10px;
 }
 .event-title{
@@ -600,7 +611,7 @@ body{
 }
 .event-meta{
   margin: 0 0 10px;
-  color: rgba(64,52,38,.85);
+  color: rgba(36,34,31,.85);
 }
 .event-note{
   margin: 0 auto;
@@ -618,7 +629,7 @@ body{
   width: 6px;
   height: 6px;
   border-radius: 999px;
-  background: rgba(64,52,38,.22);
+  background: rgba(36,34,31,.22);
 }
 
 .editorial{
@@ -643,7 +654,7 @@ body{
   font-size: 12px;
   letter-spacing: .18em;
   text-transform: uppercase;
-  color: rgba(64,52,38,.72);
+  color: rgba(36,34,31,.72);
   margin-bottom: 8px;
 }
 .item-title{
@@ -706,155 +717,10 @@ body{
 
 
 
-.chapter-break {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 36px 0 8px;
-}
-
-.chapter-break span {
-  font-size: 16px;
-  letter-spacing: .35em;
-  color: rgba(64,52,38,.42);
-  position: relative;
-}
-
-.chapter-break span::before,
-.chapter-break span::after {
-  content: "";
-  display: block;
-  width: 110px;
-  height: 1px;
-  background: rgba(64,52,38,.18);
-  position: absolute;
-  top: 50%;
-}
-
-.chapter-break span::before {
-  right: calc(100% + 18px);
-}
-
-.chapter-break span::after {
-  left: calc(100% + 18px);
-}
-
-
-
-/* --- Editorial depth & variation (v2) --- */
-:root{
-  --paper-0: rgba(248, 244, 238, 0.00);
-  --paper-1: rgba(248, 244, 238, 0.08);
-  --paper-2: rgba(245, 239, 231, 0.14);
-  --paper-3: rgba(241, 233, 223, 0.18);
-  --paper-4: rgba(238, 228, 216, 0.22);
-}
-
-/* Subtle paper texture across the scroll sections */
-main.content{
-  position: relative;
-}
-main.content::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  opacity:.16; /* noticeable but still refined */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
-  mix-blend-mode: multiply;
-}
-
-/* Chapters become softly banded like a printed program */
-.chapter{
-  position: relative;
-  padding: 96px 20px;
-  border-top: 1px solid rgba(64,52,38,.08);
-}
-.chapter:first-of-type{ border-top: none; }
-
-.chapter--tone-b{ background: var(--paper-1); }
-.chapter--tone-c{ background: var(--paper-2); }
-.chapter--tone-d{ background: var(--paper-3); }
-.chapter--tone-e{ background: var(--paper-4); }
-
-.chapter::after{
-  content:"";
-  position:absolute;
-  left: 8%;
-  right: 8%;
-  bottom: 0;
-  height: 1px;
-  background: linear-gradient(to right, rgba(64,52,38,0), rgba(64,52,38,.10), rgba(64,52,38,0));
-  pointer-events:none;
-}
-.chapter:last-of-type::after{ display:none; }
-
-/* Gentle light wash per chapter */
-.chapter::before{
-  content:"";
-  position:absolute;
-  inset: 0;
-  pointer-events:none;
-  background: radial-gradient(900px 520px at 50% -10%,
-    rgba(255,248,235,0.55),
-    rgba(255,248,235,0.00) 62%);
-  opacity: .9;
-}
-.chapter > *{ position: relative; }
-
-/* Make section titles feel more 'program' */
-.section-title{
-  position: relative;
-  padding-bottom: 18px;
-  margin-bottom: 22px;
-}
-.section-title::after{
-  content:"✦";
-  display:block;
-  font-size: 14px;
-  letter-spacing: .35em;
-  color: rgba(64,52,38,.46);
-  margin: 14px auto 0;
-}
-.section-title::before{
-  content:"";
-  display:block;
-  width: min(260px, 62vw);
-  height: 1px;
-  margin: 0 auto 12px;
-  background: linear-gradient(to right, rgba(64,52,38,0), rgba(64,52,38,.16), rgba(64,52,38,0));
-}
-
-/* Divider between Travel and Accommodations */
-.chapter-break{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding: 44px 0 10px;
-  background: var(--paper-2);
-  border-top: 1px solid rgba(64,52,38,.08);
-  border-bottom: 1px solid rgba(64,52,38,.08);
-}
-.chapter-break span{
-  font-size: 16px;
-  letter-spacing: .45em;
-  color: rgba(64,52,38,.48);
-  position: relative;
-}
-.chapter-break span::before,
-.chapter-break span::after{
-  content:"";
-  display:block;
-  width: 140px;
-  height: 1px;
-  background: rgba(64,52,38,.20);
-  position:absolute;
-  top: 50%;
-}
-.chapter-break span::before{ right: calc(100% + 20px); }
-.chapter-break span::after{ left: calc(100% + 20px); }
-
-@media (max-width: 640px){
-  .chapter{ padding: 84px 18px; }
-  .chapter-break span::before, .chapter-break span::after{ width: 92px; }
+/* RSVP deadline */
+.rsvp-deadline{
+  margin: 12px auto 28px;
+  font-style: italic;
+  color: rgba(60,55,48,0.75);
+  max-width: 560px;
 }
