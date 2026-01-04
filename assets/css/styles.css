@@ -727,14 +727,7 @@ body{
 
 
 
-/* Western / mountain editorial heading */
-.section-title--western{
-  font-family: 'Libre Baskerville', serif;
-  font-size: clamp(38px, 5vw, 54px);
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  margin-bottom: 44px;
-}
+
 
 /* Event meta styling */
 .event-time{
@@ -748,4 +741,49 @@ body{
   opacity: 0.85;
   display: block;
   margin-top: 4px;
+}
+
+
+/* Western title font */
+
+
+
+/* Bigger, western-movie inspired chapter title */
+.section-title--western{
+  font-family: 'Rye', serif;
+  font-size: clamp(44px, 6vw, 72px);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: 46px;
+  line-height: 1.05;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.35);
+}
+
+/* Clean event typography (reduce duplicate hierarchy noise) */
+.event-eyebrow{
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  opacity: .75;
+  margin-bottom: 12px;
+}
+
+.event-venue{
+  margin: 0;
+  font-size: clamp(30px, 3.2vw, 44px);
+  line-height: 1.15;
+}
+
+.event-bigtime{
+  font-style: italic;
+  font-size: clamp(22px, 2.6vw, 34px);
+  margin-top: 14px;
+}
+
+.event-note{
+  margin-top: 18px;
+  opacity: .82;
+  max-width: 62ch;
+  margin-left: auto;
+  margin-right: auto;
 }
