@@ -724,3 +724,28 @@ body{
   color: rgba(60,55,48,0.75);
   max-width: 560px;
 }
+
+
+
+/* Western / mountain editorial heading */
+.section-title--western{
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(38px, 5vw, 54px);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: 44px;
+}
+
+/* Event meta styling */
+.event-time{
+  font-style: italic;
+  display: block;
+  margin-top: 6px;
+}
+
+.event-note{
+  font-size: 0.95rem;
+  opacity: 0.85;
+  display: block;
+  margin-top: 4px;
+}
