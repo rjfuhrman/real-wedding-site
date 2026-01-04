@@ -943,3 +943,23 @@ body{
   font-size: 0.85em;
   margin-left: 6px;
 }
+
+
+
+/* Footer readability */
+.site-footer{
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.site-footer p{
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Subtle inline text */
+.event-subtle{
+  font-size: 0.9em;
+  opacity: 0.75;
+}
