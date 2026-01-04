@@ -807,3 +807,52 @@ body{
   .section-title--western{ letter-spacing: .04em; }
   .event-divider{ padding: 28px 0; }
 }
+
+
+
+/* Center + size the western title properly */
+.section-title--western{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: clamp(48px, 7vw, 82px);
+}
+
+/* Subtle western flair for event headings */
+.event-eyebrow{
+  font-family: 'Rye', serif;
+  letter-spacing: .32em;
+}
+
+.event-venue{
+  font-family: 'Libre Baskerville', serif;
+  position: relative;
+}
+
+.event-venue::after{
+  content: "";
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: rgba(60,55,48,0.35);
+  margin: 16px auto 0;
+}
+
+/* De-emphasize Day Two */
+.event-block--secondary{
+  margin-top: 10px;
+  opacity: 0.78;
+}
+
+.event-block--secondary .event-venue{
+  font-size: clamp(24px, 3vw, 34px);
+}
+
+.event-block--secondary .event-bigtime{
+  font-size: clamp(18px, 2.4vw, 26px);
+}
+
+.event-block--secondary .event-eyebrow{
+  font-size: 11px;
+  letter-spacing: .28em;
+}
