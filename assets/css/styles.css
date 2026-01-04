@@ -714,3 +714,63 @@ body{
     padding: 28px 8px;
   }
 }
+
+
+
+/* Editorial chapter backgrounds */
+.chapter {
+  position: relative;
+  padding: 88px 20px;
+}
+
+.chapter--tone-b { background: rgba(255,255,255,0.035); }
+.chapter--tone-c { background: rgba(255,255,255,0.06); }
+
+.chapter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(1200px 600px at 50% 0%,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.00) 60%);
+  opacity: .7;
+}
+
+.chapter > * {
+  position: relative;
+}
+
+/* Editorial divider */
+.chapter-break {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 36px 0 8px;
+}
+
+.chapter-break span {
+  font-size: 16px;
+  letter-spacing: .35em;
+  color: rgba(36,34,31,.42);
+  position: relative;
+}
+
+.chapter-break span::before,
+.chapter-break span::after {
+  content: "";
+  display: block;
+  width: 110px;
+  height: 1px;
+  background: rgba(36,34,31,.18);
+  position: absolute;
+  top: 50%;
+}
+
+.chapter-break span::before {
+  right: calc(100% + 18px);
+}
+
+.chapter-break span::after {
+  left: calc(100% + 18px);
+}
