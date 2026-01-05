@@ -963,3 +963,32 @@ body{
   font-size: 0.9em;
   opacity: 0.75;
 }
+
+
+
+/* --- Mobile tap fix: decorative layers should never block taps --- */
+.background,
+.overlay,
+.background::before,
+.background::after,
+.hero::before,
+.hero::after,
+main.content::before,
+.section::before,
+.section::after,
+.rsvp-divider,
+.rsvp-divider::before,
+.rsvp-divider::after{
+  pointer-events: none;
+}
+
+/* Interactive elements must remain tappable */
+a, button, input, select, textarea, label{
+  pointer-events: auto;
+}
+
+/* Keep RSVP controls above any stacking contexts */
+#rsvp, #rsvp *{
+  position: relative;
+  z-index: 3;
+}
