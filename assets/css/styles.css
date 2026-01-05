@@ -1025,3 +1025,23 @@ main.content{
 .kicker{
   display: none;
 }
+
+
+
+/* --- Photo break section --- */
+.photo-break{
+  padding: 72px 0;
+}
+
+.photo-frame{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.photo-frame img{
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
