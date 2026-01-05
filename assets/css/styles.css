@@ -966,29 +966,32 @@ body{
 
 
 
-/* --- Mobile tap fix: decorative layers should never block taps --- */
-.background,
-.overlay,
-.background::before,
-.background::after,
-.hero::before,
-.hero::after,
-main.content::before,
-.section::before,
-.section::after,
-.rsvp-divider,
-.rsvp-divider::before,
-.rsvp-divider::after{
-  pointer-events: none;
+
+
+
+/* --- Tap/click fix: ensure background layers sit behind content --- */
+.background{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
 }
 
-/* Interactive elements must remain tappable */
-a, button, input, select, textarea, label{
-  pointer-events: auto;
+.background .bg-image,
+.background .overlay{
+  position: absolute;
+  inset: 0;
 }
 
-/* Keep RSVP controls above any stacking contexts */
-#rsvp, #rsvp *{
+.background .bg-image{ z-index: 0; }
+.background .overlay{ z-index: 1; }
+
+main.content{
   position: relative;
-  z-index: 3;
+  z-index: 2;
 }
+
+
+
+/* Decorative overlays should never intercept clicks */
+.overlay, .background{ pointer-events: none; }
+main.content, main.content *{ pointer-events: auto; }
