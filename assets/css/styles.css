@@ -1079,3 +1079,18 @@ a.venue-link:hover{
 @media (min-width: 900px){
   .dots-sep{ margin: 28px auto 14px; font-size: 15px; }
 }
+
+
+/* Reuse the RSVP divider styling for section breaks */
+.section-divider{ margin: 56px auto 56px; max-width: 860px; }
+@media (max-width: 700px){ .section-divider{ margin: 40px auto; } }
+
+/* RSVP lookup fallback (in case main renderer doesn't initialize) */
+.lookup-fallback{ margin-top:16px; padding:18px 18px; border:1px solid rgba(0,0,0,.08); border-radius:18px; background: rgba(255,255,255,.6); }
+.lookup-fallback-title{ font-family: "Libre Baskerville", serif; font-weight:700; font-size:18px; margin-bottom:6px; }
+.lookup-fallback-sub{ font-size:14px; opacity:.85; margin-bottom:10px; }
+.lookup-fallback-list{ margin:0; padding-left:18px; }
+.lookup-fallback-note{ margin-top:10px; font-size:13px; opacity:.8; }
+
+#rsvp .btn, #rsvp button{ position: relative; z-index: 3; }
+#rsvp input{ position: relative; z-index: 3; }
