@@ -1040,10 +1040,13 @@ main.content{
 
 
 
-/* Make Travel labels match event eyebrow exactly */
+
+
+/* Travel labels: match DETAILS eyebrow styling */
 .item-kicker{
-  all: unset;
-}
-.item-kicker.event-eyebrow{
-  display:block;
+  font-size: 12px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(60,55,48,0.72);
+  margin-bottom: 12px;
 }
