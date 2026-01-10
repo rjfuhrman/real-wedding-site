@@ -93,32 +93,121 @@
       </div>
 </div>
   </div>
-</section><section class="photo-break" aria-label="Engagement photo">  <div class="container">    <figure class="photo-frame photo-frame-tall">      <img src="assets/photos/engagement_forest.jpg" alt="Christine and Riley walking through the forest" loading="lazy" decoding="async" />    </figure></section>      </main>            <script>      // ===== RSVP (Supabase-backed via Vercel serverless) =====      const $ = (id) => document.getElementById(id);      const lookupInput = $("lookupInput");      const lookupBtn = $("lookupBtn");      const lookupStatus = $("lookupStatus");      const lookupResults = $("lookupResults");      const rsvpPanel = $("rsvpPanel");      const partyTitle = $("partyTitle");      const partySubtitle = $("partySubtitle");      const partyId = $("partyId");      const memberRows = $("memberRows");      const rsvpForm = $("rsvpForm");      const formMsg = $("formMsg");      let lastResults = [];      function setStatus(msg, kind = "info") {        if (!lookupStatus) return;        lookupStatus.textContent = msg || "";        lookupStatus.dataset.kind = kind;      }      function clearResults() {        lastResults = [];        lookupResults.innerHTML = "";      }      function renderResults(results) {        clearResults();        if (!results || results.length === 0) {          setStatus("No matches yet. Try adding a last name.", "warn");          return;        }        setStatus("Select your name:", "ok");        results.forEach((r, idx) => {          const btn = document.createElement("button");          btn.type = "button";          btn.className = "result";          btn.setAttribute("role", "option");          btn.textContent = r.display_name;          btn.addEventListener("click", () => selectParty(idx));          lookupResults.appendChild(btn);        });        lastResults = results;      }      function selectParty(idx) {        const party = lastResults[idx];        if (!party) return;        // Show panel        rsvpPanel.hidden = false;        partyTitle.textContent = party.display_name || "Your RSVP";        const members = Array.isArray(party.members) ? party.members : [];        partySubtitle.textContent = members.length          ? `Your invitation includes ${members.length} guest${members.length === 1 ? "" : "s"}.`          : "Your invitation details loaded.";        partyId.value = party.party_id;        // Build attendance rows        memberRows.innerHTML = "";        members.forEach((name, i) => {          const row = document.createElement("div");          row.className = "member-row";          row.innerHTML = `            <div class="member-name">${escapeHtml(name)}</div>            <div class="member-controls">              <label class="radio">                <input type="radio" name="attending_${i}" value="yes" required>                <span>Attending</span>              </label>              <label class="radio">                <input type="radio" name="attending_${i}" value="no" required>                <span>Not attending</span>              </label>              <input type="hidden" name="member_${i}" value="${escapeAttr(name)}">            </div>          `;          memberRows.appendChild(row);        });        // Scroll into view for a nicer flow        rsvpPanel.scrollIntoView({ behavior: "smooth", block: "start" });      }      function escapeHtml(str) {        return String(str).replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));      }      function escapeAttr(str) {        return escapeHtml(str).replace(/"/g, "&quot;");      }      async function doLookup() {        const q = (lookupInput.value || "").trim();        rsvpPanel.hidden = true;        if (!q || q.length < 2) {          clearResults();          setStatus("Type at least a couple letters.", "warn");          return;        }        setStatus("Searching…", "info");        try {          const res = await fetch("/api/lookup", {            method: "POST",            headers: { "Content-Type": "application/json" },            body: JSON.stringify({ q })          });          if (!res.ok) {            const t = await res.text();            throw new Error(t || "Lookup failed");          }          const data = await res.json();          renderResults(data.results || []);        } catch (err) {          console.error(err);          clearResults();          setStatus("Hmm — lookup failed. Try again in a moment.", "warn");        }      }      lookupBtn?.addEventListener("click", doLookup);
-      lookupBtn?.addEventListener("touchend", (e) => { e.preventDefault(); doLookup(); });
-lookupInput?.addEventListener("keydown", (e) => {        if (e.key === "Enter") {          e.preventDefault();          doLookup();        }      });      // Optional: live search with debounce      let t = null;      lookupInput?.addEventListener("input", () => {        clearTimeout(t);        t = setTimeout(() => {          if ((lookupInput.value || "").trim().length >= 3) doLookup();        }, 250);      });      rsvpForm?.addEventListener("submit", async (e) => {        e.preventDefault();        if (formMsg) formMsg.textContent = "";        const fd = new FormData(rsvpForm);        const party_id = fd.get("party_id");        // Build member responses        const members = [];        for (const [k, v] of fd.entries()) {          if (k.startsWith("member_")) {            const idx = k.split("_")[1];            const name = v;            const attending = fd.get(`attending_${idx}`);            if (!attending) {              if (formMsg) formMsg.textContent = "Please select attending / not attending for everyone.";              return;            }            members.push({ name, attending });          }        }        const payload = {          party_id,dietary: (fd.get("dietary") || "").toString().trim(),          notes: (fd.get("notes") || "").toString().trim(),          members        };        try {          const res = await fetch("/api/rsvp", {            method: "POST",            headers: { "Content-Type": "application/json" },            body: JSON.stringify(payload)          });          if (!res.ok) {            const t = await res.text();            throw new Error(t || "Submit failed");          }          if (formMsg) formMsg.textContent = "Thanks! Your RSVP has been received.";          rsvpForm.reset();        } catch (err) {          console.error(err);          if (formMsg) formMsg.textContent = "Hmm — something went wrong. Please try again later.";        }      });    /* RSVP click/tap binding (robust) */
-try{
-  // expose lookup for other helpers
-  if (typeof window.lookupInvitation !== "function" && typeof doLookup === "function") {
-    window.lookupInvitation = doLookup;
-  }
-  const _btn = document.getElementById("lookupBtn");
-  const _input = document.getElementById("lookupInput");
-  if(_btn){
-    _btn.type = "button";
-    _btn.addEventListener("click", function(e){ e.preventDefault(); if(typeof doLookup==="function") doLookup(); });
-    _btn.addEventListener("touchend", function(e){ e.preventDefault(); if(typeof doLookup==="function") doLookup(); }, {passive:false});
-  }
-  if(_input){
-    _input.addEventListener("keydown", function(e){
-      if(e.key==="Enter"){ e.preventDefault(); if(typeof doLookup==="function") doLookup(); }
-    });
-  }
-}catch(e){}
+</section><section class="photo-break" aria-label="Engagement photo">  <div class="container">    <figure class="photo-frame photo-frame-tall">      <img src="assets/photos/engagement_forest.jpg" alt="Christine and Riley walking through the forest" loading="lazy" decoding="async" />    </figure></section>      </main>            <script>
+      // ===== RSVP (Supabase-backed via Vercel serverless) =====      const $ = (id) => document.getElementById(id);      const lookupInput = $("lookupInput");      const lookupBtn = $("lookupBtn");      const lookupStatus = $("lookupStatus");      const lookupResults = $("lookupResults");      const rsvpPanel = $("rsvpPanel");      const partyTitle = $("partyTitle");      const partySubtitle = $("partySubtitle");      const partyId = $("partyId");      const memberRows = $("memberRows");      const rsvpForm = $("rsvpForm");      const formMsg = $("formMsg");      let lastResults = [];      function setStatus(msg, kind = "info") {        if (!lookupStatus) return;        lookupStatus.textContent = msg || "";        lookupStatus.dataset.kind = kind;      }      function clearResults() {        lastResults = [];        lookupResults.innerHTML = "";      }      function renderResults(results) {        clearResults();        if (!results || results.length === 0) {          setStatus("No matches yet. Try adding a last name.", "warn");          return;        }        setStatus("Select your name:", "ok");        results.forEach((r, idx) => {          const btn = document.createElement("button");          btn.type = "button";          btn.className = "result";          btn.setAttribute("role", "option");          btn.textContent = r.display_name;          btn.addEventListener("click", () => selectParty(idx));          lookupResults.appendChild(btn);        });        lastResults = results;      }      function selectParty(idx) {        const party = lastResults[idx];        if (!party) return;        // Show panel        rsvpPanel.hidden = false;        partyTitle.textContent = party.display_name || "Your RSVP";        const members = Array.isArray(party.members) ? party.members : [];        partySubtitle.textContent = members.length          ? `Your invitation includes ${members.length} guest${members.length === 1 ? "" : "s"}.`          : "Your invitation details loaded.";        partyId.value = party.party_id;        // Build attendance rows        memberRows.innerHTML = "";        members.forEach((name, i) => {          const row = document.createElement("div");          row.className = "member-row";          row.innerHTML = `            <div class="member-name">${escapeHtml(name)}</div>            <div class="member-controls">              <label class="radio">                <input type="radio" name="attending_${i}" value="yes" required>                <span>Attending</span>              </label>              <label class="radio">                <input type="radio" name="attending_${i}" value="no" required>                <span>Not attending</span>              </label>              <input type="hidden" name="member_${i}" value="${escapeAttr(name)}">            </div>          `;          memberRows.appendChild(row);        });        // Scroll into view for a nicer flow        rsvpPanel.scrollIntoView({ behavior: "smooth", block: "start" });      }      function escapeHtml(str) {        return String(str).replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));      }      function escapeAttr(str) {        return escapeHtml(str).replace(/"/g, "&quot;");      }      async function doLookup() {        const q = (lookupInput.value || "").trim();        rsvpPanel.hidden = true;        if (!q || q.length < 2) {          clearResults();          setStatus("Type at least a couple letters.", "warn");          return;        }        setStatus("Searching…", "info");        try {          const res = await fetch("/api/lookup", {            method: "POST",            headers: { "Content-Type": "application/json" },            body: JSON.stringify({ q })          });          if (!res.ok) {            const t = await res.text();            throw new Error(t || "Lookup failed");          }          const data = await res.json();          renderResults(data.results || []);        } catch (err) {          console.error(err);          clearResults();          setStatus("Hmm — lookup failed. Try again in a moment.", "warn");        }      }      lookupBtn?.addEventListener("click", doLookup);      lookupInput?.addEventListener("keydown", (e) => {        if (e.key === "Enter") {          e.preventDefault();          doLookup();        }      });      // Optional: live search with debounce      let t = null;      lookupInput?.addEventListener("input", () => {        clearTimeout(t);        t = setTimeout(() => {          if ((lookupInput.value || "").trim().length >= 3) doLookup();        }, 250);      });      rsvpForm?.addEventListener("submit", async (e) => {        e.preventDefault();        if (formMsg) formMsg.textContent = "";        const fd = new FormData(rsvpForm);        const party_id = fd.get("party_id");        // Build member responses        const members = [];        for (const [k, v] of fd.entries()) {          if (k.startsWith("member_")) {            const idx = k.split("_")[1];            const name = v;            const attending = fd.get(`attending_${idx}`);            if (!attending) {              if (formMsg) formMsg.textContent = "Please select attending / not attending for everyone.";              return;            }            members.push({ name, attending });          }        }        const payload = {          party_id,dietary: (fd.get("dietary") || "").toString().trim(),          notes: (fd.get("notes") || "").toString().trim(),          members        };        try {          const res = await fetch("/api/rsvp", {            method: "POST",            headers: { "Content-Type": "application/json" },            body: JSON.stringify(payload)          });          if (!res.ok) {            const t = await res.text();            throw new Error(t || "Submit failed");          }          if (formMsg) formMsg.textContent = "Thanks! Your RSVP has been received.";          rsvpForm.reset();        } catch (err) {          console.error(err);          if (formMsg) formMsg.textContent = "Hmm — something went wrong. Please try again later.";        }      });    
 </script>  
 <footer class="site-footer">
   <p>We can’t wait to celebrate with you in Durango.</p>
   <a href="#top" class="back-to-top">Back to top ↑</a>
 </footer>
 
+
+<script id="RSVP_BIND_SAFE">
+(function(){
+  function ready(fn){ if(document.readyState!=="loading"){ fn(); } else { document.addEventListener("DOMContentLoaded", fn); } }
+  ready(function(){
+    var btn = document.getElementById("lookupBtn");
+    var input = document.getElementById("lookupInput");
+    if(!btn || !input) return;
+
+    // If a handler already exists, don't double-bind.
+    if(btn.dataset.bound==="1") return;
+    btn.dataset.bound="1";
+
+    function clickLookup(){
+      // Prefer existing global handler if defined
+      if(typeof window.lookupInvitation === "function"){ window.lookupInvitation(); return; }
+      // Fallback: trigger form submit if present
+      var form = btn.closest("form");
+      if(form){ form.dispatchEvent(new Event("submit", {cancelable:true})); }
+    }
+
+    btn.addEventListener("click", function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      clickLookup();
+    });
+
+    input.addEventListener("keydown", function(e){
+      if(e.key==="Enter"){
+        e.preventDefault();
+        clickLookup();
+      }
+    });
+  });
+})();
+</script>
+
+
+<script>
+(() => {
+  const byId = (id) => document.getElementById(id);
+  const input = () => byId('lookupInput');
+  const btn = () => byId('lookupBtn');
+  const results = () => byId('lookupResults');
+  const status = () => byId('lookupStatus');
+
+  async function doLookup() {
+    const q = (input()?.value || '').trim();
+    if (!q) {
+      if (status()) status().textContent = "Please type your name, then tap Search.";
+      return;
+    }
+    if (btn()) { btn().disabled = true; btn().setAttribute('aria-busy','true'); }
+    if (status()) status().textContent = "Searching…";
+    if (results()) results().innerHTML = "";
+    try {
+      const res = await fetch(`/api/lookup?q=${encodeURIComponent(q)}`, { headers: { "Accept": "application/json" }});
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data?.error || `Lookup failed (${res.status})`);
+      if (!data?.party || !Array.isArray(data.guests)) {
+        if (status()) status().textContent = "No match found. Try first + last, or reach out and we'll help.";
+        return;
+      }
+      // If the main app already knows how to render the party, defer to it.
+      if (typeof window.renderParty === "function") {
+        window.renderParty(data);
+        if (status()) status().textContent = "";
+        return;
+      }
+      // Minimal fallback rendering (should never be used, but prevents "nothing happens")
+      const safe = (s) => String(s || "").replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+      if (results()) {
+        results().innerHTML = `
+          <div class="lookup-fallback">
+            <div class="lookup-fallback-title">Found: ${safe(data.party)}</div>
+            <div class="lookup-fallback-sub">Guests in your party:</div>
+            <ul class="lookup-fallback-list">${data.guests.map(g => `<li>${safe(g.display_name || g.name)}</li>`).join("")}</ul>
+            <div class="lookup-fallback-note">If you don't see RSVP toggles yet, refresh once — we're still loading the form.</div>
+          </div>`;
+      }
+      if (status()) status().textContent = "";
+    } catch (e) {
+      if (status()) status().textContent = "Hmm — lookup failed. Please try again in a moment.";
+    } finally {
+      if (btn()) { btn().disabled = false; btn().removeAttribute('aria-busy'); }
+    }
+  }
+
+  function wire() {
+    const b = btn();
+    const i = input();
+    if (b) {
+      b.type = "button";
+      b.addEventListener("click", (ev) => { ev.preventDefault(); ev.stopPropagation(); doLookup(); }, { passive: false });
+      b.addEventListener("touchend", (ev) => { ev.preventDefault(); ev.stopPropagation(); doLookup(); }, { passive: false });
+    }
+    if (i) {
+      i.addEventListener("keydown", (ev) => { if (ev.key === "Enter") { ev.preventDefault(); doLookup(); }});
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", wire);
+  } else {
+    wire();
+  }
+})();
+</script>
 
 </body></html>
