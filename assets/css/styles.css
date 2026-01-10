@@ -1050,3 +1050,20 @@ main.content{
   color: rgba(60,55,48,0.72);
   margin-bottom: 12px;
 }
+
+
+/* --- Themed links --- */
+a.venue-link{
+  display:inline-block;
+  margin-top:6px;
+  font-size:0.85rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#6b5b4a;
+  text-decoration:none;
+  border-bottom:1px solid rgba(107,91,74,0.35);
+}
+
+a.venue-link:hover{
+  opacity:.7;
+}
