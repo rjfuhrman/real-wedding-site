@@ -210,4 +210,23 @@
 })();
 </script>
 
+
+<script id="TYPEAHEAD_BIND">
+(function(){
+  function ready(fn){ if(document.readyState!=="loading"){ fn(); } else { document.addEventListener("DOMContentLoaded", fn); } }
+  ready(function(){
+    var input = document.getElementById("lookupInput");
+    if(!input) return;
+    var timer = null;
+    function fire(){
+      if(typeof window.lookupInvitation === "function"){ window.lookupInvitation(); }
+    }
+    input.addEventListener("input", function(){
+      clearTimeout(timer);
+      timer = setTimeout(fire, 220);
+    });
+  });
+})();
+</script>
+
 </body></html>
