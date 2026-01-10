@@ -650,13 +650,7 @@ body{
 .editorial-item:last-child{
   border-bottom: 1px solid var(--border);
 }
-.item-kicker{
-  font-size: 12px;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: rgba(36,34,31,.72);
-  margin-bottom: 8px;
-}
+
 .item-title{
   font-family: var(--title);
   font-weight: 600;
@@ -983,13 +977,7 @@ main.content{
 
 
 /* --- Travel/Stay label styling to match event eyebrows --- */
-.item-kicker{
-  font-family: 'Libre Baskerville', serif;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  font-size: 0.75rem;
-  opacity: 0.75;
-}
+
 
 /* Featured accommodation (Tamarron) gets a touch more presence without feeling like a card */
 .editorial-feature{
@@ -1044,4 +1032,18 @@ main.content{
   height: auto;
   border-radius: 8px;
   display: block;
+}
+
+
+
+/* --- Make FLY / DRIVE match event eyebrow font --- */
+
+
+
+/* Make Travel labels match event eyebrow exactly */
+.item-kicker{
+  all: unset;
+}
+.item-kicker.event-eyebrow{
+  display:block;
 }
