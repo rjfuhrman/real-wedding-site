@@ -18,7 +18,7 @@
         <a class="venue-link" href="https://durangohotspringsresortandspa.com/" target="_blank" rel="noopener">Visit website</a>
         <p class="event-bigtime">Sunday, September 27 · High Noon</p>
         <p class="event-subnote">If you’re still hanging around Durango, we’d love for you to join us at the hot springs to detox and say farewell.</p>
-</div>    </div>  </div></section><section id="rsvp" class="section rsvp-section">  <div class="rsvp-wrap">    <div class="rsvp-divider" aria-hidden="true"><span>✦</span></div><div class="container">          <h2 class="section-title">RSVP</h2><p class="rsvp-deadline">Kindly respond by <strong>July 1, 2026</strong>.</p>          <p class="lede" style="margin-top: 8px;">            Please search for your name to RSVP. If you can’t find it, reach out and we’ll help.          </p>          <div class="rsvp-shell">            <!-- Step 1: Lookup -->            <div class="lookup card subtle">              <div class="card-top">                <div class="pill">Step 1</div>                <div class="emoji" aria-hidden="true">🔎</div>              </div>              <h3>Find your invitation</h3>              <p class="muted">Start typing your name (try first + last).</p>              <div class="lookup-row">                <input id="lookupInput" class="lookup-input" type="text" placeholder="Type your name…" autocomplete="name" />                <button id="lookupBtn" class="btn" type="button" type="button">Search</button>              </div>              <div id="lookupStatus" class="lookup-status" aria-live="polite"></div>              <div id="lookupResults" class="lookup-results" role="listbox" aria-label="Search results"></div>            </div>            <!-- Step 2: RSVP -->            <div id="rsvpPanel" class="rsvp-panel card" hidden>              <div class="card-top">                <div class="pill">Step 2</div>                <div class="emoji" aria-hidden="true">✅</div>              </div>              <h3 id="partyTitle">Your RSVP</h3>              <p id="partySubtitle" class="muted"></p>              <form id="rsvpForm" class="rsvp-form" novalidate>                <input type="hidden" name="party_id" id="partyId" />                <div id="memberRows" class="member-rows"></div>                <div class="form-grid" style="margin-top: 18px;">                  <label class="field full">                    <span>Dietary restrictions (optional)</span>                    <input name="dietary" type="text" placeholder="Vegetarian, gluten-free, allergies, etc." />                  </label>                  <label class="field full">                    <span>Notes (optional)</span>                    <textarea name="notes" rows="3" placeholder="Anything else we should know?"></textarea>                  </label>                </div>                <div class="form-actions">                  <button type="submit" class="btn btn-primary">Submit RSVP</button>                  <div class="form-hint">We’ll save your response right away.</div>                </div>                <div id="formMsg" class="form-msg" aria-live="polite"></div>              </form>            </div>          </div>          <footer class="footer">            <span class="footer-line"></span>            <a class="back-top" href="#top"></a>          </footer>        </div>          
+</div>    </div>  </div></section><section id="rsvp" class="section rsvp-section">  <div class="rsvp-wrap">    <div class="rsvp-divider" aria-hidden="true"><span>✦</span></div><div class="container">          <h2 class="section-title">RSVP</h2><p class="rsvp-deadline">Kindly respond by <strong>July 1, 2026</strong>.</p>          <p class="lede" style="margin-top: 8px;">            Please search for your name to RSVP. If you can’t find it, reach out and we’ll help.          </p>          <div class="rsvp-shell">            <!-- Step 1: Lookup -->            <div class="lookup card subtle">              <div class="card-top">                <div class="pill">Step 1</div>                <div class="emoji" aria-hidden="true">🔎</div>              </div>              <h3>Find your invitation</h3>              <p class="muted">Start typing your name (try first + last).</p>              <div class="lookup-row">                <input id="lookupInput" class="lookup-input" type="text" placeholder="Type your name…" autocomplete="name" />                <button id="lookupBtn" class="btn" type="button" type="button">Search</button>              </div>              <div id="lookupStatus" class="lookup-status" aria-live="polite"></div>              <div id="lookupResults" class="lookup-results" role="listbox" aria-label="Search results"></div>            </div>            <!-- Step 2: RSVP -->            <div id="rsvpPanel" class="rsvp-panel card" hidden>              <div class="card-top">                <div class="pill">Step 2</div>                <div class="emoji" aria-hidden="true">✅</div>              </div>              <h3 id="partyTitle">Your RSVP</h3>              <p id="partySubtitle" class="muted"></p>              <form id="rsvpForm" class="rsvp-form" novalidate>                <input type="hidden" name="party_id" id="partyId" />                <div id="memberRows" class="member-rows"></div>                <div class="form-grid" style="margin-top: 18px;">                  <label class="field full">                    <span>Dietary restrictions (optional)</span>                    <input id="dietary" name="dietary" type="text" placeholder="Vegetarian, gluten-free, allergies, etc." />                  </label>                  <label class="field full">                    <span>Notes (optional)</span>                    <textarea id="notes" name="notes" rows="3" placeholder="Anything else we should know?"></textarea>                  </label>                </div>                <div class="form-actions">                  <button id="submitBtn" type="submit" class="btn btn-primary">Submit RSVP</button>                  <div class="form-hint">We’ll save your response right away.</div>                </div>                <div id="formStatus" class="form-msg" aria-live="polite"></div>              </form>            </div>          </div>          <footer class="footer">            <span class="footer-line"></span>            <a class="back-top" href="#top"></a>          </footer>        </div>          
 <section class="section photo-break">
   <div class="photo-frame">
     <img src="/assets/photos/engagement_lake.jpg" alt="Christine and Riley engagement at the lake" />
@@ -110,7 +110,6 @@
   const resultsEl = $('lookupResults');
 
   // Selected party + RSVP form
-  const selectedPartyEl = $('selectedParty');
   const partyTitleEl = $('partyTitle');
   const partySubtitleEl = $('partySubtitle');
   const rsvpPanel = $('rsvpPanel');
@@ -118,10 +117,10 @@
   const dietaryEl = $('dietary');
   const notesEl = $('notes');
   const form = $('rsvpForm');
-  const submitBtn = $('submitBtn');
-  const formStatus = $('formStatus');
+  const submitBtn = $('submitBtn') || form?.querySelector('button[type="submit"]');
+  const formStatus = $('formStatus') || $('formMsg') || form?.querySelector('.form-msg');
 
-  if (!input || !btn || !status || !resultsEl || !selectedPartyEl || !partyTitleEl || !partySubtitleEl || !rsvpPanel || !memberRows || !form || !submitBtn || !formStatus) {
+  if (!input || !btn || !status || !resultsEl || !partyTitleEl || !partySubtitleEl || !rsvpPanel || !memberRows || !form) {
     console.error('RSVP wiring: required DOM nodes not found.');
     return;
   }
@@ -131,7 +130,9 @@
   let debounceTimer = null;
   let lastQuery = '';
 
-  const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',''':'&#39;'}[c]));
+  function setFormStatus(msg) {
+    if (formStatus) formStatus.textContent = msg || '';
+  }
 
   function setStatus(msg) {
     status.textContent = msg || '';
@@ -142,10 +143,22 @@
     resultsEl.innerHTML = '';
   }
 
+  function formatPartyLabel(party) {
+    if (party?.display_name) return party.display_name;
+    if (party?.primary_name) {
+      return String(party.primary_name).replace(/\w\S*/g, (word) => {
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      });
+    }
+    const members = Array.isArray(party?.members) ? party.members : [];
+    if (members.length) return members.join(', ');
+    return 'Your Party';
+  }
+
   function renderResults(results) {
     clearResults();
     if (!results || results.length === 0) {
-      setStatus('No match found. Try first + last, or reach out and we'll help.');
+      setStatus("No match found. Try first + last, or reach out and we'll help.");
       return;
     }
 
@@ -158,7 +171,7 @@
       btn.type = 'button';
       btn.className = 'party-chip';
       btn.setAttribute('data-party-id', party.party_id);
-      btn.textContent = party.display_name || party.primary_name || party.party_id;
+      btn.textContent = formatPartyLabel(party);
       btn.addEventListener('click', () => selectParty(party));
       frag.appendChild(btn);
     });
@@ -178,7 +191,7 @@
     setStatus('Searching…');
 
     try {
-      const res = await fetch(`/api/lookup?q=${encodeURIComponent(query)}`, { method: 'GET' });
+      const res = await fetch('/api/lookup?q=' + encodeURIComponent(query), { method: 'GET' });
       const data = await res.json().catch(() => ({}));
 
       // If user typed something new while request was in-flight, ignore this result.
@@ -207,12 +220,11 @@
     clearResults();
     setStatus('');
 
-    selectedPartyEl.hidden = false;
     rsvpPanel.hidden = false;
 
     partyTitleEl.textContent = party.display_name || party.primary_name || 'Your Party';
     const members = Array.isArray(party.members) ? party.members : [];
-    partySubtitleEl.textContent = members.length ? `Guests: ${members.join(', ')}` : '';
+    partySubtitleEl.textContent = members.length ? 'Guests: ' + members.join(', ') : '';
 
     // Render member rows
     memberRows.innerHTML = '';
@@ -229,14 +241,33 @@
       const controls = document.createElement('div');
       controls.className = 'member-controls';
 
-      const yesId = `attend_yes_${idx}`;
-      const noId = `attend_no_${idx}`;
-      const groupName = `attend_${idx}`;
+      const yesId = 'attend_yes_' + idx;
+      const noId = 'attend_no_' + idx;
+      const groupName = 'attend_' + idx;
 
-      controls.innerHTML = `
-        <label class="pill"><input type="radio" name="${escapeHtml(groupName)}" id="${escapeHtml(yesId)}" value="yes" required> Accepts</label>
-        <label class="pill"><input type="radio" name="${escapeHtml(groupName)}" id="${escapeHtml(noId)}" value="no"> Declines</label>
-      `;
+      const yesLabel = document.createElement('label');
+      yesLabel.className = 'pill';
+      const yesInput = document.createElement('input');
+      yesInput.type = 'radio';
+      yesInput.name = groupName;
+      yesInput.id = yesId;
+      yesInput.value = 'yes';
+      yesInput.required = true;
+      yesLabel.appendChild(yesInput);
+      yesLabel.appendChild(document.createTextNode(' Accepts'));
+
+      const noLabel = document.createElement('label');
+      noLabel.className = 'pill';
+      const noInput = document.createElement('input');
+      noInput.type = 'radio';
+      noInput.name = groupName;
+      noInput.id = noId;
+      noInput.value = 'no';
+      noLabel.appendChild(noInput);
+      noLabel.appendChild(document.createTextNode(' Declines'));
+
+      controls.appendChild(yesLabel);
+      controls.appendChild(noLabel);
 
       row.appendChild(label);
       row.appendChild(controls);
@@ -253,29 +284,29 @@
     memberRows.appendChild(frag);
 
     // Reset form status
-    formStatus.textContent = '';
+    setFormStatus('');
   }
 
   async function submitRsvp(e) {
     e.preventDefault();
     if (!selectedParty) {
-      formStatus.textContent = 'Please select your party first.';
+      setFormStatus('Please select your party first.');
       return;
     }
 
     const members = Array.isArray(selectedParty.members) ? selectedParty.members : [];
     const payloadMembers = members.map((name, idx) => {
-      const val = (new FormData(form)).get(`attend_${idx}`);
+      const val = (new FormData(form)).get('attend_' + idx);
       return { name, attending: val || null };
     });
 
     if (payloadMembers.some((m) => !m.attending)) {
-      formStatus.textContent = 'Please respond for each guest.';
+      setFormStatus('Please respond for each guest.');
       return;
     }
 
-    submitBtn.disabled = true;
-    formStatus.textContent = 'Submitting…';
+    if (submitBtn) submitBtn.disabled = true;
+    setFormStatus('Submitting…');
 
     try {
       const res = await fetch('/api/rsvp', {
@@ -293,22 +324,22 @@
 
       if (!res.ok || data?.ok !== true) {
         console.error('RSVP submit error:', res.status, data);
-        formStatus.textContent = 'Hmm — something went wrong. Please try again later.';
-        submitBtn.disabled = false;
+        setFormStatus('Hmm — something went wrong. Please try again later.');
+        if (submitBtn) submitBtn.disabled = false;
         return;
       }
 
-      formStatus.textContent = 'RSVP received — thank you!';
+      setFormStatus('RSVP received — thank you!');
 
       // Optional: lock the form
-      submitBtn.disabled = true;
+      if (submitBtn) submitBtn.disabled = true;
       Array.from(form.querySelectorAll('input, textarea, button')).forEach((el) => {
         if (el !== btn && el !== input) el.disabled = true;
       });
     } catch (err) {
       console.error(err);
-      formStatus.textContent = 'Hmm — something went wrong. Please try again later.';
-      submitBtn.disabled = false;
+      setFormStatus('Hmm — something went wrong. Please try again later.');
+      if (submitBtn) submitBtn.disabled = false;
     }
   }
 
