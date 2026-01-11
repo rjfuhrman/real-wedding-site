@@ -94,252 +94,72 @@
 </div>
   </div>
 </section><section class="photo-break" aria-label="Engagement photo">  <div class="container">    <figure class="photo-frame photo-frame-tall">      <img src="assets/photos/engagement_forest.jpg" alt="Christine and Riley walking through the forest" loading="lazy" decoding="async" />    </figure></section>      </main>            <script>
-// RSVP UI (typeahead + submit)
-(function () {
-  const lookupInput = document.getElementById("lookupInput");
-  const lookupBtn = document.getElementById("lookupBtn");
-  // Prevent the button from behaving like a form submit (and fix some mobile tap quirks).
-  if (lookupBtn) lookupBtn.type = "button";
-  const lookupResults = document.getElementById("lookupResults");
-  const rsvpForm = document.getElementById("rsvpForm");
-  const partyIdInput = document.getElementById("partyId");
-  const memberRows = document.getElementById("memberRows");
-  const dietaryInput = document.getElementById("dietaryNotes");
-  const otherInput = document.getElementById("otherNotes");
-  const formMsg = document.getElementById("formMsg");
+const input = document.getElementById('rsvp-input');
+const btn = document.getElementById('rsvp-search');
+const resultsDiv = document.getElementById('rsvp-results');
+const statusDiv = document.getElementById('rsvp-status');
+let currentParty=null;
 
-  if (!lookupInput || !lookupBtn || !lookupResults || !rsvpForm || !partyIdInput || !memberRows || !formMsg) {
+async function lookup(q){
+  const r=await fetch(`/api/lookup?q=${encodeURIComponent(q)}`);
+  const j=await r.json();
+  return j.results||[];
+}
+
+function renderResults(list){
+  resultsDiv.innerHTML='';
+  if(!list.length){
+    statusDiv.textContent='No match found. Try first + last, or reach out and we\'ll help.';
     return;
   }
-
-  let lastQuery = "";
-  let debounceTimer = null;
-
-  function setMsg(text, kind) {
-    formMsg.textContent = text || "";
-    formMsg.classList.remove("error", "success");
-    if (kind) formMsg.classList.add(kind);
-  }
-
-  function escapeHtml(str) {
-    return String(str)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-
-  async function doLookup(q) {
-    const query = String(q || "").trim();
-    if (query.length < 2) return [];
-    const url = `/api/lookup?q=${encodeURIComponent(query)}`;
-    const r = await fetch(url, { method: "GET" });
-    if (!r.ok) {
-      const t = await r.text();
-      throw new Error(t || "Lookup failed");
-    }
-    const data = await r.json();
-    // Backwards/forwards compatible response parsing.
-    const matches = data?.matches ?? data?.results ?? data?.data ?? data;
-    return Array.isArray(matches) ? matches : [];
-  }
-
-  function clearSuggestions() {
-    lookupResults.innerHTML = "";
-    
-  }
-
-  function renderSuggestions(matches) {
-    if (!matches || matches.length === 0) {
-      lookupResults.innerHTML = `<div class="hint">No match found.</div>`;
-      
-      return;
-    }
-    const buttons = matches
-      .map((m) => {
-        const label = escapeHtml(m.display_name || "Invitation");
-        const partyId = escapeHtml(m.party_id || "");
-        return `<button type="button" class="result" data-party="${partyId}">${label}</button>`;
-      })
-      .join("");
-    lookupResults.innerHTML = `<div >${buttons}</div>`;
-    
-  }
-
-  function buildMemberRows(members) {
-    memberRows.innerHTML = "";
-    const list = Array.isArray(members) ? members : [];
-    list.forEach((name, i) => {
-      const safeName = escapeHtml(name);
-      const row = document.createElement("div");
-      row.className = "member-row";
-      row.innerHTML = `
-        <div class="member-name">${safeName}</div>
-        <div class="member-actions">
-          <label class="radio">
-            <input type="radio" name="member_${i}" value="yes" required />
-            <span>Accepts</span>
-          </label>
-          <label class="radio">
-            <input type="radio" name="member_${i}" value="no" required />
-            <span>Declines</span>
-          </label>
-        </div>
-      `;
-      memberRows.appendChild(row);
-    });
-  }
-
-  function openParty(party) {
-    clearSuggestions();
-    setMsg("", null);
-
-    partyIdInput.value = party.party_id || "";
-    buildMemberRows(party.members || []);
-    rsvpForm.classList.add("open");
-    rsvpForm.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
-  async function runLookup(triggeredByButton) {
-    const q = lookupInput.value.trim();
-    lastQuery = q;
-
-    if (q.length < 2) {
-      clearSuggestions();
-      if (triggeredByButton) setMsg("Start typing your name (try first + last).", "error");
-      return;
-    }
-
-    try {
-      setMsg("", null);
-      lookupBtn.disabled = true;
-      lookupBtn.classList.add("loading");
-
-      const matches = await doLookup(q);
-      // If user clicked Search and we have exactly one match, open it immediately
-      if (triggeredByButton && matches.length === 1) {
-        openParty(matches[0]);
-      } else {
-        renderSuggestions(matches);
-      }
-    } catch (e) {
-      console.error(e);
-      setMsg("Hmm — lookup failed. Please try again in a moment.", "error");
-      clearSuggestions();
-    } finally {
-      lookupBtn.disabled = false;
-      lookupBtn.classList.remove("loading");
-    }
-  }
-
-  lookupInput.addEventListener("input", () => {
-    // close form when user edits search again
-    rsvpForm.classList.remove("open");
-    partyIdInput.value = "";
-    setMsg("", null);
-
-    const q = lookupInput.value.trim();
-    clearSuggestions();
-    if (debounceTimer) window.clearTimeout(debounceTimer);
-    debounceTimer = window.setTimeout(async () => {
-      // ignore stale
-      if (q !== lookupInput.value.trim()) return;
-      await runLookup(false);
-    }, 250);
+  statusDiv.textContent='';
+  list.forEach(p=>{
+    const b=document.createElement('button');
+    b.className='party-pill';
+    b.textContent=p.display_name;
+    b.onclick=()=>selectParty(p);
+    resultsDiv.appendChild(b);
   });
+}
 
-  lookupBtn.addEventListener("click", async (e) => {
+async function selectParty(p){
+  currentParty=p;
+  resultsDiv.innerHTML='';
+  const form=document.createElement('form');
+  form.innerHTML=`
+    <h3>${p.display_name}</h3>
+    ${p.members.map(m=>`
+      <div>
+        <label>${m}</label>
+        <select name="${m}">
+          <option value="yes">Attending</option>
+          <option value="no">Not attending</option>
+        </select>
+      </div>`).join('')}
+    <button type="submit">Submit RSVP</button>
+  `;
+  form.onsubmit=async(e)=>{
     e.preventDefault();
-    await runLookup(true);
-  });
+    const fd=new FormData(form);
+    const members=p.members.map(m=>({name:m,response:fd.get(m)}));
+    const res=await fetch('/api/rsvp',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({party_id:p.party_id,members})});
+    if(res.ok) alert('RSVP saved!'); else alert('Error saving RSVP');
+  };
+  resultsDiv.appendChild(form);
+}
 
-  // iOS Safari can sometimes ignore click handlers on positioned elements; touchend helps.
-  lookupBtn.addEventListener(
-    "touchend",
-    async (e) => {
-      e.preventDefault();
-      await runLookup(true);
-    },
-    { passive: false }
-  );
+btn.onclick=async()=>{
+  const q=input.value.trim();
+  if(!q) return;
+  const list=await lookup(q);
+  renderResults(list);
+};
 
-  lookupResults.addEventListener("click", (e) => {
-    const btn = e.target.closest(".lookup-item");
-    if (!btn) return;
-    const partyId = btn.getAttribute("data-party") || "";
-    // Find party in current suggestions by re-running lookup quickly (cheap at this size)
-    // but prefer not to store, so do another lookup using the chosen label.
-    // We'll just use the partyId to fetch again with a precise query.
-    // Simpler: run lookup with current query, then open match by partyId.
-    (async () => {
-      try {
-        const matches = await doLookup(lookupInput.value.trim());
-        const match = matches.find((m) => String(m.party_id) === String(partyId));
-        if (match) openParty(match);
-      } catch (err) {
-        console.error(err);
-        setMsg("Hmm — lookup failed. Please try again in a moment.", "error");
-      }
-    })();
-  });
-
-  // Submit RSVP
-  rsvpForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    setMsg("", null);
-
-    const partyId = partyIdInput.value;
-    if (!partyId) {
-      setMsg("Please find your invitation first.", "error");
-      return;
-    }
-
-    // collect members from rendered rows
-    const rows = Array.from(memberRows.querySelectorAll(".member-row"));
-    const members = rows.map((row, idx) => {
-      const name = row.querySelector(".member-name")?.textContent?.trim() || `Guest ${idx + 1}`;
-      const val = row.querySelector(`input[name="member_${idx}"]:checked`)?.value;
-      return { name, attending: val === "yes" };
-    });
-
-    if (members.some((m) => typeof m.attending !== "boolean")) {
-      setMsg("Please respond for each guest shown.", "error");
-      return;
-    }
-
-    const payload = {
-      party_id: partyId,
-      members,
-      dietary_notes: dietaryInput ? dietaryInput.value.trim() : "",
-      other_notes: otherInput ? otherInput.value.trim() : "",
-    };
-
-    try {
-      const r = await fetch("/api/rsvp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!r.ok) {
-        const t = await r.text();
-        throw new Error(t || "Submit failed");
-      }
-
-      setMsg("Thank you — RSVP received.", "success");
-    } catch (err) {
-      console.error(err);
-      setMsg("Hmm — something went wrong. Please try again later.", "error");
-    }
-  });
-
-  // close dropdown when clicking outside
-  document.addEventListener("click", (e) => {
-    if (e.target.closest("#lookupResults") || e.target.closest("#lookupInput") || e.target.closest("#lookupBtn")) return;
-    clearSuggestions();
-  });
-})();
+input.oninput=async()=>{
+  if(input.value.length<2) return;
+  const list=await lookup(input.value);
+  renderResults(list);
+};
 </script>  
 <footer class="site-footer">
   <p>We can’t wait to celebrate with you in Durango.</p>
