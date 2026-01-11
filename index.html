@@ -93,151 +93,247 @@
       </div>
 </div>
   </div>
-</section><section class="photo-break" aria-label="Engagement photo">  <div class="container">    <figure class="photo-frame photo-frame-tall">      <img src="assets/photos/engagement_forest.jpg" alt="Christine and Riley walking through the forest" loading="lazy" decoding="async" />    </figure></section>      </main>            <script>
-const input = document.getElementById('rsvp-input');
-const btn = document.getElementById('rsvp-search');
-const resultsDiv = document.getElementById('rsvp-results');
-const statusDiv = document.getElementById('rsvp-status');
-let currentParty=null;
-
-async function lookup(q){
-  const r=await fetch(`/api/lookup?q=${encodeURIComponent(q)}`);
-  const j=await r.json();
-  return j.results||[];
-}
-
-function renderResults(list){
-  resultsDiv.innerHTML='';
-  if(!list.length){
-    statusDiv.textContent='No match found. Try first + last, or reach out and we\'ll help.';
-    return;
-  }
-  statusDiv.textContent='';
-  list.forEach(p=>{
-    const b=document.createElement('button');
-    b.className='party-pill';
-    b.textContent=p.display_name;
-    b.onclick=()=>selectParty(p);
-    resultsDiv.appendChild(b);
-  });
-}
-
-async function selectParty(p){
-  currentParty=p;
-  resultsDiv.innerHTML='';
-  const form=document.createElement('form');
-  form.innerHTML=`
-    <h3>${p.display_name}</h3>
-    ${p.members.map(m=>`
-      <div>
-        <label>${m}</label>
-        <select name="${m}">
-          <option value="yes">Attending</option>
-          <option value="no">Not attending</option>
-        </select>
-      </div>`).join('')}
-    <button type="submit">Submit RSVP</button>
-  `;
-  form.onsubmit=async(e)=>{
-    e.preventDefault();
-    const fd=new FormData(form);
-    const members=p.members.map(m=>({name:m,response:fd.get(m)}));
-    const res=await fetch('/api/rsvp',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({party_id:p.party_id,members})});
-    if(res.ok) alert('RSVP saved!'); else alert('Error saving RSVP');
-  };
-  resultsDiv.appendChild(form);
-}
-
-btn.onclick=async()=>{
-  const q=input.value.trim();
-  if(!q) return;
-  const list=await lookup(q);
-  renderResults(list);
-};
-
-input.oninput=async()=>{
-  if(input.value.length<2) return;
-  const list=await lookup(input.value);
-  renderResults(list);
-};
-</script>  
+</section><section class="photo-break" aria-label="Engagement photo">  <div class="container">    <figure class="photo-frame photo-frame-tall">      <img src="assets/photos/engagement_forest.jpg" alt="Christine and Riley walking through the forest" loading="lazy" decoding="async" />    </figure></section>      </main>
 <footer class="site-footer">
   <p>We can’t wait to celebrate with you in Durango.</p>
   <a href="#top" class="back-to-top">Back to top ↑</a>
 </footer>
 
-
-
-
 <script>
 (() => {
-  const byId = (id) => document.getElementById(id);
-  const input = () => byId('lookupInput');
-  const btn = () => byId('lookupBtn');
-  const results = () => byId('lookupResults');
-  const status = () => byId('lookupStatus');
+  const $ = (id) => document.getElementById(id);
 
-  async function doLookup() {
-    const q = (input()?.value || '').trim();
-    if (!q) {
-      if (status()) status().textContent = "Please type your name, then tap Search.";
+  // Lookup UI
+  const input = $('lookupInput');
+  const btn = $('lookupBtn');
+  const status = $('lookupStatus');
+  const resultsEl = $('lookupResults');
+
+  // Selected party + RSVP form
+  const selectedPartyEl = $('selectedParty');
+  const partyTitleEl = $('partyTitle');
+  const partySubtitleEl = $('partySubtitle');
+  const rsvpPanel = $('rsvpPanel');
+  const memberRows = $('memberRows');
+  const dietaryEl = $('dietary');
+  const notesEl = $('notes');
+  const form = $('rsvpForm');
+  const submitBtn = $('submitBtn');
+  const formStatus = $('formStatus');
+
+  if (!input || !btn || !status || !resultsEl || !selectedPartyEl || !partyTitleEl || !partySubtitleEl || !rsvpPanel || !memberRows || !form || !submitBtn || !formStatus) {
+    console.error('RSVP wiring: required DOM nodes not found.');
+    return;
+  }
+
+  let currentResults = [];
+  let selectedParty = null;
+  let debounceTimer = null;
+  let lastQuery = '';
+
+  const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',''':'&#39;'}[c]));
+
+  function setStatus(msg) {
+    status.textContent = msg || '';
+  }
+
+  function clearResults() {
+    currentResults = [];
+    resultsEl.innerHTML = '';
+  }
+
+  function renderResults(results) {
+    clearResults();
+    if (!results || results.length === 0) {
+      setStatus('No match found. Try first + last, or reach out and we'll help.');
       return;
     }
-    if (btn()) { btn().disabled = true; btn().setAttribute('aria-busy','true'); }
-    if (status()) status().textContent = "Searching…";
-    if (results()) results().innerHTML = "";
+
+    setStatus('');
+    currentResults = results;
+
+    const frag = document.createDocumentFragment();
+    results.forEach((party) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'party-chip';
+      btn.setAttribute('data-party-id', party.party_id);
+      btn.textContent = party.display_name || party.primary_name || party.party_id;
+      btn.addEventListener('click', () => selectParty(party));
+      frag.appendChild(btn);
+    });
+    resultsEl.appendChild(frag);
+  }
+
+  async function lookup(q) {
+    const query = (q || '').trim();
+    lastQuery = query;
+
+    if (query.length < 2) {
+      setStatus('');
+      clearResults();
+      return;
+    }
+
+    setStatus('Searching…');
+
     try {
-      const res = await fetch(`/api/lookup?q=${encodeURIComponent(q)}`, { headers: { "Accept": "application/json" }});
+      const res = await fetch(`/api/lookup?q=${encodeURIComponent(query)}`, { method: 'GET' });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data?.error || `Lookup failed (${res.status})`);
-      if (!data?.party || !Array.isArray(data.guests)) {
-        if (status()) status().textContent = "No match found. Try first + last, or reach out and we'll help.";
+
+      // If user typed something new while request was in-flight, ignore this result.
+      if (lastQuery !== query) return;
+
+      if (!res.ok) {
+        console.error('Lookup error:', res.status, data);
+        setStatus('Hmm — lookup failed. Please try again in a moment.');
+        clearResults();
         return;
       }
-      // If the main app already knows how to render the party, defer to it.
-      if (typeof window.renderParty === "function") {
-        window.renderParty(data);
-        if (status()) status().textContent = "";
-        return;
-      }
-      // Minimal fallback rendering (should never be used, but prevents "nothing happens")
-      const safe = (s) => String(s || "").replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-      if (results()) {
-        results().innerHTML = `
-          <div class="lookup-fallback">
-            <div class="lookup-fallback-title">Found: ${safe(data.party)}</div>
-            <div class="lookup-fallback-sub">Guests in your party:</div>
-            <ul class="lookup-fallback-list">${data.guests.map(g => `<li>${safe(g.display_name || g.name)}</li>`).join("")}</ul>
-            <div class="lookup-fallback-note">If you don't see RSVP toggles yet, refresh once — we're still loading the form.</div>
-          </div>`;
-      }
-      if (status()) status().textContent = "";
-    } catch (e) {
-      if (status()) status().textContent = "Hmm — lookup failed. Please try again in a moment.";
-    } finally {
-      if (btn()) { btn().disabled = false; btn().removeAttribute('aria-busy'); }
+
+      const results = Array.isArray(data?.results) ? data.results : [];
+      renderResults(results);
+    } catch (err) {
+      console.error(err);
+      setStatus('Hmm — lookup failed. Please try again in a moment.');
+      clearResults();
     }
   }
 
-  function wire() {
-    const b = btn();
-    const i = input();
-    if (b) {
-      b.type = "button";
-      b.addEventListener("click", (ev) => { ev.preventDefault(); ev.stopPropagation(); doLookup(); }, { passive: false });
-      b.addEventListener("touchend", (ev) => { ev.preventDefault(); ev.stopPropagation(); doLookup(); }, { passive: false });
+  function selectParty(party) {
+    selectedParty = party;
+
+    // Hide lookup chips once selected (feels clearer)
+    clearResults();
+    setStatus('');
+
+    selectedPartyEl.hidden = false;
+    rsvpPanel.hidden = false;
+
+    partyTitleEl.textContent = party.display_name || party.primary_name || 'Your Party';
+    const members = Array.isArray(party.members) ? party.members : [];
+    partySubtitleEl.textContent = members.length ? `Guests: ${members.join(', ')}` : '';
+
+    // Render member rows
+    memberRows.innerHTML = '';
+    const frag = document.createDocumentFragment();
+
+    members.forEach((name, idx) => {
+      const row = document.createElement('div');
+      row.className = 'member-row';
+
+      const label = document.createElement('div');
+      label.className = 'member-name';
+      label.textContent = name;
+
+      const controls = document.createElement('div');
+      controls.className = 'member-controls';
+
+      const yesId = `attend_yes_${idx}`;
+      const noId = `attend_no_${idx}`;
+      const groupName = `attend_${idx}`;
+
+      controls.innerHTML = `
+        <label class="pill"><input type="radio" name="${escapeHtml(groupName)}" id="${escapeHtml(yesId)}" value="yes" required> Accepts</label>
+        <label class="pill"><input type="radio" name="${escapeHtml(groupName)}" id="${escapeHtml(noId)}" value="no"> Declines</label>
+      `;
+
+      row.appendChild(label);
+      row.appendChild(controls);
+      frag.appendChild(row);
+    });
+
+    if (members.length === 0) {
+      const p = document.createElement('p');
+      p.className = 'small-muted';
+      p.textContent = 'No guests found for this party.';
+      frag.appendChild(p);
     }
-    if (i) {
-      i.addEventListener("keydown", (ev) => { if (ev.key === "Enter") { ev.preventDefault(); doLookup(); }});
+
+    memberRows.appendChild(frag);
+
+    // Reset form status
+    formStatus.textContent = '';
+  }
+
+  async function submitRsvp(e) {
+    e.preventDefault();
+    if (!selectedParty) {
+      formStatus.textContent = 'Please select your party first.';
+      return;
+    }
+
+    const members = Array.isArray(selectedParty.members) ? selectedParty.members : [];
+    const payloadMembers = members.map((name, idx) => {
+      const val = (new FormData(form)).get(`attend_${idx}`);
+      return { name, attending: val || null };
+    });
+
+    if (payloadMembers.some((m) => !m.attending)) {
+      formStatus.textContent = 'Please respond for each guest.';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    formStatus.textContent = 'Submitting…';
+
+    try {
+      const res = await fetch('/api/rsvp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          party_id: selectedParty.party_id,
+          members: payloadMembers,
+          dietary: (dietaryEl?.value || '').trim(),
+          notes: (notesEl?.value || '').trim(),
+        }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok || data?.ok !== true) {
+        console.error('RSVP submit error:', res.status, data);
+        formStatus.textContent = 'Hmm — something went wrong. Please try again later.';
+        submitBtn.disabled = false;
+        return;
+      }
+
+      formStatus.textContent = 'RSVP received — thank you!';
+
+      // Optional: lock the form
+      submitBtn.disabled = true;
+      Array.from(form.querySelectorAll('input, textarea, button')).forEach((el) => {
+        if (el !== btn && el !== input) el.disabled = true;
+      });
+    } catch (err) {
+      console.error(err);
+      formStatus.textContent = 'Hmm — something went wrong. Please try again later.';
+      submitBtn.disabled = false;
     }
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", wire);
-  } else {
-    wire();
+  function onInput() {
+    const q = input.value;
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => lookup(q), 200);
   }
+
+  // Bind events
+  input.addEventListener('input', onInput);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      lookup(input.value);
+    }
+  });
+
+  btn.addEventListener('click', () => lookup(input.value));
+  form.addEventListener('submit', submitRsvp);
+
+  // Helpful: clicking the magnifying glass icon should also trigger search
+  const iconTrigger = document.querySelector('.lookup-icon');
+  if (iconTrigger) iconTrigger.addEventListener('click', () => lookup(input.value));
+
 })();
 </script>
-
 </body></html>
