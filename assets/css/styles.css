@@ -663,6 +663,20 @@ body{
   max-width: 62ch;
   color: var(--muted);
 }
+.fyi-block{
+  margin-top: 18px;
+}
+.fyi-label{
+  text-align: center;
+  margin: 0 0 12px;
+}
+.fyi-item{
+  margin: 0 0 12px;
+  line-height: 1.6;
+}
+.fyi-item:last-child{
+  margin-bottom: 0;
+}
 
 /* Photo interludes */
 .photo-break{
