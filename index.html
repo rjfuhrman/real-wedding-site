@@ -130,13 +130,22 @@
   let debounceTimer = null;
   let lastQuery = '';
 
-  const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#39;',
-  }[c]));
+  const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => {
+    switch (c) {
+      case '&':
+        return '&amp;';
+      case '<':
+        return '&lt;';
+      case '>':
+        return '&gt;';
+      case '"':
+        return '&quot;';
+      case "'":
+        return '&#39;';
+      default:
+        return c;
+    }
+  });
 
   function setFormStatus(msg) {
     if (formStatus) formStatus.textContent = msg || '';
