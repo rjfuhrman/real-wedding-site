@@ -98,6 +98,8 @@
 (function () {
   const lookupInput = document.getElementById("lookupInput");
   const lookupBtn = document.getElementById("lookupBtn");
+  // Prevent the button from behaving like a form submit (and fix some mobile tap quirks).
+  if (lookupBtn) lookupBtn.type = "button";
   const lookupResults = document.getElementById("lookupResults");
   const rsvpForm = document.getElementById("rsvpForm");
   const partyIdInput = document.getElementById("partyId");
@@ -138,7 +140,9 @@
       throw new Error(t || "Lookup failed");
     }
     const data = await r.json();
-    return Array.isArray(data?.matches) ? data.matches : [];
+    // Backwards/forwards compatible response parsing.
+    const matches = data?.matches ?? data?.results ?? data?.data ?? data;
+    return Array.isArray(matches) ? matches : [];
   }
 
   function clearSuggestions() {
@@ -250,6 +254,16 @@
     await runLookup(true);
   });
 
+  // iOS Safari can sometimes ignore click handlers on positioned elements; touchend helps.
+  lookupBtn.addEventListener(
+    "touchend",
+    async (e) => {
+      e.preventDefault();
+      await runLookup(true);
+    },
+    { passive: false }
+  );
+
   lookupResults.addEventListener("click", (e) => {
     const btn = e.target.closest(".lookup-item");
     if (!btn) return;
@@ -333,41 +347,6 @@
 </footer>
 
 
-<script id="RSVP_BIND_SAFE">
-(function(){
-  function ready(fn){ if(document.readyState!=="loading"){ fn(); } else { document.addEventListener("DOMContentLoaded", fn); } }
-  ready(function(){
-    var btn = document.getElementById("lookupBtn");
-    var input = document.getElementById("lookupInput");
-    if(!btn || !input) return;
-
-    // If a handler already exists, don't double-bind.
-    if(btn.dataset.bound==="1") return;
-    btn.dataset.bound="1";
-
-    function clickLookup(){
-      // Prefer existing global handler if defined
-      if(typeof window.lookupInvitation === "function"){ window.lookupInvitation(); return; }
-      // Fallback: trigger form submit if present
-      var form = btn.closest("form");
-      if(form){ form.dispatchEvent(new Event("submit", {cancelable:true})); }
-    }
-
-    btn.addEventListener("click", function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      clickLookup();
-    });
-
-    input.addEventListener("keydown", function(e){
-      if(e.key==="Enter"){
-        e.preventDefault();
-        clickLookup();
-      }
-    });
-  });
-})();
-</script>
 
 
 <script>

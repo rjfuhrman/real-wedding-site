@@ -16,7 +16,7 @@ export default async function handler(req, res) {
       .trim();
 
     if (!q || q.length < 2) {
-      return res.status(200).json({ matches: [] });
+      return res.status(200).json({ matches: [], results: [] });
     }
 
     const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
@@ -57,7 +57,9 @@ export default async function handler(req, res) {
     }
 
     const rows = await r.json();
-    return res.status(200).json({ matches: rows || [] });
+    const matches = rows || [];
+    // Return both keys for compatibility with older/newer frontends.
+    return res.status(200).json({ matches, results: matches });
   } catch (e) {
     console.error(e);
     return res.status(500).send("Lookup error");
