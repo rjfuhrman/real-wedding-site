@@ -915,7 +915,7 @@ body{
 .site-footer{
   text-align: center;
   padding: 72px 20px 48px;
-  color: rgba(60,55,48,0.75);
+  color: rgba(50,45,40,0.92);
 }
 
 .site-footer p{
@@ -923,13 +923,15 @@ body{
 }
 
 .back-to-top{
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   text-decoration: none;
-  color: rgba(60,55,48,0.65);
+  color: rgba(50,45,40,0.95);
+  letter-spacing: 0.01em;
 }
 
 .back-to-top:hover{
   text-decoration: underline;
+  color: rgba(35,32,28,1);
 }
 
 /* Shamrock accent */
