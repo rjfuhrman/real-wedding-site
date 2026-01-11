@@ -1,8 +1,10 @@
 // /api/lookup - Vercel Serverless Function
 // Private guest lookup backed by Supabase (REST).
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    res.setHeader("Allow", "POST");
+  // Allow GET (browser-friendly) and POST (JS-friendly)
+  const method = (req.method || "").toUpperCase();
+  if (method !== "GET" && method !== "POST") {
+    res.setHeader("Allow", "GET, POST");
     return res.status(405).send("Method Not Allowed");
   }
 
@@ -18,7 +20,11 @@ export default async function handler(req, res) {
     try { body = JSON.parse(body); } catch { body = {}; }
   }
 
-  const q = (body?.q || "").toString().trim();
+  const q = (
+    (req.query && (req.query.q || req.query.name)) ||
+    (body && (body.q || body.name)) ||
+    ""
+  ).toString().trim();
   if (!q || q.length < 2) return res.status(200).json({ results: [] });
 
   // Basic, privacy-preserving name search:
