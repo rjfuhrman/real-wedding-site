@@ -179,7 +179,7 @@
     setStatus('Searching…');
 
     try {
-      const res = await fetch(`/api/lookup?q=${encodeURIComponent(query)}`, { method: 'GET' });
+      const res = await fetch('/api/lookup?q=' + encodeURIComponent(query), { method: 'GET' });
       const data = await res.json().catch(() => ({}));
 
       // If user typed something new while request was in-flight, ignore this result.
@@ -212,7 +212,7 @@
 
     partyTitleEl.textContent = party.display_name || party.primary_name || 'Your Party';
     const members = Array.isArray(party.members) ? party.members : [];
-    partySubtitleEl.textContent = members.length ? `Guests: ${members.join(', ')}` : '';
+    partySubtitleEl.textContent = members.length ? 'Guests: ' + members.join(', ') : '';
 
     // Render member rows
     memberRows.innerHTML = '';
@@ -229,9 +229,9 @@
       const controls = document.createElement('div');
       controls.className = 'member-controls';
 
-      const yesId = `attend_yes_${idx}`;
-      const noId = `attend_no_${idx}`;
-      const groupName = `attend_${idx}`;
+      const yesId = 'attend_yes_' + idx;
+      const noId = 'attend_no_' + idx;
+      const groupName = 'attend_' + idx;
 
       const yesLabel = document.createElement('label');
       yesLabel.className = 'pill';
@@ -284,7 +284,7 @@
 
     const members = Array.isArray(selectedParty.members) ? selectedParty.members : [];
     const payloadMembers = members.map((name, idx) => {
-      const val = (new FormData(form)).get(`attend_${idx}`);
+      const val = (new FormData(form)).get('attend_' + idx);
       return { name, attending: val || null };
     });
 
