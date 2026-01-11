@@ -130,7 +130,13 @@
   let debounceTimer = null;
   let lastQuery = '';
 
-  const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',''':'&#39;'}[c]));
+  const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  }[c]));
 
   function setFormStatus(msg) {
     if (formStatus) formStatus.textContent = msg || '';
@@ -148,7 +154,7 @@
   function renderResults(results) {
     clearResults();
     if (!results || results.length === 0) {
-      setStatus('No match found. Try first + last, or reach out and we'll help.');
+      setStatus("No match found. Try first + last, or reach out and we'll help.");
       return;
     }
 
