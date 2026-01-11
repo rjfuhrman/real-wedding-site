@@ -704,7 +704,7 @@ body{
 
 /* Subtle section rhythm */
 .section{
-  padding: 80px 0;
+  padding: 72px 0;
 }
 .section-intro{
   padding-top: 92px;
@@ -1088,8 +1088,8 @@ a.venue-link:hover{
 }
 
 /* Reuse the RSVP divider styling for section breaks */
-.section-divider{ margin: 56px auto 56px; max-width: 860px; }
-@media (max-width: 700px){ .section-divider{ margin: 40px auto; } }
+.section-divider{ margin: 32px auto; max-width: 860px; }
+@media (max-width: 700px){ .section-divider{ margin: 24px auto; } }
 
 /* RSVP lookup fallback (in case main renderer doesn't initialize) */
 .lookup-fallback{ margin-top:16px; padding:18px 18px; border:1px solid rgba(0,0,0,.08); border-radius:18px; background: rgba(255,255,255,.6); }
