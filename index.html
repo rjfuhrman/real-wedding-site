@@ -160,7 +160,7 @@
       .map((m) => {
         const label = escapeHtml(m.display_name || "Invitation");
         const partyId = escapeHtml(m.party_id || "");
-        return `<button type="button" class="lookup-item result" data-party="${partyId}">${label}</button>`;
+        return `<button type="button" class="result" data-party="${partyId}">${label}</button>`;
       })
       .join("");
     lookupResults.innerHTML = `<div >${buttons}</div>`;
@@ -197,10 +197,8 @@
 
     partyIdInput.value = party.party_id || "";
     buildMemberRows(party.members || []);
-    rsvpForm.hidden = false;
     rsvpForm.classList.add("open");
     rsvpForm.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
   }
 
   async function runLookup(triggeredByButton) {
