@@ -704,10 +704,10 @@ body{
 
 /* Subtle section rhythm */
 .section{
-  padding: 92px 0;
+  padding: 72px 0;
 }
 .section-intro{
-  padding-top: 104px;
+  padding-top: 92px;
 }
 
 /* Mobile tuning */
@@ -872,14 +872,14 @@ body{
 
 /* RSVP section cohesion */
 .rsvp-section{
-  padding-top: 54px;
-  padding-bottom: 72px;
+  padding-top: 36px;
+  padding-bottom: 64px;
 }
 
 .rsvp-wrap{
   max-width: 860px;
   margin: 0 auto;
-  padding: 42px 22px 0;
+  padding: 28px 22px 0;
 }
 
 /* A gentle divider that connects events -> RSVP */
@@ -887,7 +887,7 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  margin: 0 auto 28px;
+  margin: 0 auto 22px;
 }
 
 .rsvp-divider span{
@@ -919,7 +919,7 @@ body{
 
 
 /* Tighten the handoff from Events to RSVP */
-#details{ padding-bottom: 54px; }
+#details{ padding-bottom: 44px; }
 #details .event-stack{ margin-bottom: 0; }
 
 
@@ -1088,8 +1088,8 @@ a.venue-link:hover{
 }
 
 /* Reuse the RSVP divider styling for section breaks */
-.section-divider{ margin: 56px auto 56px; max-width: 860px; }
-@media (max-width: 700px){ .section-divider{ margin: 40px auto; } }
+.section-divider{ margin: 32px auto; max-width: 860px; }
+@media (max-width: 700px){ .section-divider{ margin: 24px auto; } }
 
 /* RSVP lookup fallback (in case main renderer doesn't initialize) */
 .lookup-fallback{ margin-top:16px; padding:18px 18px; border:1px solid rgba(0,0,0,.08); border-radius:18px; background: rgba(255,255,255,.6); }
