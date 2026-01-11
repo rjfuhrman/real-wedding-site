@@ -914,24 +914,28 @@ body{
 /* Footer */
 .site-footer{
   text-align: center;
-  padding: 72px 20px 48px;
-  color: rgba(50,45,40,0.92);
+  padding: 72px 20px 64px;
+  color: rgba(255,247,236,0.95);
+  background: #000;
+  border-top: 1px solid rgba(255,226,189,0.28);
 }
 
 .site-footer p{
   margin-bottom: 16px;
+  text-shadow: 0 1px 6px rgba(12,8,6,0.45);
 }
 
 .back-to-top{
-  font-size: 0.95rem;
+  font-size: 1rem;
   text-decoration: none;
-  color: rgba(50,45,40,0.95);
+  color: rgba(255,247,236,0.95);
   letter-spacing: 0.01em;
+  text-shadow: 0 1px 6px rgba(12,8,6,0.35);
 }
 
 .back-to-top:hover{
   text-decoration: underline;
-  color: rgba(35,32,28,1);
+  color: #fff2d1;
 }
 
 /* Shamrock accent */
