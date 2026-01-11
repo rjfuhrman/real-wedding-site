@@ -130,23 +130,6 @@
   let debounceTimer = null;
   let lastQuery = '';
 
-  const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => {
-    switch (c) {
-      case '&':
-        return '&amp;';
-      case '<':
-        return '&lt;';
-      case '>':
-        return '&gt;';
-      case '"':
-        return '&quot;';
-      case "'":
-        return '&#39;';
-      default:
-        return c;
-    }
-  });
-
   function setFormStatus(msg) {
     if (formStatus) formStatus.textContent = msg || '';
   }
@@ -250,10 +233,29 @@
       const noId = `attend_no_${idx}`;
       const groupName = `attend_${idx}`;
 
-      controls.innerHTML = `
-        <label class="pill"><input type="radio" name="${escapeHtml(groupName)}" id="${escapeHtml(yesId)}" value="yes" required> Accepts</label>
-        <label class="pill"><input type="radio" name="${escapeHtml(groupName)}" id="${escapeHtml(noId)}" value="no"> Declines</label>
-      `;
+      const yesLabel = document.createElement('label');
+      yesLabel.className = 'pill';
+      const yesInput = document.createElement('input');
+      yesInput.type = 'radio';
+      yesInput.name = groupName;
+      yesInput.id = yesId;
+      yesInput.value = 'yes';
+      yesInput.required = true;
+      yesLabel.appendChild(yesInput);
+      yesLabel.appendChild(document.createTextNode(' Accepts'));
+
+      const noLabel = document.createElement('label');
+      noLabel.className = 'pill';
+      const noInput = document.createElement('input');
+      noInput.type = 'radio';
+      noInput.name = groupName;
+      noInput.id = noId;
+      noInput.value = 'no';
+      noLabel.appendChild(noInput);
+      noLabel.appendChild(document.createTextNode(' Declines'));
+
+      controls.appendChild(yesLabel);
+      controls.appendChild(noLabel);
 
       row.appendChild(label);
       row.appendChild(controls);
