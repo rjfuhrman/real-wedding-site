@@ -197,8 +197,10 @@
 
     partyIdInput.value = party.party_id || "";
     buildMemberRows(party.members || []);
+    rsvpForm.hidden = false;
     rsvpForm.classList.add("open");
     rsvpForm.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
   }
 
   async function runLookup(triggeredByButton) {
