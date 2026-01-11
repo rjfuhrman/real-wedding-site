@@ -143,6 +143,18 @@
     resultsEl.innerHTML = '';
   }
 
+  function formatPartyLabel(party) {
+    if (party?.display_name) return party.display_name;
+    if (party?.primary_name) {
+      return String(party.primary_name).replace(/\w\S*/g, (word) => {
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      });
+    }
+    const members = Array.isArray(party?.members) ? party.members : [];
+    if (members.length) return members.join(', ');
+    return 'Your Party';
+  }
+
   function renderResults(results) {
     clearResults();
     if (!results || results.length === 0) {
@@ -159,7 +171,7 @@
       btn.type = 'button';
       btn.className = 'party-chip';
       btn.setAttribute('data-party-id', party.party_id);
-      btn.textContent = party.display_name || party.primary_name || party.party_id;
+      btn.textContent = formatPartyLabel(party);
       btn.addEventListener('click', () => selectParty(party));
       frag.appendChild(btn);
     });
