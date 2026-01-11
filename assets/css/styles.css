@@ -866,7 +866,6 @@ body{
   max-width: 860px;
   margin: 0 auto;
   padding: 42px 22px 0;
-  border-top: 1px solid rgba(60,55,48,0.10);
 }
 
 /* A gentle divider that connects events -> RSVP */
