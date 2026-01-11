@@ -117,10 +117,10 @@
   const dietaryEl = $('dietary');
   const notesEl = $('notes');
   const form = $('rsvpForm');
-  const submitBtn = $('submitBtn');
-  const formStatus = $('formStatus');
+  const submitBtn = $('submitBtn') || form?.querySelector('button[type="submit"]');
+  const formStatus = $('formStatus') || $('formMsg') || form?.querySelector('.form-msg');
 
-  if (!input || !btn || !status || !resultsEl || !partyTitleEl || !partySubtitleEl || !rsvpPanel || !memberRows || !form || !submitBtn || !formStatus) {
+  if (!input || !btn || !status || !resultsEl || !partyTitleEl || !partySubtitleEl || !rsvpPanel || !memberRows || !form) {
     console.error('RSVP wiring: required DOM nodes not found.');
     return;
   }
@@ -131,6 +131,10 @@
   let lastQuery = '';
 
   const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',''':'&#39;'}[c]));
+
+  function setFormStatus(msg) {
+    if (formStatus) formStatus.textContent = msg || '';
+  }
 
   function setStatus(msg) {
     status.textContent = msg || '';
@@ -251,13 +255,13 @@
     memberRows.appendChild(frag);
 
     // Reset form status
-    formStatus.textContent = '';
+    setFormStatus('');
   }
 
   async function submitRsvp(e) {
     e.preventDefault();
     if (!selectedParty) {
-      formStatus.textContent = 'Please select your party first.';
+      setFormStatus('Please select your party first.');
       return;
     }
 
@@ -268,12 +272,12 @@
     });
 
     if (payloadMembers.some((m) => !m.attending)) {
-      formStatus.textContent = 'Please respond for each guest.';
+      setFormStatus('Please respond for each guest.');
       return;
     }
 
-    submitBtn.disabled = true;
-    formStatus.textContent = 'Submitting…';
+    if (submitBtn) submitBtn.disabled = true;
+    setFormStatus('Submitting…');
 
     try {
       const res = await fetch('/api/rsvp', {
@@ -291,22 +295,22 @@
 
       if (!res.ok || data?.ok !== true) {
         console.error('RSVP submit error:', res.status, data);
-        formStatus.textContent = 'Hmm — something went wrong. Please try again later.';
-        submitBtn.disabled = false;
+        setFormStatus('Hmm — something went wrong. Please try again later.');
+        if (submitBtn) submitBtn.disabled = false;
         return;
       }
 
-      formStatus.textContent = 'RSVP received — thank you!';
+      setFormStatus('RSVP received — thank you!');
 
       // Optional: lock the form
-      submitBtn.disabled = true;
+      if (submitBtn) submitBtn.disabled = true;
       Array.from(form.querySelectorAll('input, textarea, button')).forEach((el) => {
         if (el !== btn && el !== input) el.disabled = true;
       });
     } catch (err) {
       console.error(err);
-      formStatus.textContent = 'Hmm — something went wrong. Please try again later.';
-      submitBtn.disabled = false;
+      setFormStatus('Hmm — something went wrong. Please try again later.');
+      if (submitBtn) submitBtn.disabled = false;
     }
   }
 
