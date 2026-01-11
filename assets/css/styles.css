@@ -67,6 +67,20 @@ body{
   text-transform: uppercase;
   opacity:.85;
 }
+.nav-links .nav-rsvp{
+  opacity:1;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(197,141,107,0.92);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+  letter-spacing:.12em;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.nav-links .nav-rsvp:hover{
+  transform: translateY(-1px);
+  background: rgba(212,157,121,0.95);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.2);
+}
 .nav-links a:hover{opacity:1}
 @media (max-width:640px){
   .nav-inner{flex-direction:column; align-items:center}
