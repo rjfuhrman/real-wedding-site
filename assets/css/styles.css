@@ -68,12 +68,15 @@ body{
   opacity:.85;
 }
 .nav-links .nav-rsvp{
+  display:inline-flex;
+  align-items:center;
   opacity:1;
   padding: 8px 14px;
   border-radius: 999px;
   background: rgba(197,141,107,0.92);
   box-shadow: 0 10px 22px rgba(0,0,0,0.18);
   letter-spacing:.12em;
+  line-height: 1;
   transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
 }
 .nav-links .nav-rsvp:hover{
