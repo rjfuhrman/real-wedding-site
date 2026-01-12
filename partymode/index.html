@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Wedding</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Web font so phones and laptops match -->
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        background: lime;
+        color: blue;
+        font-family: "Comic Neue", cursive, sans-serif;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+        font-size: clamp(20px, 4vw, 36px);
+      }
+      p {
+        margin: 0.5em;
+      }
+      .blink {
+        animation: blink 1s step-start infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p class="blink">Wedding.</p>
+    <p>Christine &amp; Riley.</p>
+    <p>Durango, CO.</p>
+    <p>September 26, 2026.</p>
+    <p>Be there. Bye.</p>
+  </body>
+</html>
