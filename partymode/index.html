@@ -68,11 +68,23 @@
       <button class="party-button" type="button" id="playSong">Play</button>
       <a class="back-link" href="https://www.christineandriley.love/">Back to real site</a>
     </div>
+    <iframe
+      id="partyPlayer"
+      title="Party mode player"
+      width="1"
+      height="1"
+      style="border: 0; position: absolute; left: -9999px;"
+      allow="autoplay"
+      data-src="https://www.youtube.com/embed/yUZeZNxiD-M?autoplay=1"
+    ></iframe>
     <script>
       const playButton = document.getElementById('playSong');
-      if (playButton) {
+      const partyPlayer = document.getElementById('partyPlayer');
+      if (playButton && partyPlayer) {
         playButton.addEventListener('click', () => {
-          window.open('https://open.spotify.com/track/0r2Bul2NuCViraT2zX1l5j', '_blank', 'noopener');
+          if (!partyPlayer.src) {
+            partyPlayer.src = partyPlayer.dataset.src;
+          }
         });
       }
     </script>
