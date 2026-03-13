@@ -91,7 +91,7 @@
       <!-- RSVP -->
       <section id="rsvp" class="section rsvp-section">
         <div class="rsvp-wrap">
-          <div class="rsvp-divider" aria-hidden="true"><span>✦</span></div>
+          <div class="section-divider-dots" aria-hidden="true"><span>• • •</span></div>
           <div class="container">
             <h2 class="section-title">RSVP</h2>
             <p class="rsvp-deadline">Kindly respond by <strong>July 1, 2026</strong>.</p>
@@ -193,7 +193,7 @@
             </div>
           </section>
 
-          <div class="rsvp-divider section-divider"><span>✦</span></div>
+          <div class="section-divider-dots" aria-hidden="true"><span>• • •</span></div>
 
           <!-- ACCOMMODATIONS -->
           <section id="stay" class="section">
@@ -226,7 +226,7 @@
             </div>
           </section>
 
-          <div class="rsvp-divider section-divider"><span>✦</span></div>
+          <div class="section-divider-dots" aria-hidden="true"><span>• • •</span></div>
 
           <!-- GETTING AROUND -->
           <section id="getting-around" class="section">
@@ -269,7 +269,7 @@
             </div>
           </section>
 
-          <div class="rsvp-divider section-divider"><span>✦</span></div>
+          <div class="section-divider-dots" aria-hidden="true"><span>• • •</span></div>
 
           <!-- FAQ -->
           <section id="faq" class="section">
@@ -346,7 +346,7 @@
                     <span class="faq-icon" aria-hidden="true">+</span>
                   </button>
                   <div class="faq-body" hidden>
-                    <p>Hell yeah brother.</p>
+                    <p>Hell yeah brother. 🐶</p>
                   </div>
                 </div>
 
@@ -687,6 +687,19 @@
       }
       .faq-body strong {
         color: #24221f;
+      }
+      /* Clean between-section divider — matches the • • • inside events */
+      .section-divider-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 0;
+        margin: 0 auto;
+      }
+      .section-divider-dots span {
+        letter-spacing: .55em;
+        color: rgba(60,55,48,0.30);
+        font-size: 12px;
       }
     </style>
 
