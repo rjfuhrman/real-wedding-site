@@ -706,22 +706,22 @@
         flex-direction: column;
         align-items: center;
         gap: 0;
-        overflow: hidden;
       }
       .western-left,
       .western-right {
         display: block;
-        transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s ease;
+        transition: transform 1.8s cubic-bezier(0.25, 1, 0.35, 1), opacity 2s ease;
       }
-      .western-left  { transform: translateX(-60px); opacity: 0; }
-      .western-right { transform: translateX( 60px); opacity: 0; }
-      .western-split.in-view .western-left,
-      .western-split.in-view .western-right {
+      .western-left  { transform: translateX(-120px); opacity: 0; }
+      .western-right { transform: translateX( 120px); opacity: 0; }
+      .western-split.in-view .western-left {
         transform: translateX(0);
         opacity: 1;
       }
       .western-split.in-view .western-right {
-        transition-delay: 0.08s;
+        transform: translateX(0);
+        opacity: 1;
+        transition-delay: 0.35s;
       }
 
       /* Clean between-section divider — matches the • • • inside events */
