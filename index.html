@@ -255,8 +255,8 @@
                   </p>
                   <p class="item-body">
                     <strong>Reliable local options:</strong><br />
-                    Animas Transportation · <a class="inline-link" href="tel:9702591315">970-259-1315</a><br />
-                    Buck Horn Limousine, LLC · <a class="inline-link" href="tel:9707690933">970-769-0933</a>
+                    Animas Transportation · <a class="inline-link" href="tel:9702591315" style="color: inherit;">970-259-1315</a><br />
+                    Buck Horn Limousine, LLC · <a class="inline-link" href="tel:9707690933" style="color: inherit;">970-769-0933</a>
                   </p>
                 </div>
               </div>
@@ -371,28 +371,28 @@
 
               <div class="todo-card todo-card--featured">
                 <div class="todo-tag">Our pick</div>
-                <h4 class="todo-name">Castle Rock Trail</h4>
+                <h4 class="todo-name"><a class="todo-link" href="https://www.alltrails.com/trail/us/colorado/castle-rock-via-elbert-creek-trail" target="_blank" rel="noopener">Castle Rock Trail</a></h4>
                 <p class="todo-desc">Riley's personal favorite hike — and conveniently right near the wedding venue. A gorgeous climb with incredible views of the valley. Do it Saturday morning before getting ready and you'll feel like you earned the celebration.</p>
               </div>
 
               <div class="todo-card">
-                <h4 class="todo-name">Durango &amp; Silverton Narrow Gauge Railroad</h4>
+                <h4 class="todo-name"><a class="todo-link" href="https://www.durangotrain.com" target="_blank" rel="noopener">Durango &amp; Silverton Narrow Gauge Railroad</a></h4>
                 <p class="todo-desc">A 3.5-hour steam train ride through the San Juan Mountains that's been running since 1882. Book in advance — it sells out. One of those things that sounds touristy but absolutely delivers.</p>
               </div>
 
               <div class="todo-card">
-                <h4 class="todo-name">Million Dollar Highway to Silverton &amp; Ouray</h4>
+                <h4 class="todo-name"><a class="todo-link" href="https://www.ouraycolorado.com" target="_blank" rel="noopener">Million Dollar Highway to Silverton &amp; Ouray</a></h4>
                 <p class="todo-desc">Rent a car and drive this legendary stretch of US-550. Silverton is a perfectly preserved mining town; Ouray is straight-up Switzerland in Colorado with natural hot springs right in town. Give yourself a full day.</p>
               </div>
 
               <div class="todo-card todo-card--featured">
                 <div class="todo-tag">Reach out to Riley</div>
-                <h4 class="todo-name">Golf at Glacier Club</h4>
+                <h4 class="todo-name"><a class="todo-link" href="https://theglacierclub.com" target="_blank" rel="noopener">Golf at Glacier Club</a></h4>
                 <p class="todo-desc">The Valley Course at Glacier Club is right on the wedding property and one of the most scenic rounds you'll ever play. If you're interested in getting a game in while you're here, reach out to Riley — he'll sort it out.</p>
               </div>
 
               <div class="todo-card">
-                <h4 class="todo-name">Purgatory Resort</h4>
+                <h4 class="todo-name"><a class="todo-link" href="https://www.purgatory.ski" target="_blank" rel="noopener">Purgatory Resort</a></h4>
                 <p class="todo-desc">About 25 minutes up the valley from Glacier Club. No skiing needed in September — the chairlift runs for sightseeing and the mountain biking trails are world-class. Worth the quick drive.</p>
               </div>
 
@@ -412,17 +412,17 @@
 
               <div class="todo-card todo-card--featured">
                 <div class="todo-tag">Our pick</div>
-                <h4 class="todo-name">James Ranch Grill</h4>
+                <h4 class="todo-name"><a class="todo-link" href="https://jamesranch.net/grill" target="_blank" rel="noopener">James Ranch Grill</a></h4>
                 <p class="todo-desc">The best burger in the world. Not hyperbole. A working family farm north of town that raises its own beef — you can taste it. Try the cheese they make on-site and explore local products in the market.</p>
               </div>
 
               <div class="todo-card">
-                <h4 class="todo-name">El Moro Spirits &amp; Tavern</h4>
+                <h4 class="todo-name"><a class="todo-link" href="https://elmorotavern.com" target="_blank" rel="noopener">El Moro Spirits &amp; Tavern</a></h4>
                 <p class="todo-desc">Our go-to for a nicer dinner downtown. Great cocktails, fantastic food, beautiful old building. The kind of place that feels like a Durango institution — because it is.</p>
               </div>
 
               <div class="todo-card">
-                <h4 class="todo-name">Zia Taqueria</h4>
+                <h4 class="todo-name"><a class="todo-link" href="https://ziataqueria.com" target="_blank" rel="noopener">Zia Taqueria</a></h4>
                 <p class="todo-desc">A Durango staple and a local favorite. Casual, delicious, and always worth the wait. Get the green chile anything.</p>
               </div>
 
@@ -438,7 +438,7 @@
 
               <div class="todo-card todo-card--featured">
                 <div class="todo-tag">Our pick</div>
-                <h4 class="todo-name">Ska Brewing</h4>
+                <h4 class="todo-name"><a class="todo-link" href="https://skabrewing.com" target="_blank" rel="noopener">Ska Brewing</a></h4>
                 <p class="todo-desc">Our favorite brewery in town — a little outside of downtown but worth the trip. Big outdoor space, great vibe, and the beer is consistently excellent. A perfect afternoon stop.</p>
               </div>
 
@@ -909,6 +909,16 @@
         line-height: 1.8;
         color: rgba(36,34,31,.70);
         margin: 0;
+      }
+      .todo-link {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(36,34,31,.20);
+        transition: border-color .2s ease, opacity .2s ease;
+      }
+      .todo-link:hover {
+        border-bottom-color: rgba(92,122,107,.6);
+        opacity: .8;
       }
 
       /* Clean between-section divider — matches the • • • inside events */
