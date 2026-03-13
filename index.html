@@ -1,408 +1,682 @@
-<!doctype html><html lang="en">  <head>    <meta charset="utf-8" />    <meta name="viewport" content="width=device-width, initial-scale=1" />    <title>Christine &amp; Riley — Save the Date</title>    <!-- Fonts -->    <link rel="preconnect" href="https://fonts.googleapis.com">    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet"><!-- Styles -->    <link rel="stylesheet" href="assets/css/styles.css" />  </head>  <body>    <!-- Fixed Nav (anchors) -->    <nav class="nav">      <div class="nav-inner">        <a href="#top" class="nav-name">Christine &amp; Riley</a>        <div class="nav-links">          <a href="#details">Events</a>          <a href="#travel">Travel</a>          <a href="#stay">Accommodations</a>          <a href="#rsvp" class="nav-rsvp">RSVP</a>        </div>      </div>    </nav>    <!-- HERO (unchanged concept: full-screen photo + centered text) -->    <header id="top" class="hero">      <div class="background" aria-hidden="true">        <img src="assets/photos/wedding_proposal.jpg" alt="" class="bg-image" />        <div class="overlay"></div>      </div>      <div class="hero-content">        <div class="hero-text">          <h1 class="fade-up d1">Christine &amp; Riley</h1>          <p class="subtitle fade-up d2">September 26, 2026 • Durango, Colorado</p>        </div>        <a class="scroll-cue fade-up d3" href="#details" aria-label="Scroll to details">          <span>Scroll</span>          <span class="chev">⌄</span>        </a>      </div>    </header>    <!-- Below-hero sections (warm + whimsical) -->    <main class="page">      <section id="details" class="section section-intro">  <div class="container narrow">    <h2 class="section-title section-title--western">A Weekend in Durango</h2>        <div class="event-stack">      <div class="event-block">        <div class="event-eyebrow">WELCOME PARTY</div>
-        <h3 class="event-venue">Lola’s Place</h3>
-        <a class="venue-link" href="https://lolasplace.com/" target="_blank" rel="noopener">Visit website</a>
-        <p class="event-note">Downtown Durango.</p>
-        <p class="event-bigtime">Friday, September 25 · 5:30–9:30 PM</p>
-        <p class="event-subnote">Everyone is invited to join us for tacos and drinks to kick off the wedding weekend! Shuttles will be provided to and from Glacier’s property for those staying up the valley.</p>
-        <p class="event-subnote"><strong>Attire:</strong> Casual</p>
-<div class="event-divider" aria-hidden="true"><span>• • •</span></div>      <div class="event-block">        <div class="event-eyebrow">WEDDING</div>
-        <h3 class="event-venue">Prospector at Glacier</h3>
-        <a class="venue-link" href="https://theglacierclub.com/prospector-at-glacier/" target="_blank" rel="noopener">Visit website</a>
-        <p class="event-note">Located about 20 minutes north of downtown Durango.</p>
-        <p class="event-bigtime">Saturday, September 26 · 4:30 PM – until they kick us out</p>
-        <p class="event-subnote">Ceremony followed by dinner, drinks, and dancing.</p>
-        <p class="event-subnote"><strong>Attire:</strong> Relaxed cocktail. Think cocktail dresses and dark jeans with a blazer (no tie required). If you want to lean into western wear, Durango is the perfect place — cowboy boots, bolo ties, and hats are welcome.</p>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Christine &amp; Riley — Wedding · September 26, 2026</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
 
-      <div class="event-divider" aria-hidden="true"><span>• • •</span></div>
-<div class="event-eyebrow">DAY TWO <span class="shamrock">☘</span></div>
-        <h3 class="event-venue">Durango Hot Springs</h3>
-        <a class="venue-link" href="https://durangohotspringsresortandspa.com/" target="_blank" rel="noopener">Visit website</a>
-        <p class="event-bigtime">Sunday, September 27 · High Noon</p>
-        <p class="event-subnote">If you’re still hanging around Durango, we’d love for you to join us at the hot springs to detox and say farewell.</p>
-</div>    </div>  </div></section><section id="rsvp" class="section rsvp-section">  <div class="rsvp-wrap">    <div class="rsvp-divider" aria-hidden="true"><span>✦</span></div><div class="container">          <h2 class="section-title">RSVP</h2><p class="rsvp-deadline">Kindly respond by <strong>July 1, 2026</strong>.</p>          <p class="lede" style="margin-top: 8px;">            Please search for your name to RSVP. If you can’t find it, reach out and we’ll help.          </p>          <div class="rsvp-shell">            <!-- Step 1: Lookup -->            <div class="lookup card subtle">              <div class="card-top">                <div class="pill">Step 1</div>                <div class="emoji" aria-hidden="true">🔎</div>              </div>              <h3>Find your invitation</h3>              <p class="muted">Start typing your name (try first + last).</p>              <div class="lookup-row">                <input id="lookupInput" class="lookup-input" type="text" placeholder="Type your name…" autocomplete="name" />                <button id="lookupBtn" class="btn" type="button" type="button">Search</button>              </div>              <div id="lookupStatus" class="lookup-status" aria-live="polite"></div>              <div id="lookupResults" class="lookup-results" role="listbox" aria-label="Search results"></div>            </div>            <!-- Step 2: RSVP -->            <div id="rsvpPanel" class="rsvp-panel card" hidden>              <div class="card-top">                <div class="pill">Step 2</div>                <div class="emoji" aria-hidden="true">✅</div>              </div>              <h3 id="partyTitle">Your RSVP</h3>              <p id="partySubtitle" class="muted"></p>              <form id="rsvpForm" class="rsvp-form" novalidate>                <input type="hidden" name="party_id" id="partyId" />                <div id="memberRows" class="member-rows"></div>                <div class="form-grid" style="margin-top: 18px;">                  <label class="field full">                    <span>Dietary restrictions (optional)</span>                    <input id="dietary" name="dietary" type="text" placeholder="Vegetarian, gluten-free, allergies, etc." />                  </label>                  <label class="field full">                    <span>Notes (optional)</span>                    <textarea id="notes" name="notes" rows="3" placeholder="Anything else we should know?"></textarea>                  </label>                </div>                <div class="form-actions">                  <button id="submitBtn" type="submit" class="btn btn-primary">Submit RSVP</button>                  <div class="form-hint">We’ll save your response right away.</div>                </div>                <div id="formStatus" class="form-msg" aria-live="polite"></div>              </form>            </div>          </div>          <footer class="footer">            <span class="footer-line"></span>            <a class="back-top" href="#top"></a>          </footer>        </div>          
-<section class="section photo-break">
-  <div class="photo-frame">
-    <img src="/assets/photos/engagement_lake.jpg" alt="Christine and Riley engagement at the lake" />
-  </div>
-</section>
-
-<section id="travel" class="section">
-  <div class="container">
-<h2 class="section-title">Getting to Durango</h2>
-    <p class="lede">We know Durango isn’t the easiest place to get to—but we promise Southwest Colorado is worth the journey.</p>
-
-    <div class="editorial editorial-2">
-      <div class="editorial-item">
-        <div class="item-kicker event-eyebrow">FLY</div>
-        <h3 class="item-title">Durango–La Plata County Airport (DRO)</h3>
-        <p class="item-body">
-          The easiest way to arrive. A small regional airport about 20 minutes to downtown Durango and another ~20 minutes up the valley to Glacier Club. Rental cars are available on site.
-        </p>
+    <!-- Fixed Nav -->
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="#top" class="nav-name">Christine &amp; Riley</a>
+        <div class="nav-links">
+          <a href="#details">Events</a>
+          <a href="#travel">Travel</a>
+          <a href="#stay">Accommodations</a>
+          <a href="#faq">FAQ</a>
+          <a href="#rsvp" class="nav-rsvp">RSVP</a>
+        </div>
       </div>
+    </nav>
 
-      <div class="editorial-item">
-        <div class="item-kicker event-eyebrow">FLY</div>
-        <h3 class="item-title">Albuquerque International Sunport (ABQ)</h3>
-        <p class="item-body">
-          A great alternative with more flight options. Roughly a 3.5-hour drive to Durango through beautiful
-          New Mexico and southern Colorado scenery. Rental cars are readily available.
-        </p>
+    <!-- HERO -->
+    <header id="top" class="hero">
+      <div class="background" aria-hidden="true">
+        <img src="assets/photos/wedding_proposal.jpg" alt="" class="bg-image" />
+        <div class="overlay"></div>
       </div>
-
-      <div class="editorial-item">
-        <div class="item-kicker event-eyebrow">DRIVE</div>
-        <h3 class="item-title">Road Trip from Denver</h3>
-        <p class="item-body">
-          About a 6.5–7 hour drive through the San Juan Mountains. If you’re turning the weekend into a Colorado adventure,
-          some of our favorite stops along the way include Buena Vista, Del Norte, and Pagosa Springs.
-        </p>
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="fade-up d1">Christine &amp; Riley</h1>
+          <p class="subtitle fade-up d2">September 26, 2026 • Durango, Colorado</p>
+        </div>
+        <a class="scroll-cue fade-up d3" href="#details" aria-label="Scroll to details">
+          <span>Scroll</span>
+          <span class="chev">⌄</span>
+        </a>
       </div>
-    </div>
-  </div>
-</section>
-<div class="rsvp-divider section-divider"><span>✦</span></div>
-<section id="stay" class="section">
-  <div class="container">
-    <h2 class="section-title">Accommodations</h2>
-    <p class="lede">While our events are only over the weekend, Southwest Colorado is an incredible place to explore. If you’re able, we’d highly recommend making a little trip out of it—feel free to reach out with any ideas, since we’ll be in the area for weeks on both sides of the wedding.</p>
+    </header>
 
-    <div class="editorial editorial-2">
-      <div class="editorial-item editorial-feature">
-        <div class="item-kicker event-eyebrow">Highly recommended</div>
-        <h3 class="item-title">Tamarron Resort (Onsite at Glacier Club)</h3>
-        <p class="item-body">
-          Our top suggestion for the weekend. Renting a unit at Tamarron keeps you up the valley and close to the wedding festivities. Units in <strong>Pine Cone</strong> or <strong>Tamarron Lodge</strong> are under a 5‑minute walk to the venue. <strong>Gambel Oak</strong> is also a great Tamarron option, just a slightly longer walk.
-          <a class="inline-link" href="https://bookvrc.com/tamarron-resort/" target="_blank" rel="noopener">Browse units here</a>.
-        </p>
-        <p class="item-body item-subtle">
-          We have a 10% discount code for Tamarron—use <span class="code-pill">RETURN10</span> at checkout.
-        </p>
-      </div>
+    <!-- Main content -->
+    <main class="page">
 
-      <div class="editorial-item">
-        <div class="item-kicker event-eyebrow">Downtown</div>
-        <h3 class="item-title">The Strater Hotel</h3>
-        <a class="venue-link" href="https://strater.com/" target="_blank" rel="noopener">Visit website</a>
-        <p class="item-body">
-          A classic Durango stay right in the heart of downtown—walkable to restaurants, coffee, and everything along Main Ave. If you stay downtown (at the Strater or elsewhere), you’ll need to coordinate your own transportation to the wedding venue about 20 minutes up the valley.
-        </p>
-      </div>
-</div>
-  </div>
-</section>
-<div class="rsvp-divider section-divider"><span>✦</span></div>
-<section id="getting-around" class="section">
-  <div class="container">
-    <h2 class="section-title">Getting Around</h2>
-    <p class="lede">Durango is a small mountain town, and rideshares like Uber and Lyft are limited—especially late at night or up the valley.</p>
+      <!-- EVENTS -->
+      <section id="details" class="section section-intro">
+        <div class="container narrow">
+          <h2 class="section-title section-title--western">A Weekend in Durango</h2>
 
-    <div class="editorial editorial-2">
-      <div class="editorial-item">
-        <div class="item-kicker event-eyebrow">BEST OPTION</div>
-        <h3 class="item-title">Rent a Car</h3>
-        <p class="item-body">
-          We strongly recommend renting a car for the weekend. Having a car gives you the most flexibility to explore Southwest
-          Colorado, grab meals around town, and get to trailheads.
-        </p>
-      </div>
+          <div class="event-stack">
+            <div class="event-block">
+              <div class="event-eyebrow">WELCOME PARTY</div>
+              <h3 class="event-venue">Lola's Place</h3>
+              <a class="venue-link" href="https://lolasplace.com/" target="_blank" rel="noopener">Visit website</a>
+              <p class="event-note">Downtown Durango.</p>
+              <p class="event-bigtime">Friday, September 25 · 5:30–9:30 PM</p>
+              <p class="event-subnote">Everyone is invited to join us for tacos and drinks to kick off the wedding weekend! Shuttles will be provided to and from Glacier's property for those staying up the valley.</p>
+              <p class="event-subnote"><strong>Attire:</strong> Casual</p>
 
-      <div class="editorial-item">
-        <div class="item-kicker event-eyebrow">NO CAR?</div>
-        <h3 class="item-title">Private Transportation</h3>
-        <p class="item-body">
-          If you choose not to rent a car, you’ll need to arrange private transportation to and from the airport and for any other travel during your stay.
-        </p>
-        <p class="item-body">
-          <strong>Reliable local options:</strong><br />
-          Animas Transportation · <a class="inline-link" href="tel:9702591315">970-259-1315</a><br />
-          Buck Horn Limousine, LLC · <a class="inline-link" href="tel:9707690933">970-769-0933</a>
-        </p>
-      </div>
-    </div>
+              <div class="event-divider" aria-hidden="true"><span>• • •</span></div>
 
-    <div class="item-body fyi-block">
-      <p class="fyi-label"><strong>~FYI~</strong></p>
-      <p class="fyi-item">
-        <strong>Friday:</strong> For guests staying at the Glacier Club property, shuttles will be provided to and from Lola’s Place for the welcome party. For those staying in downtown Durango, most hotels are within walking distance of Lola’s Place.
-      </p>
-      <p class="fyi-item">
-        <strong>Saturday:</strong> We will not be providing shuttles on the wedding day. Guests staying in downtown Durango will need to arrange their own transportation to and from the wedding.
-      </p>
-    </div>
-  </div>
-</section>
-<section class="photo-break" aria-label="Engagement photo">  <div class="container">    <figure class="photo-frame photo-frame-tall">      <img src="assets/photos/engagement_forest.jpg" alt="Christine and Riley walking through the forest" loading="lazy" decoding="async" />    </figure></section>      </main>
-<footer class="site-footer">
-  <p>We can’t wait to celebrate with you in Durango<a class="easter-egg" href="https://www.christineandriley.love/partymode" aria-label="Christine and Riley original site">.</a></p>
-  <a href="#top" class="back-to-top">Back to top ↑</a>
-</footer>
+              <div class="event-eyebrow">WEDDING</div>
+              <h3 class="event-venue">Prospector at Glacier</h3>
+              <a class="venue-link" href="https://theglacierclub.com/prospector-at-glacier/" target="_blank" rel="noopener">Visit website</a>
+              <p class="event-note">Located about 20 minutes north of downtown Durango.</p>
+              <p class="event-bigtime">Saturday, September 26 · 4:30 PM – until they kick us out</p>
+              <p class="event-subnote">Ceremony followed by dinner, drinks, and dancing.</p>
+              <p class="event-subnote"><strong>Attire:</strong> Relaxed cocktail. Think cocktail dresses and dark jeans with a blazer (no tie required). If you want to lean into western wear, Durango is the perfect place — cowboy boots, bolo ties, and hats are welcome.</p>
 
-<script>
-(() => {
-  const $ = (id) => document.getElementById(id);
+              <div class="event-divider" aria-hidden="true"><span>• • •</span></div>
 
-  // Lookup UI
-  const input = $('lookupInput');
-  const btn = $('lookupBtn');
-  const status = $('lookupStatus');
-  const resultsEl = $('lookupResults');
+              <div class="event-eyebrow">DAY TWO <span class="shamrock">☘</span></div>
+              <h3 class="event-venue">Durango Hot Springs</h3>
+              <a class="venue-link" href="https://durangohotspringsresortandspa.com/" target="_blank" rel="noopener">Visit website</a>
+              <p class="event-bigtime">Sunday, September 27 · High Noon</p>
+              <p class="event-subnote">If you're still hanging around Durango, we'd love for you to join us at the hot springs to detox and say farewell.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  // Selected party + RSVP form
-  const partyTitleEl = $('partyTitle');
-  const partySubtitleEl = $('partySubtitle');
-  const rsvpPanel = $('rsvpPanel');
-  const memberRows = $('memberRows');
-  const dietaryEl = $('dietary');
-  const notesEl = $('notes');
-  const form = $('rsvpForm');
-  const submitBtn = $('submitBtn') || form?.querySelector('button[type="submit"]');
-  const formStatus = $('formStatus') || $('formMsg') || form?.querySelector('.form-msg');
+      <!-- RSVP -->
+      <section id="rsvp" class="section rsvp-section">
+        <div class="rsvp-wrap">
+          <div class="rsvp-divider" aria-hidden="true"><span>✦</span></div>
+          <div class="container">
+            <h2 class="section-title">RSVP</h2>
+            <p class="rsvp-deadline">Kindly respond by <strong>July 1, 2026</strong>.</p>
+            <p class="lede" style="margin-top: 8px;">
+              Please search for your name to RSVP. If you can't find it, reach out and we'll help.
+            </p>
 
-  if (!input || !btn || !status || !resultsEl || !partyTitleEl || !partySubtitleEl || !rsvpPanel || !memberRows || !form) {
-    console.error('RSVP wiring: required DOM nodes not found.');
-    return;
-  }
+            <div class="rsvp-shell">
+              <!-- Step 1: Lookup -->
+              <div class="lookup card subtle">
+                <div class="card-top">
+                  <div class="pill">Step 1</div>
+                  <div class="emoji" aria-hidden="true">🔎</div>
+                </div>
+                <h3>Find your invitation</h3>
+                <p class="muted">Start typing your name (try first + last).</p>
+                <div class="lookup-row">
+                  <input id="lookupInput" class="lookup-input" type="text" placeholder="Type your name…" autocomplete="name" />
+                  <button id="lookupBtn" class="btn" type="button">Search</button>
+                </div>
+                <div id="lookupStatus" class="lookup-status" aria-live="polite"></div>
+                <div id="lookupResults" class="lookup-results" role="listbox" aria-label="Search results"></div>
+              </div>
 
-  let currentResults = [];
-  let selectedParty = null;
-  let debounceTimer = null;
-  let lastQuery = '';
+              <!-- Step 2: RSVP -->
+              <div id="rsvpPanel" class="rsvp-panel card" hidden>
+                <div class="card-top">
+                  <div class="pill">Step 2</div>
+                  <div class="emoji" aria-hidden="true">✅</div>
+                </div>
+                <h3 id="partyTitle">Your RSVP</h3>
+                <p id="partySubtitle" class="muted"></p>
+                <form id="rsvpForm" class="rsvp-form" novalidate>
+                  <input type="hidden" name="party_id" id="partyId" />
+                  <div id="memberRows" class="member-rows"></div>
+                  <div class="form-grid" style="margin-top: 18px;">
+                    <label class="field full">
+                      <span>Dietary restrictions (optional)</span>
+                      <input id="dietary" name="dietary" type="text" placeholder="Vegetarian, gluten-free, allergies, etc." />
+                    </label>
+                    <label class="field full">
+                      <span>Notes (optional)</span>
+                      <textarea id="notes" name="notes" rows="3" placeholder="Anything else we should know?"></textarea>
+                    </label>
+                  </div>
+                  <div class="form-actions">
+                    <button id="submitBtn" type="submit" class="btn btn-primary">Submit RSVP</button>
+                    <div class="form-hint">We'll save your response right away.</div>
+                  </div>
+                  <div id="formStatus" class="form-msg" aria-live="polite"></div>
+                </form>
+              </div>
+            </div>
 
-  function setFormStatus(msg) {
-    if (formStatus) formStatus.textContent = msg || '';
-  }
+            <footer class="footer">
+              <span class="footer-line"></span>
+              <a class="back-top" href="#top"></a>
+            </footer>
+          </div>
 
-  function setStatus(msg) {
-    status.textContent = msg || '';
-  }
+          <!-- Photo break -->
+          <section class="section photo-break">
+            <div class="photo-frame">
+              <img src="/assets/photos/engagement_lake.jpg" alt="Christine and Riley engagement at the lake" />
+            </div>
+          </section>
 
-  function clearResults() {
-    currentResults = [];
-    resultsEl.innerHTML = '';
-  }
+          <!-- TRAVEL -->
+          <section id="travel" class="section">
+            <div class="container">
+              <h2 class="section-title">Getting to Durango</h2>
+              <p class="lede">We know Durango isn't the easiest place to get to—but we promise Southwest Colorado is worth the journey.</p>
 
-  function formatPartyLabel(party) {
-    if (party?.display_name) return party.display_name;
-    if (party?.primary_name) {
-      return String(party.primary_name).replace(/\w\S*/g, (word) => {
-        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-      });
-    }
-    const members = Array.isArray(party?.members) ? party.members : [];
-    if (members.length) return members.join(', ');
-    return 'Your Party';
-  }
+              <div class="editorial editorial-2">
+                <div class="editorial-item">
+                  <div class="item-kicker event-eyebrow">FLY</div>
+                  <h3 class="item-title">Durango–La Plata County Airport (DRO)</h3>
+                  <p class="item-body">
+                    The easiest way to arrive. A small regional airport about 20 minutes to downtown Durango and another ~20 minutes up the valley to Glacier Club. Rental cars are available on site.
+                  </p>
+                </div>
 
-  function renderResults(results) {
-    clearResults();
-    if (!results || results.length === 0) {
-      setStatus("No match found. Try first + last, or reach out and we'll help.");
-      return;
-    }
+                <div class="editorial-item">
+                  <div class="item-kicker event-eyebrow">FLY</div>
+                  <h3 class="item-title">Albuquerque International Sunport (ABQ)</h3>
+                  <p class="item-body">
+                    A great alternative with more flight options. Roughly a 3.5-hour drive to Durango through beautiful New Mexico and southern Colorado scenery. Rental cars are readily available.
+                  </p>
+                </div>
 
-    setStatus('');
-    currentResults = results;
+                <div class="editorial-item">
+                  <div class="item-kicker event-eyebrow">DRIVE</div>
+                  <h3 class="item-title">Road Trip from Denver</h3>
+                  <p class="item-body">
+                    About a 6.5–7 hour drive through the San Juan Mountains. If you're turning the weekend into a Colorado adventure, some of our favorite stops along the way include Buena Vista, Del Norte, and Pagosa Springs.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
 
-    const frag = document.createDocumentFragment();
-    results.forEach((party) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'party-chip';
-      btn.setAttribute('data-party-id', party.party_id);
-      btn.textContent = formatPartyLabel(party);
-      btn.addEventListener('click', () => selectParty(party));
-      frag.appendChild(btn);
-    });
-    resultsEl.appendChild(frag);
-  }
+          <div class="rsvp-divider section-divider"><span>✦</span></div>
 
-  async function lookup(q) {
-    const query = (q || '').trim();
-    lastQuery = query;
+          <!-- ACCOMMODATIONS -->
+          <section id="stay" class="section">
+            <div class="container">
+              <h2 class="section-title">Accommodations</h2>
+              <p class="lede">While our events are only over the weekend, Southwest Colorado is an incredible place to explore. If you're able, we'd highly recommend making a little trip out of it—feel free to reach out with any ideas, since we'll be in the area for weeks on both sides of the wedding.</p>
 
-    if (query.length < 2) {
-      setStatus('');
-      clearResults();
-      return;
-    }
+              <div class="editorial editorial-2">
+                <div class="editorial-item editorial-feature">
+                  <div class="item-kicker event-eyebrow">Highly recommended</div>
+                  <h3 class="item-title">Tamarron Resort (Onsite at Glacier Club)</h3>
+                  <p class="item-body">
+                    Our top suggestion for the weekend. Renting a unit at Tamarron keeps you up the valley and close to the wedding festivities. Units in <strong>Pine Cone</strong> or <strong>Tamarron Lodge</strong> are under a 5‑minute walk to the venue. <strong>Gambel Oak</strong> is also a great Tamarron option, just a slightly longer walk.
+                    <a class="inline-link" href="https://bookvrc.com/tamarron-resort/" target="_blank" rel="noopener">Browse units here</a>.
+                  </p>
+                  <p class="item-body item-subtle">
+                    We have a 10% discount code for Tamarron—use <span class="code-pill">RETURN10</span> at checkout.
+                  </p>
+                </div>
 
-    setStatus('Searching…');
+                <div class="editorial-item">
+                  <div class="item-kicker event-eyebrow">Downtown</div>
+                  <h3 class="item-title">The Strater Hotel</h3>
+                  <a class="venue-link" href="https://strater.com/" target="_blank" rel="noopener">Visit website</a>
+                  <p class="item-body">
+                    A classic Durango stay right in the heart of downtown—walkable to restaurants, coffee, and everything along Main Ave. If you stay downtown (at the Strater or elsewhere), you'll need to coordinate your own transportation to the wedding venue about 20 minutes up the valley.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
 
-    try {
-      const res = await fetch('/api/lookup?q=' + encodeURIComponent(query), { method: 'GET' });
-      const data = await res.json().catch(() => ({}));
+          <div class="rsvp-divider section-divider"><span>✦</span></div>
 
-      // If user typed something new while request was in-flight, ignore this result.
-      if (lastQuery !== query) return;
+          <!-- GETTING AROUND -->
+          <section id="getting-around" class="section">
+            <div class="container">
+              <h2 class="section-title">Getting Around</h2>
+              <p class="lede">Durango is a small mountain town, and rideshares like Uber and Lyft are limited—especially late at night or up the valley.</p>
 
-      if (!res.ok) {
-        console.error('Lookup error:', res.status, data);
-        setStatus('Hmm — lookup failed. Please try again in a moment.');
+              <div class="editorial editorial-2">
+                <div class="editorial-item">
+                  <div class="item-kicker event-eyebrow">BEST OPTION</div>
+                  <h3 class="item-title">Rent a Car</h3>
+                  <p class="item-body">
+                    We strongly recommend renting a car for the weekend. Having a car gives you the most flexibility to explore Southwest Colorado, grab meals around town, and get to trailheads.
+                  </p>
+                </div>
+
+                <div class="editorial-item">
+                  <div class="item-kicker event-eyebrow">NO CAR?</div>
+                  <h3 class="item-title">Private Transportation</h3>
+                  <p class="item-body">
+                    If you choose not to rent a car, you'll need to arrange private transportation to and from the airport and for any other travel during your stay.
+                  </p>
+                  <p class="item-body">
+                    <strong>Reliable local options:</strong><br />
+                    Animas Transportation · <a class="inline-link" href="tel:9702591315">970-259-1315</a><br />
+                    Buck Horn Limousine, LLC · <a class="inline-link" href="tel:9707690933">970-769-0933</a>
+                  </p>
+                </div>
+              </div>
+
+              <div class="item-body fyi-block">
+                <p class="fyi-label"><strong>~FYI~</strong></p>
+                <p class="fyi-item">
+                  <strong>Friday:</strong> For guests staying at the Glacier Club property, shuttles will be provided to and from Lola's Place for the welcome party. For those staying in downtown Durango, most hotels are within walking distance of Lola's Place.
+                </p>
+                <p class="fyi-item">
+                  <strong>Saturday:</strong> We will not be providing shuttles on the wedding day. Guests staying in downtown Durango will need to arrange their own transportation to and from the wedding.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <div class="rsvp-divider section-divider"><span>✦</span></div>
+
+          <!-- FAQ -->
+          <section id="faq" class="section">
+            <div class="container">
+              <h2 class="section-title" style="text-align: center; margin-bottom: 10px;">Questions &amp; Answers</h2>
+              <p class="lede" style="text-align: center; margin: 0 auto 44px;">A few things guests tend to wonder about. Don't see yours? Just reach out.</p>
+
+              <div class="faq-list">
+
+                <div class="faq-item">
+                  <button class="faq-trigger" type="button" aria-expanded="false">
+                    What time should I arrive at the ceremony?
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                  </button>
+                  <div class="faq-body" hidden>
+                    <p>Please arrive by <strong>4:15 PM</strong> to allow time to be seated — the ceremony will begin promptly at 4:30 PM.</p>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-trigger" type="button" aria-expanded="false">
+                    What is the transportation plan for the weekend?
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                  </button>
+                  <div class="faq-body" hidden>
+                    <p><strong>Friday (Welcome Party):</strong> Guests staying at the Tamarron/Glacier Club are responsible for their own transportation to and from Lola's Place (~25 min. drive). If you're staying downtown, most hotels are within walking distance.</p>
+                    <p><strong>Saturday (Wedding Day):</strong> Guests should plan to arrange their own transportation to and from the venue. If you're staying onsite at Tamarron/Glacier Club, it's about a 5–10 minute walk to the venue.</p>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-trigger" type="button" aria-expanded="false">
+                    Can I bring a plus-one?
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                  </button>
+                  <div class="faq-body" hidden>
+                    <p>Due to space limitations, we're only able to accommodate the guests listed on your invitation. If you're unsure who's included, please check your RSVP — or feel free to reach out!</p>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-trigger" type="button" aria-expanded="false">
+                    Are kids invited?
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                  </button>
+                  <div class="faq-body" hidden>
+                    <p>While we love kids, our wedding weekend will be an adults-only (18+) celebration. Please refer to your invitation or RSVP to see who is included in your party.</p>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-trigger" type="button" aria-expanded="false">
+                    What's the weather like in Durango in late September?
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                  </button>
+                  <div class="faq-body" hidden>
+                    <p>Mountain weather can vary quite a bit — expect warm, sunny days and noticeably cooler evenings. Layers are your friend, and comfortable shoes are encouraged for all events. We recommend checking the forecast as the weekend approaches!</p>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-trigger" type="button" aria-expanded="false">
+                    Do you have a registry?
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                  </button>
+                  <div class="faq-body" hidden>
+                    <p>Your presence is truly the only gift we need — we are not registered anywhere. If you feel compelled to give, we'd love for you to consider donating to a charity that's meaningful to you, and tell us about it!</p>
+                  </div>
+                </div>
+
+              </div><!-- /.faq-list -->
+            </div>
+          </section>
+
+        </div><!-- /.rsvp-wrap -->
+      </section><!-- /#rsvp section wrapper end -->
+
+      <!-- Final photo -->
+      <section class="photo-break" aria-label="Engagement photo">
+        <div class="container">
+          <figure class="photo-frame photo-frame-tall">
+            <img src="assets/photos/engagement_forest.jpg" alt="Christine and Riley walking through the forest" loading="lazy" decoding="async" />
+          </figure>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <p>We can't wait to celebrate with you in Durango<a class="easter-egg" href="https://www.christineandriley.love/partymode" aria-label="Christine and Riley original site">.</a></p>
+      <a href="#top" class="back-to-top">Back to top ↑</a>
+    </footer>
+
+    <script>
+    (() => {
+      const $ = (id) => document.getElementById(id);
+
+      // ── RSVP Lookup ──────────────────────────────────────────────
+      const input      = $('lookupInput');
+      const btn        = $('lookupBtn');
+      const status     = $('lookupStatus');
+      const resultsEl  = $('lookupResults');
+
+      const partyTitleEl    = $('partyTitle');
+      const partySubtitleEl = $('partySubtitle');
+      const rsvpPanel       = $('rsvpPanel');
+      const memberRows      = $('memberRows');
+      const dietaryEl       = $('dietary');
+      const notesEl         = $('notes');
+      const form            = $('rsvpForm');
+      const submitBtn       = $('submitBtn') || form?.querySelector('button[type="submit"]');
+      const formStatus      = $('formStatus') || $('formMsg') || form?.querySelector('.form-msg');
+
+      if (!input || !btn || !status || !resultsEl || !partyTitleEl || !partySubtitleEl || !rsvpPanel || !memberRows || !form) {
+        console.error('RSVP wiring: required DOM nodes not found.');
+        return;
+      }
+
+      let currentResults = [];
+      let selectedParty  = null;
+      let debounceTimer  = null;
+      let lastQuery      = '';
+
+      function setFormStatus(msg) { if (formStatus) formStatus.textContent = msg || ''; }
+      function setStatus(msg)     { status.textContent = msg || ''; }
+      function clearResults()     { currentResults = []; resultsEl.innerHTML = ''; }
+
+      function formatPartyLabel(party) {
+        if (party?.display_name) return party.display_name;
+        if (party?.primary_name) {
+          return String(party.primary_name).replace(/\w\S*/g, (word) =>
+            word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+          );
+        }
+        const members = Array.isArray(party?.members) ? party.members : [];
+        if (members.length) return members.join(', ');
+        return 'Your Party';
+      }
+
+      function renderResults(results) {
         clearResults();
-        return;
+        if (!results || results.length === 0) {
+          setStatus("No match found. Try first + last, or reach out and we'll help.");
+          return;
+        }
+        setStatus('');
+        currentResults = results;
+        const frag = document.createDocumentFragment();
+        results.forEach((party) => {
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'party-chip';
+          chip.setAttribute('data-party-id', party.party_id);
+          chip.textContent = formatPartyLabel(party);
+          chip.addEventListener('click', () => selectParty(party));
+          frag.appendChild(chip);
+        });
+        resultsEl.appendChild(frag);
       }
 
-      const results = Array.isArray(data?.results) ? data.results : [];
-      renderResults(results);
-    } catch (err) {
-      console.error(err);
-      setStatus('Hmm — lookup failed. Please try again in a moment.');
-      clearResults();
-    }
-  }
-
-  function selectParty(party) {
-    selectedParty = party;
-
-    // Hide lookup chips once selected (feels clearer)
-    clearResults();
-    setStatus('');
-
-    rsvpPanel.hidden = false;
-
-    partyTitleEl.textContent = party.display_name || party.primary_name || 'Your Party';
-    const members = Array.isArray(party.members) ? party.members : [];
-    partySubtitleEl.textContent = members.length ? 'Guests: ' + members.join(', ') : '';
-
-    // Render member rows
-    memberRows.innerHTML = '';
-    const frag = document.createDocumentFragment();
-
-    members.forEach((name, idx) => {
-      const row = document.createElement('div');
-      row.className = 'member-row';
-
-      const label = document.createElement('div');
-      label.className = 'member-name';
-      label.textContent = name;
-
-      const controls = document.createElement('div');
-      controls.className = 'member-controls';
-
-      const yesId = 'attend_yes_' + idx;
-      const noId = 'attend_no_' + idx;
-      const groupName = 'attend_' + idx;
-
-      const yesLabel = document.createElement('label');
-      yesLabel.className = 'pill';
-      const yesInput = document.createElement('input');
-      yesInput.type = 'radio';
-      yesInput.name = groupName;
-      yesInput.id = yesId;
-      yesInput.value = 'yes';
-      yesInput.required = true;
-      yesLabel.appendChild(yesInput);
-      yesLabel.appendChild(document.createTextNode(' Accepts'));
-
-      const noLabel = document.createElement('label');
-      noLabel.className = 'pill';
-      const noInput = document.createElement('input');
-      noInput.type = 'radio';
-      noInput.name = groupName;
-      noInput.id = noId;
-      noInput.value = 'no';
-      noLabel.appendChild(noInput);
-      noLabel.appendChild(document.createTextNode(' Declines'));
-
-      controls.appendChild(yesLabel);
-      controls.appendChild(noLabel);
-
-      row.appendChild(label);
-      row.appendChild(controls);
-      frag.appendChild(row);
-    });
-
-    if (members.length === 0) {
-      const p = document.createElement('p');
-      p.className = 'small-muted';
-      p.textContent = 'No guests found for this party.';
-      frag.appendChild(p);
-    }
-
-    memberRows.appendChild(frag);
-
-    // Reset form status
-    setFormStatus('');
-  }
-
-  async function submitRsvp(e) {
-    e.preventDefault();
-    if (!selectedParty) {
-      setFormStatus('Please select your party first.');
-      return;
-    }
-
-    const members = Array.isArray(selectedParty.members) ? selectedParty.members : [];
-    const payloadMembers = members.map((name, idx) => {
-      const val = (new FormData(form)).get('attend_' + idx);
-      return { name, attending: val || null };
-    });
-
-    if (payloadMembers.some((m) => !m.attending)) {
-      setFormStatus('Please respond for each guest.');
-      return;
-    }
-
-    if (submitBtn) submitBtn.disabled = true;
-    setFormStatus('Submitting…');
-
-    try {
-      const res = await fetch('/api/rsvp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          party_id: selectedParty.party_id,
-          members: payloadMembers,
-          dietary: (dietaryEl?.value || '').trim(),
-          notes: (notesEl?.value || '').trim(),
-        }),
-      });
-
-      const data = await res.json().catch(() => ({}));
-
-      if (!res.ok || data?.ok !== true) {
-        console.error('RSVP submit error:', res.status, data);
-        setFormStatus('Hmm — something went wrong. Please try again later.');
-        if (submitBtn) submitBtn.disabled = false;
-        return;
+      async function lookup(q) {
+        const query = (q || '').trim();
+        lastQuery = query;
+        if (query.length < 2) { setStatus(''); clearResults(); return; }
+        setStatus('Searching…');
+        try {
+          const res  = await fetch('/api/lookup?q=' + encodeURIComponent(query), { method: 'GET' });
+          const data = await res.json().catch(() => ({}));
+          if (lastQuery !== query) return;
+          if (!res.ok) {
+            console.error('Lookup error:', res.status, data);
+            setStatus('Hmm — lookup failed. Please try again in a moment.');
+            clearResults();
+            return;
+          }
+          const results = Array.isArray(data?.results) ? data.results : [];
+          renderResults(results);
+        } catch (err) {
+          console.error(err);
+          setStatus('Hmm — lookup failed. Please try again in a moment.');
+          clearResults();
+        }
       }
 
-      setFormStatus('RSVP received — thank you!');
+      function selectParty(party) {
+        selectedParty = party;
+        clearResults();
+        setStatus('');
+        rsvpPanel.hidden = false;
+        partyTitleEl.textContent    = party.display_name || party.primary_name || 'Your Party';
+        const members               = Array.isArray(party.members) ? party.members : [];
+        partySubtitleEl.textContent = members.length ? 'Guests: ' + members.join(', ') : '';
 
-      // Optional: lock the form
-      if (submitBtn) submitBtn.disabled = true;
-      Array.from(form.querySelectorAll('input, textarea, button')).forEach((el) => {
-        if (el !== btn && el !== input) el.disabled = true;
+        memberRows.innerHTML = '';
+        const frag = document.createDocumentFragment();
+        members.forEach((name, idx) => {
+          const row = document.createElement('div');
+          row.className = 'member-row';
+
+          const label = document.createElement('div');
+          label.className   = 'member-name';
+          label.textContent = name;
+
+          const controls   = document.createElement('div');
+          controls.className = 'member-controls';
+
+          const groupName = 'attend_' + idx;
+
+          const yesLabel  = document.createElement('label');
+          yesLabel.className = 'pill';
+          const yesInput  = document.createElement('input');
+          yesInput.type     = 'radio';
+          yesInput.name     = groupName;
+          yesInput.id       = 'attend_yes_' + idx;
+          yesInput.value    = 'yes';
+          yesInput.required = true;
+          yesLabel.appendChild(yesInput);
+          yesLabel.appendChild(document.createTextNode(' Accepts'));
+
+          const noLabel = document.createElement('label');
+          noLabel.className = 'pill';
+          const noInput = document.createElement('input');
+          noInput.type  = 'radio';
+          noInput.name  = groupName;
+          noInput.id    = 'attend_no_' + idx;
+          noInput.value = 'no';
+          noLabel.appendChild(noInput);
+          noLabel.appendChild(document.createTextNode(' Declines'));
+
+          controls.appendChild(yesLabel);
+          controls.appendChild(noLabel);
+          row.appendChild(label);
+          row.appendChild(controls);
+          frag.appendChild(row);
+        });
+
+        if (members.length === 0) {
+          const p = document.createElement('p');
+          p.className   = 'small-muted';
+          p.textContent = 'No guests found for this party.';
+          frag.appendChild(p);
+        }
+
+        memberRows.appendChild(frag);
+        setFormStatus('');
+      }
+
+      async function submitRsvp(e) {
+        e.preventDefault();
+        if (!selectedParty) { setFormStatus('Please select your party first.'); return; }
+
+        const members        = Array.isArray(selectedParty.members) ? selectedParty.members : [];
+        const payloadMembers = members.map((name, idx) => {
+          const val = (new FormData(form)).get('attend_' + idx);
+          return { name, attending: val || null };
+        });
+
+        if (payloadMembers.some((m) => !m.attending)) {
+          setFormStatus('Please respond for each guest.');
+          return;
+        }
+
+        if (submitBtn) submitBtn.disabled = true;
+        setFormStatus('Submitting…');
+
+        try {
+          const res  = await fetch('/api/rsvp', {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify({
+              party_id: selectedParty.party_id,
+              members:  payloadMembers,
+              dietary:  (dietaryEl?.value || '').trim(),
+              notes:    (notesEl?.value   || '').trim(),
+            }),
+          });
+          const data = await res.json().catch(() => ({}));
+
+          if (!res.ok || data?.ok !== true) {
+            console.error('RSVP submit error:', res.status, data);
+            setFormStatus('Hmm — something went wrong. Please try again later.');
+            if (submitBtn) submitBtn.disabled = false;
+            return;
+          }
+
+          setFormStatus('RSVP received — thank you!');
+          if (submitBtn) submitBtn.disabled = true;
+          Array.from(form.querySelectorAll('input, textarea, button')).forEach((el) => {
+            if (el !== btn && el !== input) el.disabled = true;
+          });
+        } catch (err) {
+          console.error(err);
+          setFormStatus('Hmm — something went wrong. Please try again later.');
+          if (submitBtn) submitBtn.disabled = false;
+        }
+      }
+
+      function onInput() {
+        const q = input.value;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => lookup(q), 200);
+      }
+
+      input.addEventListener('input', onInput);
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); lookup(input.value); }
       });
-    } catch (err) {
-      console.error(err);
-      setFormStatus('Hmm — something went wrong. Please try again later.');
-      if (submitBtn) submitBtn.disabled = false;
-    }
-  }
+      btn.addEventListener('click', () => lookup(input.value));
+      form.addEventListener('submit', submitRsvp);
 
-  function onInput() {
-    const q = input.value;
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => lookup(q), 200);
-  }
+      const iconTrigger = document.querySelector('.lookup-icon');
+      if (iconTrigger) iconTrigger.addEventListener('click', () => lookup(input.value));
 
-  // Bind events
-  input.addEventListener('input', onInput);
-  input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      lookup(input.value);
-    }
-  });
+      // ── FAQ Accordion ─────────────────────────────────────────────
+      document.querySelectorAll('.faq-trigger').forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+          const body   = trigger.nextElementSibling;
+          const icon   = trigger.querySelector('.faq-icon');
+          const isOpen = !body.hidden;
 
-  btn.addEventListener('click', () => lookup(input.value));
-  form.addEventListener('submit', submitRsvp);
+          // Close all
+          document.querySelectorAll('.faq-body').forEach((b) => { b.hidden = true; });
+          document.querySelectorAll('.faq-trigger').forEach((t) => {
+            t.setAttribute('aria-expanded', 'false');
+            t.querySelector('.faq-icon').classList.remove('faq-icon--open');
+          });
 
-  // Helpful: clicking the magnifying glass icon should also trigger search
-  const iconTrigger = document.querySelector('.lookup-icon');
-  if (iconTrigger) iconTrigger.addEventListener('click', () => lookup(input.value));
+          // Open clicked (unless it was already open)
+          if (!isOpen) {
+            body.hidden = false;
+            trigger.setAttribute('aria-expanded', 'true');
+            icon.classList.add('faq-icon--open');
+          }
+        });
+      });
 
-})();
-</script>
-</body></html>
+    })();
+    </script>
+
+    <!-- FAQ styles (self-contained, no changes to styles.css needed) -->
+    <style>
+      .faq-list {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      .faq-item {
+        border-top: 1px solid rgba(36,34,31,.10);
+      }
+      .faq-item:last-child {
+        border-bottom: 1px solid rgba(36,34,31,.10);
+      }
+      .faq-trigger {
+        width: 100%;
+        background: none;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        padding: 22px 4px 22px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(18px, 2.2vw, 22px);
+        font-weight: 600;
+        color: #24221f;
+        line-height: 1.25;
+      }
+      .faq-icon {
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1px solid rgba(36,34,31,.14);
+        background: rgba(255,255,255,.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background .2s ease, transform .3s ease;
+        font-size: 16px;
+        line-height: 1;
+        color: rgba(36,34,31,.60);
+        font-family: 'Libre Baskerville', serif;
+        font-weight: 400;
+      }
+      .faq-trigger:hover .faq-icon {
+        background: rgba(92,122,107,.18);
+      }
+      .faq-icon--open {
+        transform: rotate(45deg);
+      }
+      .faq-body {
+        padding: 0 4px 24px 0;
+        font-family: 'Libre Baskerville', serif;
+        font-size: 14.5px;
+        line-height: 1.85;
+        color: rgba(36,34,31,.76);
+        max-width: 64ch;
+      }
+      .faq-body p {
+        margin: 0 0 10px;
+      }
+      .faq-body p:last-child {
+        margin-bottom: 0;
+      }
+      .faq-body strong {
+        color: #24221f;
+      }
+    </style>
+
+  </body>
+</html>
