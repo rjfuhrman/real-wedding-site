@@ -96,7 +96,7 @@
         <div class="rsvp-wrap">
           <div class="section-divider-dots" aria-hidden="true"><span>• • •</span></div>
           <div class="container">
-            <h2 class="section-title">RSVP</h2>
+            <h2 class="section-title section-heading-animate">RSVP</h2>
             <p class="rsvp-deadline">Kindly respond by <strong>July 1, 2026</strong>.</p>
             <p class="lede" style="margin-top: 8px;">
               Please search for your name to RSVP. If you can't find it, reach out and we'll help.
@@ -165,7 +165,7 @@
           <!-- TRAVEL -->
           <section id="travel" class="section">
             <div class="container">
-              <h2 class="section-title">Getting to Durango</h2>
+              <h2 class="section-title section-heading-animate">Getting to Durango</h2>
               <p class="lede">We know Durango isn't the easiest place to get to—but we promise Southwest Colorado is worth the journey.</p>
 
               <div class="editorial editorial-2">
@@ -201,7 +201,7 @@
           <!-- ACCOMMODATIONS -->
           <section id="stay" class="section">
             <div class="container">
-              <h2 class="section-title">Accommodations</h2>
+              <h2 class="section-title section-heading-animate">Accommodations</h2>
               <p class="lede">While our events are only over the weekend, Southwest Colorado is an incredible place to explore. If you're able, we'd highly recommend making a little trip out of it—feel free to reach out with any ideas, since we'll be in the area for weeks on both sides of the wedding.</p>
 
               <div class="editorial editorial-2">
@@ -234,7 +234,7 @@
           <!-- GETTING AROUND -->
           <section id="getting-around" class="section">
             <div class="container">
-              <h2 class="section-title">Getting Around</h2>
+              <h2 class="section-title section-heading-animate">Getting Around</h2>
               <p class="lede">Durango is a small mountain town, and rideshares like Uber and Lyft are limited—especially late at night or up the valley.</p>
 
               <div class="editorial editorial-2">
@@ -277,7 +277,7 @@
           <!-- FAQ -->
           <section id="faq" class="section">
             <div class="container">
-              <h2 class="section-title" style="text-align: center; margin-bottom: 10px;">Questions &amp; Answers</h2>
+              <h2 class="section-title section-heading-animate" style="text-align: center; margin-bottom: 10px;">Questions &amp; Answers</h2>
               <p class="lede" style="text-align: center; margin: 0 auto 44px;">A few things guests tend to wonder about. Don't see yours? Just reach out.</p>
 
               <div class="faq-list">
@@ -596,6 +596,14 @@
       const iconTrigger = document.querySelector('.lookup-icon');
       if (iconTrigger) iconTrigger.addEventListener('click', () => lookup(input.value));
 
+      // ── Section heading fade-up ───────────────────────────────────
+      const headingObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('in-view'); headingObs.unobserve(e.target); }
+        });
+      }, { threshold: 0.2 });
+      document.querySelectorAll('.section-heading-animate').forEach(el => headingObs.observe(el));
+
       // ── Western title scroll animation ────────────────────────────
       const westernTitle = document.querySelector('.western-split');
       if (westernTitle) {
@@ -722,6 +730,17 @@
         transform: translateX(0);
         opacity: 1;
         transition-delay: 0.35s;
+      }
+
+      /* Section heading scroll fade-up */
+      .section-heading-animate {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 1s ease, transform 1s cubic-bezier(0.25, 1, 0.35, 1);
+      }
+      .section-heading-animate.in-view {
+        opacity: 1;
+        transform: translateY(0);
       }
 
       /* Clean between-section divider — matches the • • • inside events */
