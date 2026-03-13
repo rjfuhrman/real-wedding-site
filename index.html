@@ -39,7 +39,7 @@
         <div class="hero-text">
           <h1 class="fade-up d1">Christine &amp; Riley</h1>
           <p class="subtitle fade-up d2">September 26, 2026 • Durango, Colorado</p>
-          <p id="countdown" class="countdown fade-up d2" aria-live="polite"></p>
+          <p id="countdown" class="countdown fade-up d4" aria-live="polite"></p>
         </div>
         <a class="scroll-cue fade-up d3" href="#details" aria-label="Scroll to details">
           <span>Scroll</span>
@@ -67,7 +67,7 @@
               <p class="event-note">Downtown Durango.</p>
               <p class="event-bigtime">Friday, September 25 · 5:30–9:30 PM</p>
               <p class="event-subnote">Everyone is invited to join us for dinner (tacos) and drinks to kick off the wedding weekend! This will be a very casual event — come and go as you want! Plan on coordinating your own transportation to/from this event.</p>
-              <p class="event-subnote"><strong>Attire:</strong> Casual. Think jeans, sweaters, and a jacket. This event will be indoor/outdoor — it gets chilly in the evenings! <em>(Late September in Durango: expect highs in the low 70s°F and temps dropping into the 40s after dark.)</em></p>
+              <p class="event-subnote"><strong>Attire:</strong> Casual. Think jeans, sweaters, and a jacket. This event will be indoor/outdoor — it gets chilly in the evenings!</p>
 
               <div class="event-divider" aria-hidden="true"><span>• • •</span></div>
 
@@ -78,7 +78,7 @@
               <p class="event-bigtime">Saturday, September 26 · 4:30 PM – until they kick us out</p>
               <p class="event-subnote"><strong>4:30–5:00 PM:</strong> Wedding Ceremony (outdoors, weather permitting)</p>
               <p class="event-subnote"><strong>5:00 PM onwards:</strong> Cocktails, dinner, and dancing (outdoors/indoors, weather permitting)</p>
-              <p class="event-subnote"><strong>Attire:</strong> Relaxed cocktail. Think cocktail dresses and dark jeans with a blazer (no tie required). If you want to lean into western wear, Durango is the perfect place — cowboy boots, bolo ties, and hats are welcome. <em>(Ceremony is outdoors — a layer for the evening is never a bad idea.)</em></p>
+              <p class="event-subnote"><strong>Attire:</strong> Relaxed cocktail. Think cocktail dresses and dark jeans with a blazer (no tie required). If you want to lean into western wear, Durango is the perfect place — cowboy boots, bolo ties, and hats are welcome.</p>
               <p class="event-subnote">Prospector at Glacier Club is on the same property as the Tamarron Lodge. It's about a 5–10 minute walk from each other, so transportation will not be provided.</p>
 
               <div class="event-divider" aria-hidden="true"><span>• • •</span></div>
@@ -657,7 +657,17 @@
             return;
           }
 
-          setFormStatus('See you in Durango 🤠');
+          const attending = payloadMembers.filter(m => m.attending === 'yes');
+          const declining = payloadMembers.filter(m => m.attending === 'no');
+          let confirmMsg;
+          if (attending.length > 0 && declining.length === 0) {
+            confirmMsg = 'See you in Durango 🤠';
+          } else if (attending.length === 0 && declining.length > 0) {
+            confirmMsg = 'Sorry you can\'t make it — we\'ll miss you. 💛';
+          } else {
+            confirmMsg = 'Got it — we\'ll see some of you in Durango! 🤠';
+          }
+          setFormStatus(confirmMsg);
           if (submitBtn) submitBtn.disabled = true;
           Array.from(form.querySelectorAll('input, textarea, button')).forEach((el) => {
             if (el !== btn && el !== input) el.disabled = true;
@@ -958,10 +968,12 @@
         opacity: 0.78;
         margin-top: 10px;
         text-shadow: 0 2px 8px rgba(0,0,0,0.30);
+        min-height: 1.4em;
       }
       .countdown-done {
         font-style: italic;
       }
+      .d4 { animation-delay: 2.8s; }
 
       /* Clean between-section divider — matches the • • • inside events */
       .section-divider-dots {
