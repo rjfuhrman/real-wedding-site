@@ -52,7 +52,10 @@
       <!-- EVENTS -->
       <section id="details" class="section section-intro">
         <div class="container narrow">
-          <h2 class="section-title section-title--western">A Weekend in Durango</h2>
+          <h2 class="section-title section-title--western western-split" aria-label="A Weekend in Durango">
+            <span class="western-left">A Weekend</span>
+            <span class="western-right">in Durango</span>
+          </h2>
 
           <div class="event-stack">
             <div class="event-block">
@@ -593,6 +596,15 @@
       const iconTrigger = document.querySelector('.lookup-icon');
       if (iconTrigger) iconTrigger.addEventListener('click', () => lookup(input.value));
 
+      // ── Western title scroll animation ────────────────────────────
+      const westernTitle = document.querySelector('.western-split');
+      if (westernTitle) {
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); obs.unobserve(e.target); } });
+        }, { threshold: 0.3 });
+        obs.observe(westernTitle);
+      }
+
       // ── FAQ Accordion ─────────────────────────────────────────────
       document.querySelectorAll('.faq-trigger').forEach((trigger) => {
         trigger.addEventListener('click', () => {
@@ -688,6 +700,30 @@
       .faq-body strong {
         color: #24221f;
       }
+      /* Western title scroll-triggered split animation */
+      .western-split {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        overflow: hidden;
+      }
+      .western-left,
+      .western-right {
+        display: block;
+        transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s ease;
+      }
+      .western-left  { transform: translateX(-60px); opacity: 0; }
+      .western-right { transform: translateX( 60px); opacity: 0; }
+      .western-split.in-view .western-left,
+      .western-split.in-view .western-right {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      .western-split.in-view .western-right {
+        transition-delay: 0.08s;
+      }
+
       /* Clean between-section divider — matches the • • • inside events */
       .section-divider-dots {
         display: flex;
