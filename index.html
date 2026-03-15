@@ -44,6 +44,7 @@
           <span>Scroll</span>
           <span class="chev">⌄</span>
         </a>
+        <p id="countdown" class="hero-countdown" aria-live="polite"></p>
       </div>
     </header>
 
@@ -734,6 +735,29 @@
         });
       });
 
+      // ── Countdown timer ───────────────────────────────────────────
+      const cdEl = document.getElementById('countdown');
+      if (cdEl) {
+        const target = new Date('2026-09-26T16:30:00-06:00');
+        function cdText() {
+          const diff = target - new Date();
+          if (diff <= 0) return '🎉 Today\'s the day!';
+          const days = Math.floor(diff / 864e5);
+          const hrs  = Math.floor((diff % 864e5) / 36e5);
+          const mins = Math.floor((diff % 36e5) / 6e4);
+          const secs = Math.floor((diff % 6e4) / 1e3);
+          if (days > 1)   return days + ' days to Durango';
+          if (days === 1) return 'Tomorrow — see you there!';
+          return hrs + 'h ' + mins + 'm ' + secs + 's';
+        }
+        // Populate after d3 animation (3.05s delay + ~1.2s duration)
+        setTimeout(() => {
+          cdEl.textContent = cdText();
+          cdEl.classList.add('visible');
+          setInterval(() => { cdEl.textContent = cdText(); }, 1000);
+        }, 4400);
+      }
+
     })();
     </script>
 
@@ -930,6 +954,26 @@
         border-bottom-color: rgba(92,122,107,.6);
         opacity: .8;
       }
+
+      /* Countdown — mirrors .scroll-cue positioning exactly */
+      .hero-countdown {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: calc(max(26px, env(safe-area-inset-bottom)) + 64px);
+        color: #fff;
+        font-family: 'Libre Baskerville', serif;
+        font-size: 12px;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.45);
+        opacity: 0;
+        white-space: nowrap;
+        margin: 0;
+        padding: 0;
+        transition: opacity 1.2s ease;
+      }
+      .hero-countdown.visible { opacity: .85; }
 
       /* Clean between-section divider — matches the • • • inside events */
       .section-divider-dots {
