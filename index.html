@@ -12,8 +12,15 @@
     <!-- Countdown style in head to ensure it loads before render -->
     <style>
       .hero-countdown {
-        display: inline-block;
+        display: block;
+        text-align: center;
         margin-top: 18px;
+        opacity: 0;
+        transition: opacity 1.2s ease;
+      }
+      .hero-countdown.visible { opacity: 1; }
+      .hero-countdown-pill {
+        display: inline-block;
         font-family: 'Libre Baskerville', serif;
         font-size: clamp(12px, 1.4vw, 14px);
         letter-spacing: .18em;
@@ -25,11 +32,8 @@
         border: 1px solid rgba(255,255,255,0.18);
         border-radius: 999px;
         padding: 7px 20px;
-        opacity: 0;
-        transition: opacity 1.2s ease;
         white-space: nowrap;
       }
-      .hero-countdown.visible { opacity: 1; }
     </style>
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/styles.css" />
@@ -61,7 +65,7 @@
         <div class="hero-text">
           <h1 class="fade-up d1">Christine &amp; Riley</h1>
           <p class="subtitle fade-up d2">September 26, 2026 • Durango, Colorado</p>
-          <span id="hero-countdown" class="hero-countdown"></span>
+          <span id="hero-countdown" class="hero-countdown"><span class="hero-countdown-pill"></span></span>
         </div>
         <a class="scroll-cue fade-up d3" href="#details" aria-label="Scroll to details">
           <span>Scroll</span>
@@ -779,14 +783,15 @@
       setTimeout(function() {
         var el = document.getElementById('hero-countdown');
         if (!el) return;
-        el.textContent = cdText();
-        // Force browser to paint the text before starting the opacity transition
+        var pill = el.querySelector('.hero-countdown-pill');
+        if (!pill) return;
+        pill.textContent = cdText();
         requestAnimationFrame(function() {
           requestAnimationFrame(function() {
             el.classList.add('visible');
           });
         });
-        setInterval(function() { el.textContent = cdText(); }, 1000);
+        setInterval(function() { pill.textContent = cdText(); }, 1000);
       }, 2800);
     })();
     </script>
