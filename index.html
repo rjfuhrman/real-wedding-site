@@ -41,7 +41,7 @@
           <p class="subtitle fade-up d2">September 26, 2026 • Durango, Colorado</p>
         </div>
         <a class="scroll-cue fade-up d3" href="#details" aria-label="Scroll to details">
-          <p id="countdown" class="countdown" aria-live="polite" style="visibility:hidden; opacity:0; transition: opacity 1.2s ease 0.3s;"></p>
+          <p id="countdown" class="countdown" aria-live="polite" style="visibility:hidden; opacity:0; transition: opacity 1.2s ease 0.3s; display:block; text-align:center; width:100%;"></p>
           <span>Scroll</span>
           <span class="chev">⌄</span>
         </a>
@@ -964,9 +964,10 @@
         letter-spacing: .18em;
         text-transform: uppercase;
         color: #fff;
-        opacity: 0.72;
         text-shadow: 0 2px 10px rgba(0,0,0,0.4);
         margin: 0 0 8px;
+        text-align: center;
+        white-space: nowrap;
       }
       .countdown-done {
         font-style: italic;
