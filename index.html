@@ -755,7 +755,7 @@
         setTimeout(() => {
           countdownEl.textContent = getCountdownText();
           countdownEl.style.visibility = 'visible';
-          countdownEl.style.opacity   = '0.9';
+          countdownEl.style.opacity   = '0.72';
           setInterval(() => { countdownEl.textContent = getCountdownText(); }, 1000);
         }, 3200);
       }
@@ -964,16 +964,9 @@
         letter-spacing: .18em;
         text-transform: uppercase;
         color: #fff;
-        background: rgba(0,0,0,0.28);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-        border: 1px solid rgba(255,255,255,0.18);
-        border-radius: 999px;
-        padding: 7px 20px;
-        display: inline-block;
-        margin-top: 18px;
-        text-shadow: none;
-        min-height: 1.4em;
+        opacity: 0.72;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        margin-bottom: 10px;
       }
       .countdown-done {
         font-style: italic;
