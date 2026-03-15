@@ -40,7 +40,7 @@
           <h1 class="fade-up d1">Christine &amp; Riley</h1>
           <p class="subtitle fade-up d2">September 26, 2026 • Durango, Colorado</p>
         </div>
-        <p id="countdown" class="countdown" aria-live="polite" style="visibility:hidden; opacity:0; transition: opacity 1.2s ease 0.3s;"></p>
+        <p id="countdown" class="countdown" aria-live="polite" style="visibility:hidden; opacity:0; transition: opacity 1.2s ease 0.3s; margin-top: auto; padding-bottom: 80px;"></p>
         <a class="scroll-cue fade-up d3" href="#details" aria-label="Scroll to details">
           <span>Scroll</span>
           <span class="chev">⌄</span>
@@ -959,10 +959,6 @@
 
       /* Countdown timer */
       .countdown {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: calc(max(26px, env(safe-area-inset-bottom)) + 68px);
         font-family: 'Libre Baskerville', serif;
         font-size: clamp(12px, 1.4vw, 14px);
         letter-spacing: .18em;
@@ -970,10 +966,7 @@
         color: #fff;
         text-shadow: 0 2px 10px rgba(0,0,0,0.4);
         white-space: nowrap;
-        z-index: 2;
-        pointer-events: none;
         margin: 0;
-        padding: 0;
       }
       .countdown-done {
         font-style: italic;
