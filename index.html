@@ -61,7 +61,7 @@
         <div class="hero-text">
           <h1 class="fade-up d1">Christine &amp; Riley</h1>
           <p class="subtitle fade-up d2">September 26, 2026 • Durango, Colorado</p>
-          <span id="hero-countdown" class="hero-countdown fade-up d2"></span>
+          <span id="hero-countdown" class="hero-countdown"></span>
         </div>
         <a class="scroll-cue fade-up d3" href="#details" aria-label="Scroll to details">
           <span>Scroll</span>
@@ -775,13 +775,19 @@
         if (days === 1) return 'Tomorrow — see you there!';
         return hrs + 'h ' + mins + 'm ' + secs + 's';
       }
+      // Wait for d2 animation to finish (~2.75s), then populate text and fade in
       setTimeout(function() {
         var el = document.getElementById('hero-countdown');
         if (!el) return;
         el.textContent = cdText();
-        el.classList.add('visible');
+        // Force browser to paint the text before starting the opacity transition
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() {
+            el.classList.add('visible');
+          });
+        });
         setInterval(function() { el.textContent = cdText(); }, 1000);
-      }, 4400);
+      }, 2800);
     })();
     </script>
 
